@@ -11,26 +11,22 @@ import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinear
 
 
 
+function getSteps() {
+  return ['Contact','Demographics','Income','Expenses']
+}
 class ApplicationPage extends Component {
   state = {
     appPage: 0,
     completed: {},
 
   }
-  
-  pageHandler = (event) => {
-    console.log(event.currentTarget.value);
-    let activeStep; 
 
-    if (this.isLastStep() && !this.allStepsCompleted()) {
-        //If it is the last step but all steps haven't been completed
-        // find the first uncompleted step
-        const steps = getSteps()
-    }
-    
-    //TODO: make it so you can't go outside of the bounds of pages
-    this.setState({ 
-      appPage: this.state.appPage + parseInt(event.currentTarget.value) });
+  allStepsCompleted() {
+    return this.completedSteps() === this.totalSteps();
+  }
+  
+  completedSteps() {
+    return Object.keys(this.state.completed).length;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,15 +34,68 @@ class ApplicationPage extends Component {
     
   }
 
+  componentDidMount() {
+    console.log(this.state);
+    
+  }
+
+
+  handleComplete = () => {
+    const { completed } = this.state;
+    completed[this.state.activeStep] = true; 
+    this.setState({ 
+      completed,
+    });
+    this.handleNext()
+  }
+
+  handleReset = () => {
+    this.setState({
+      appPage: 0,
+      activeStep: 0,
+      completed: {},
+    });
+  }
+
+  handleStep = step => () => {
+    this.setState({ 
+      activeStep: step,
+    });
+  }
+
+  isLastStep() {
+    return this.state.activeStep === this.totalSteps() -1;
+  }
+
+  pageHandler = (event) => {
+    console.log(event.currentTarget.value);
+    let activeStep; 
+
+    if (this.isLastStep() && !this.allStepsCompleted()) {
+        //If it is the last step but all steps haven't been completed
+        // find the first uncompleted step
+        const steps = getSteps();
+        activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
+    } else {
+      activeStep = this.state.activeStep + 1;
+    }
+    
+    //TODO: make it so you can't go outside of the bounds of pages
+    this.setState({ 
+      activeStep,
+      appPage: this.state.appPage + parseInt(event.currentTarget.value),
+    });
+  }
+
+
 render() {
+  //check whether the return statement works
   let content = ''
   switch (this.state.appPage) {
     case 0:
-    content = <Landing /> 
-      break;
+    return content = <Landing /> 
     case 1:
-    content = <Contact /> 
-      break;
+    return content = <Contact /> 
     // case 2:
     // content = <Page1 /> 
     //   break;
