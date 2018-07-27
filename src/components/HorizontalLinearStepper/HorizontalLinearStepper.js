@@ -20,10 +20,6 @@ const styles = theme => ({
     },
 })
 
-function getSteps() {
-    return ['Contact','Demographics','Income','Expenses']
-}
-
 function getStepContent(step) {
     switch (step) {
         case 0:
@@ -49,7 +45,9 @@ class HorizontalLinearStepper extends Component {
        if (this.props.completed) {
 
        }
-     }
+    }
+
+
     
 
     render() { 

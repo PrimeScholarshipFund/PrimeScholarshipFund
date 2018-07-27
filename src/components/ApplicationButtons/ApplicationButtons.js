@@ -6,7 +6,7 @@ class ApplicationButtons extends Component {
     render() { 
         return ( 
             <div>
-            {this.props.appPage !== 0 ? (
+            {/* {this.props.appPage !== 0 ? (
                 <div>
                     <Button
                     onClick={this.props.pageHandler}
@@ -30,7 +30,8 @@ class ApplicationButtons extends Component {
                         Start Application
                     </Button>
                 </div>
-            )}
+            )} */}
+            sup nerds
             </div>
          );
     }
