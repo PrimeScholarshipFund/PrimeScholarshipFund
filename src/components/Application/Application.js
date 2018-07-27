@@ -20,6 +20,13 @@ class ApplicationPage extends Component {
   
   pageHandler = (event) => {
     console.log(event.currentTarget.value);
+    let activeStep; 
+
+    if (this.isLastStep() && !this.allStepsCompleted()) {
+        //If it is the last step but all steps haven't been completed
+        // find the first uncompleted step
+        const steps = getSteps()
+    }
     
     //TODO: make it so you can't go outside of the bounds of pages
     this.setState({ 

@@ -47,9 +47,10 @@ function getStepContent(step) {
 class HorizontalLinearStepper extends Component {
     handleComplete = () => {
        if (this.props.completed) {
-           
+
        }
      }
+    
 
     render() { 
         return ( 
