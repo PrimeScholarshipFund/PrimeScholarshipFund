@@ -7,10 +7,15 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header/Header';
+import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
+import AboutPage from './components/AboutPage/AboutPage';
+import DonatePage from './components/DonatePage/DonatePage';
+import ApplicationPage from './components/Application/Application';
+import AdminPage from './components/Admin/Admin';
 
 import './styles/main.css';
 
@@ -22,6 +27,18 @@ const App = () => (
         <Redirect exact from="/" to="/home" />
         <Route
           path="/home"
+          component={HomePage}
+        />
+        <Route
+          path="/about"
+          component={AboutPage}
+        />
+        <Route
+          path="/donate"
+          component={DonatePage}
+        />
+        <Route
+          path="/login"
           component={LoginPage}
         />
         <Route
@@ -35,6 +52,14 @@ const App = () => (
         <Route
           path="/info"
           component={InfoPage}
+        />
+        <Route
+          path="/application"
+          component={ApplicationPage}
+        />
+        <Route
+          path="/admin"
+          component={AdminPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
