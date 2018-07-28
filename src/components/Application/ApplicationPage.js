@@ -73,6 +73,7 @@ class ApplicationPage extends Component {
   handleNext = () => {
     let _activeStep;
 
+    //TODO: fix it so you can't go farther than the last step
     if (this.isLastStep() && !this.allStepsCompleted()) {
       // It's the last step, but not all steps have been completed,
       // find the first step that has been completed
@@ -97,8 +98,11 @@ class ApplicationPage extends Component {
   }
 
   handleStep = step => () => {
+    console.log(step);
+    
     this.setState({ 
       activeStep: step,
+      appPage: step,
     });
   }
 

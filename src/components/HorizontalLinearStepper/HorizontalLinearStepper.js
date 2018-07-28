@@ -97,7 +97,7 @@ class HorizontalLinearStepper extends Component {
                                     color = "primary"
                                     onClick = {this.props.handleComplete}
                                 >
-                                {this.props.completedSteps() === this.props.totalSteps() -1 ? 'Finish' : 'Complete Step'}
+                                {this.props.completedSteps() === this.props.totalSteps() -1 ? 'Finish' : 'Save progress'}
                                 </Button>
                             ))}
                         </div>
