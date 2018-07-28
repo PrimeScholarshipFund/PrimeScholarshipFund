@@ -110,7 +110,7 @@ class HorizontalLinearStepper extends Component {
             <div 
             className={classes.root}
             >
-            <Stepper nonLinear activeStep={activeStep}>
+            <Stepper nonLinear activeStep={this.props.activeStep}>
             {steps.map((label, index) => {
                 return (
                     <Step key={label}>
