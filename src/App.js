@@ -14,7 +14,7 @@ import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import DonatePage from './components/DonatePage/DonatePage';
-import ApplicationPage from './components/Application/Application';
+import ApplicationPage from './components/Application/ApplicationPage';
 import AdminPage from './components/Admin/Admin';
 
 import './styles/main.css';

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Stepper, { Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
@@ -20,42 +23,115 @@ const styles = theme => ({
     },
 })
 
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            
-            return 'Step 1: Please enter your contact information...';
-        case 1:
-            
-            return 'Step 2: Please enter your demographic information...';
-        case 2:
-            
-            return 'Step 3: Income information will be used to determine eligibility...';
-        case 3:
-            
-            return 'Step 4: Expenses will be used to determine amount awarded...';
-    
-        default:
-            return 'Not a step';
-    }
-}
 
 class HorizontalLinearStepper extends Component {
-    handleComplete = () => {
-       if (this.props.completed) {
-
-       }
+    
+    componentDidMount() {
+        console.log(this.props);
+        
     }
 
-
+    componentDidUpdate = (prevProps, currentProps) => {
+    }
     
-
+    
+    
+    
     render() { 
+        const { classes } = this.props;
+        const steps = this.props.getSteps();
+        const { activeStep } = this.props.activeStep;
+        let content;
+        if (this.props.completed) {
+            content =       
+            <div>
+                {this.props.allStepsCompleted() ? (
+                    <div>
+                        <Typography 
+                        className={classes.instructions}
+                        >
+                        All steps completed - you&quot;re finished
+                        </Typography>
+                        <Button 
+                            onClick={this.props.handleReset}
+                        >
+                        Reset
+                        </Button>
+                    </div>
+                ) : (
+                    <div>
+                        <Typography
+                        className={classes.instructions}
+                        >
+                        {this.props.getStepContent(this.props.activeStep)}
+                        </Typography>
+                        <div>
+                            <Button
+                                disabled = {this.props.activeStep === 0}
+                                onClick = {this.props.pageHandler}
+                                value = {-1}
+                                className = {classes.button}
+                            >
+                                Back HLS
+                            </Button>
+                            <Button
+                                variant = "contained"
+                                color = "primary"
+                                onClick = {this.props.pageHandler}
+                                value = {1}
+                                className = {classes.button}
+                            >
+                                Next HLS 
+                            </Button>
+                            {this.props.activeStep !== steps.length &&
+                            (this.props.completed[this.props.activeStep] ? (
+                                <Typography
+                                    variant = "caption"
+                                    className = {classes.completed}
+                                >
+                                Step {activeStep + 1} already completed
+                                </Typography>
+                            ) : (
+                                <Button 
+                                    variant = "contained"
+                                    color = "primary"
+                                    onClick = {this.props.handleComplete}
+                                >
+                                {this.props.completedSteps() === this.props.totalSteps() -1 ? 'Finish' : 'Complete Step'}
+                                </Button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                </div>;
+        }
+        
         return ( 
-        <div>
-            stepper
-        </div> );
+            <div 
+            className={classes.root}
+            >
+            <Stepper nonLinear activeStep={activeStep}>
+            {steps.map((label, index) => {
+                return (
+                    <Step key={label}>
+                        <StepButton
+                            onClick = {this.props.handleStep(index)}
+                            completed={this.props.completed[index]}
+                        >
+                            {label}
+                        </StepButton>
+                    </Step>
+                )
+            })}
+            </Stepper>
+                {content}
+        </div> 
+        );
     }
 }
+
+HorizontalLinearStepper.propTypes = {
+    classes: PropTypes.object,
+}
  
-export default HorizontalLinearStepper;
+export default withStyles(styles)(HorizontalLinearStepper);
