@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MiniDrawer from '../MiniDrawer/MiniDrawer';
 // import { connect } from 'react-redux';
 
 class HomePage extends Component {
@@ -6,7 +7,9 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h1>STATIC HOME PAGE</h1>
+        <MiniDrawer
+        content = {'STATIC HOME PAGE'}
+        />   
       </div>
     );
   }
