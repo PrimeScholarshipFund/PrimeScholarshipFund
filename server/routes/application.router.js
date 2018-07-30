@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET all information about every applicant
  */
-router.get('/', (req, res) => {
+router.get('/admin', (req, res) => {
     let queryText = `SELECT * from form
         JOIN contact on contact.form_id = form.id
         JOIN demographics on demographics.form_id = form.id
