@@ -15,6 +15,7 @@ class AdminPage extends Component {
     return (
       <div>
         <h1>ADMIN PAGE</h1>
+        {JSON.stringify(this.props.apps)}
       </div>
     );
   }
