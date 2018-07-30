@@ -16,6 +16,27 @@ class AdminPage extends Component {
       <div>
         <h1>ADMIN PAGE</h1>
         {JSON.stringify(this.props.apps)}
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>ID</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {
+                    this.props.apps.map( thing =>    
+                      <tr>
+                      <td>{thing.first_name}</td>
+                      <td>{thing.first_name}</td>
+                      <td>{thing.first_name}</td>
+                      </tr>
+                    )
+                } */}
+          </tbody>
+        </table>
+
       </div>
     );
   }
