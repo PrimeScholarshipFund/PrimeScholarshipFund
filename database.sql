@@ -32,8 +32,7 @@ CREATE TABLE "contact" (
     "accepted_at_prime" BOOLEAN NOT NULL,
     "applied_at_prime" BOOLEAN,
     "msp_tech_scholar" BOOLEAN NOT NULL,
-    "applied_for_msp" BOOLEAN,
-    "dependents" integer NOT NULL
+    "applied_for_msp" BOOLEAN
 );
 
 
