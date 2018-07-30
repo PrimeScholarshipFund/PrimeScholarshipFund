@@ -129,9 +129,11 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>Prime scholarship</List>
+          <List>Prime </List>
           <Divider />
-          <List>fund</List>
+          <List>Scholarship </List>
+          <Divider />
+          <List>Fund</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

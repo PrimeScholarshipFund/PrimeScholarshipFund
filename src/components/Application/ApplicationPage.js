@@ -131,7 +131,7 @@ class ApplicationPage extends Component {
     
     //TODO: make it so you can't go outside of the bounds of pages
     this.setState({ 
-      appPage: this.state.appPage + parseInt(event.currentTarget.value),
+      appPage: this.state.appPage + parseInt(event.currentTarget.value, 10),
     });
   };
 
