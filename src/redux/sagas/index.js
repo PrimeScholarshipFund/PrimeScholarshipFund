@@ -9,6 +9,8 @@ export default function* rootSaga() {
     userSaga(),
     loginSaga(),
     adminSaga(),
+    donationSaga(),
+    applicantSaga(),
     // watchIncrementAsync()
   ]);
 }
