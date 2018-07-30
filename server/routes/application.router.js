@@ -20,6 +20,25 @@ router.get('/admin', (req, res) => {
         })
 });
 
+//get route for individual application applicatn side
+//edit this later to operate solely from form.id
+router.get('/applicant/:id', (req, res) => {
+    const id = req.params.id;
+    let queryText = `SELECT * FROM person
+    JOIN form on form.user_id = person.id
+    JOIN demographics on demographics.form_id = form.id
+    JOIN expenses on expenses.form_id = form.id
+    JOIN income on income.form_id = form.id
+    JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
+    pool.query(queryText, [id])
+        .then(response => {
+            res.send(response.rows);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+}); //end applicant get call
+
 /**
  * NEEDS TO BE REFACTORED
  */
