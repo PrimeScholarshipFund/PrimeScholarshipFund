@@ -6,6 +6,8 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import MiniDrawer from './components/MiniDrawer/MiniDrawer';
+
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -24,8 +26,10 @@ import { MuiThemeProvider } from '../node_modules/@material-ui/core';
 const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
-      <Header title="Project Base" />
+      {/* <Header title="Project Base" /> */}
       <Router>
+      <MiniDrawer content ={
+        
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route
@@ -68,6 +72,8 @@ const App = () => (
           <Route render={() => <h1>404</h1>} />
 
         </Switch>
+      
+      }/>
       </Router>
     </MuiThemeProvider>
   </div>

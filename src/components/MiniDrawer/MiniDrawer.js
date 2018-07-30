@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { AlertIcon, HomeIcon, PenIcon, AccountCircleIcon } from '../../../node_modules/mdi-react';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -131,9 +132,10 @@ class MiniDrawer extends React.Component {
             </IconButton>
           <Divider />
           </div>
-          <List><HomeIcon className={classes.content}/></List>
-          <List><PenIcon className={classes.content} /> </List>
-          <List><AccountCircleIcon className={classes.content} /> </List>
+
+          <Link to="/home"><List><HomeIcon className={classes.content}/></List></Link>
+          <Link to="/login"><List><PenIcon className={classes.content} /> </List></Link>
+          <Link to="/about"><List><AccountCircleIcon className={classes.content} /> </List></Link>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
