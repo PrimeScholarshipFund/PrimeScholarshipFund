@@ -4,6 +4,7 @@ import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
 import Contact from './Contact';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
+import axios from '../../../node_modules/axios';
 
 
 const getSteps = () => {
@@ -58,6 +59,9 @@ class ApplicationPage extends Component {
 
   componentDidMount() {
     console.log(this.state.completed);
+    axios.post('/api/donation')
+    .then(response => console.log(response.data))
+    .catch(error => console.log(error))
     
   }
 
