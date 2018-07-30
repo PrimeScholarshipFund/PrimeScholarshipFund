@@ -40,7 +40,6 @@ class HorizontalLinearStepper extends Component {
     render() { 
         const { classes } = this.props;
         const steps = this.props.getSteps();
-        const { activeStep } = this.props.activeStep;
         let content;
         if (this.props.completed) {
             content =       
@@ -90,7 +89,7 @@ class HorizontalLinearStepper extends Component {
                                     variant = "caption"
                                     className = {classes.completed}
                                 >
-                                Step {activeStep + 1} already completed
+                                Step {this.props.activeStep + 1} saved
                                 </Typography>
                             ) : (
                                 <Button 

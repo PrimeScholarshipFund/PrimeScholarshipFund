@@ -12,8 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { AlertIcon, HomeIcon, PenIcon, AccountCircleIcon } from '../../../node_modules/mdi-react';
+
 import { Link } from 'react-router-dom';
+import { HomeIcon, PenIcon, AccountCircleIcon } from '../../../node_modules/mdi-react';
 
 const drawerWidth = 240;
 
