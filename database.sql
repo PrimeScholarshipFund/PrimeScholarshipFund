@@ -1,6 +1,6 @@
 CREATE TABLE "person" (
     "id" serial PRIMARY KEY NOT NULL,
-    "username" varchar(20) NOT NULL UNIQUE,
+    "username" varchar(50) NOT NULL UNIQUE,
     "password" varchar(100) NOT NULL,
     "admin" BOOLEAN NOT NULL DEFAULT 'false'
 );
@@ -72,7 +72,7 @@ CREATE TABLE "expenses" (
     "childcare" integer NOT NULL,
     "healthcare" integer NOT NULL,
     "other_expenses" integer NOT NULL,
-    "other_expenses_notes" varchar(280)
+    "other_expenses_notes" varchar(8000)
 );
 
 INSERT INTO person ("username", "password", "admin")
