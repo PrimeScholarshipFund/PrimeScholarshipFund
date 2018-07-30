@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { AlertIcon, HomeIcon, PenIcon, AccountCircleIcon } from '../../../node_modules/mdi-react';
 
 const drawerWidth = 240;
 
@@ -124,16 +125,15 @@ class MiniDrawer extends React.Component {
           open={this.state.open}
         >
           <div className={classes.toolbar}> 
+            <h4>Surprise!</h4>
             <IconButton onClick={this.handleDrawer}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
+          <Divider />
           </div>
-          <Divider />
-          <List>Prime </List>
-          <Divider />
-          <List>Scholarship </List>
-          <Divider />
-          <List>Fund</List>
+          <List><HomeIcon className={classes.content}/></List>
+          <List><PenIcon className={classes.content} /> </List>
+          <List><AccountCircleIcon className={classes.content} /> </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
