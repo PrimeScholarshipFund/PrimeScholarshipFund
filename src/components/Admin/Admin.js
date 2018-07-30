@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './Admin.css';
+
 const mapStateToProps = state => ({
   apps: state.admin.adminApplication,
 });
@@ -12,11 +14,11 @@ class AdminPage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>ADMIN PAGE</h1>
-        {JSON.stringify(this.props.apps)}
-        <table>
+    let adTable = null;
+
+    if(this.props.apps){
+      adTable = 
+      <table className="center_80">
           <thead>
             <tr>
               <th>Status</th>
@@ -25,17 +27,24 @@ class AdminPage extends Component {
             </tr>
           </thead>
           <tbody>
-            {/* {
-                    this.props.apps.map( thing =>    
-                      <tr>
-                      <td>{thing.first_name}</td>
-                      <td>{thing.first_name}</td>
-                      <td>{thing.first_name}</td>
-                      </tr>
-                    )
-                } */}
+            {
+              this.props.apps.map( applicant =>    
+                <tr key={applicant.id}>
+                  <td>{applicant.status}</td>
+                  <td>{applicant.id}</td>
+                  <td><button>View</button></td>
+                </tr>
+              )
+            }
           </tbody>
-        </table>
+        </table>;
+    }
+    
+    
+    return (
+      <div>
+        <h1>ADMIN PAGE</h1>
+        {adTable}
 
       </div>
     );
