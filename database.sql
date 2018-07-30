@@ -44,7 +44,7 @@ CREATE TABLE "demographics" (
     "race" varchar(80) NOT NULL,
     "age" integer NOT NULL,
     "level_of_ed" varchar(80) NOT NULL,
-    "lgbt_status" varchar(80) NOT NULL
+    "lgbtq_status" varchar(80) NOT NULL
 );
 
 
