@@ -7,9 +7,8 @@ let userId = '';
 
 function* getApplicant(action) {
   try {
-    userId = action.payload.userId;
-    applicantInfo = yield getHandInfoRequest(action.payload);
-    console.log(gameInfo);
+    applicantInfo = yield getApplicantRequest(action.payload);
+    console.log(applicantInfo);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
       payload: applicantInfo,
@@ -20,7 +19,7 @@ function* getApplicant(action) {
 }
 
 function* applicantSaga() {
-  yield takeLatest(TABLE_ACTIONS.NEW_GAME, newGame);
+  yield takeLatest(APPLICANT_ACTIONS, getApplicant);
 
 }
 

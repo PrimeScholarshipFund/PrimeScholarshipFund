@@ -6,10 +6,10 @@ export const APPLICANT_ACTIONS = {
 export const getApplicants = () => ({
   type: APPLICANT_ACTIONS.GET_APPLICANTS,
   payload: {
-    userId,
+    // userId,
   }
 });
 
 export const setGame = () => ({
-  type: APPLICANT_ACTIONS.FILL_FORM),
+  type: APPLICANT_ACTIONS.FILL_FORM,
 });

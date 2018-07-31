@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { DONATION_ACTIONS } from '../actions/donationAction';
+import { DONATION_ACTIONS } from '../actions/donationActions';
 import { postDonationRequest } from '../requests/donationRequests';
 
 let chargeResponse = '';
