@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 
-class Contact extends Component {
+class Income extends Component {
     state = {
       Fax: '',
       doughnuts: '',
@@ -41,4 +41,4 @@ class Contact extends Component {
     }
 }
 
-export default Contact;
+export default Income;

@@ -8,7 +8,6 @@ let userId = '';
 function* getApplicant(action) {
   try {
     applicantInfo = yield getApplicantRequest(action.payload);
-    console.log(applicantInfo);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
       payload: applicantInfo,
@@ -19,7 +18,7 @@ function* getApplicant(action) {
 }
 
 function* applicantSaga() {
-  yield takeLatest(APPLICANT_ACTIONS, getApplicant);
+  yield takeLatest(APPLICANT_ACTIONS.GET_APPLICANT, getApplicant);
 
 }
 
