@@ -1,0 +1,24 @@
+.aboutGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+}
+
+#about {
+    grid-area: 1 / span 3;
+    overflow-wrap: normal;
+    padding: 20px;
+
+}
+
+.board {
+    width: 100%;
+}
+
+.boardWrap {
+    height: 200px;
+    width: 300px;
+    overflow: hidden;
+    margin: auto;
+}
