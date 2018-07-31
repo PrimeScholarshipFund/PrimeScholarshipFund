@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
 import Contact from './Contact';
+import Demographics from './Demographics';
+import Income from './Income';
+import Expenses from './Expenses';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 
 const getSteps = () => {
@@ -148,6 +151,15 @@ render() {
       break;
     case 1:
       content = <Contact />
+      break;
+    case 2:
+      content = <Demographics />
+      break;
+    case 3:
+      content = <Income />
+      break;
+    case 4:
+      content = <Expenses />
       break;
     // case 2:
     // content = <Page1 />
