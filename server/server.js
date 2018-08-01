@@ -13,7 +13,7 @@ const userRouter = require('./routes/user.router');
 const application = require('./routes/application.router');
 const profile = require('./routes/profile.router');
 const question = require('./routes/question.router');
-const donation = require('./routes/donation.router')
+const donation = require('./routes/donation.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
