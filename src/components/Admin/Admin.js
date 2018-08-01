@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EnhancedTable from '../Table/Table';
+import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 
 import './Admin.css';
 
@@ -9,42 +11,35 @@ const mapStateToProps = state => ({
 
 class AdminPage extends Component {
 
-  componentDidMount(){
-    this.props.dispatch({type: 'GET_ALL_APPLICATION'});
+  state = {
+    active: null,
+  };
+
+  // componentDidMount(){
+  //   this.props.dispatch({type: 'GET_ALL_APPLICATION'});
+  // }
+
+  setActive = (person) => {
+    this.setState({
+      active: person
+    });
   }
 
   render() {
-    let adTable = null;
-
-    if(this.props.apps){
-      adTable = 
-      <table className="center_80">
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>ID</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.props.apps.map( applicant =>    
-                <tr key={applicant.id}>
-                  <td>{applicant.status}</td>
-                  <td>{applicant.id}</td>
-                  <td><button>View</button></td>
-                </tr>
-              )
-            }
-          </tbody>
-        </table>;
-    }
-    
-    
     return (
       <div>
         <h1>ADMIN PAGE</h1>
-        {adTable}
+        {this.state.active === null? (
+          <EnhancedTable
+            setActive = {this.setActive}
+          />
+        ) : (
+          <FullScreenDialog
+            person = {this.state.active}
+            setActive = {this.setActive}
+          />
+        )
+      }
 
       </div>
     );

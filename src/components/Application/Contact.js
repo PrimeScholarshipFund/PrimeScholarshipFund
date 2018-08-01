@@ -24,14 +24,17 @@ class Contact extends Component {
             value={this.state.Fax}
             onChange={this.handleChange('Fax')}
           />
+        <br></br>
           <TextField
             label="How much do you like doughnuts?"
             value={this.state.doughnuts}
           />
+        <br></br>
           <TextField
             label="How important are dinosaurs to your personal life?"
             value={this.state.dinosaurs}
           />
+        <br></br>
           <TextField
             label="When murdering ewoks, how often do you think about your pet hamster?"
             value={this.state.hamster}
