@@ -13,6 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import TextField from '@material-ui/core/TextField';
+
 
 const styles = {
   appBar: {
@@ -29,15 +31,12 @@ function Transition(props) {
 
 class FullScreenDialog extends React.Component {
   state = {
-    open: false,
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: true });
+    open: true,
   };
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.setActive(null);
   };
 
   render() {
@@ -65,13 +64,14 @@ class FullScreenDialog extends React.Component {
             </Toolbar>
           </AppBar>
           <List>
-            <ListItem button>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
+            <ListItem>
+              <ListItemText primary={this.props.person.firstName + ' ' + this.props.person.lastName} />
             </ListItem>
             <Divider />
-            <ListItem button>
-              <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-            </ListItem>
+            <TextField
+              label="Email"
+              value='email'
+            />
           </List>
         </Dialog>
       </div>

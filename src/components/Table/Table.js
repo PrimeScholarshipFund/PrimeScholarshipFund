@@ -18,7 +18,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
+import Button from '@material-ui/core/Button';
+
 
 let counter = 0;
 function createData(status, firstName, lastName, email, phone, comment) {
@@ -113,8 +114,8 @@ class EnhancedTable extends React.Component {
       orderBy: 'status',
       selected: [],
       data: [
-        createData('Accepted', 'Sasha', 'Milenkovic', 'sashamilenkovic2@gmail.com', '(651)-222-2222', <FullScreenDialog />),
-        createData('Rejected', 'Bill', 'Hickey', 'bhickz@hotmail.com', '(651)-666-6969', <FullScreenDialog />)
+        createData('Accepted', 'Sasha', 'Milenkovic', 'sashamilenkovic2@gmail.com', '(651)-222-2222'),
+        createData('Rejected', 'Bill', 'Hickey', 'bhickz@hotmail.com', '(651)-666-6969'),
       ],
       page: 0,
       rowsPerPage: 5,
@@ -205,7 +206,7 @@ class EnhancedTable extends React.Component {
                       <TableCell>{n.lastName}</TableCell>
                       <TableCell>{n.email}</TableCell>
                       <TableCell>{n.phone}</TableCell>
-                      <TableCell>{n.comment}</TableCell>
+                      <TableCell><Button onClick={() => this.props.setActive(n)}>View</Button></TableCell>
                     </TableRow>
                   );
                 })}
