@@ -13,8 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import TextField from '@material-ui/core/TextField';
-
+import InputAdornments from '../InputField/InputField';
 
 const styles = {
   appBar: {
@@ -32,6 +31,10 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: true,
+  };
+
+  confirmClose = () => {
+
   };
 
   handleClose = () => {
@@ -56,23 +59,16 @@ class FullScreenDialog extends React.Component {
                 <CloseIcon />
               </IconButton>
               <Typography variant="title" color="inherit" className={classes.flex}>
-                Sound
+                {this.props.person.firstName + ' ' + this.props.person.lastName}
               </Typography>
               <Button color="inherit" onClick={this.handleClose}>
                 save
               </Button>
             </Toolbar>
           </AppBar>
-          <List>
-            <ListItem>
-              <ListItemText primary={this.props.person.firstName + ' ' + this.props.person.lastName} />
-            </ListItem>
-            <Divider />
-            <TextField
-              label="Email"
-              value='email'
-            />
-          </List>
+          <InputAdornments
+            person={this.props.person}
+          />
         </Dialog>
       </div>
     );
