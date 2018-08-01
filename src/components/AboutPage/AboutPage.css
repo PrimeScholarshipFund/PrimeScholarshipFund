@@ -1,24 +1,27 @@
 .aboutGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
     width: 100%;
 }
 
 #about {
-    grid-area: 1 / span 3;
+    grid-area: 1 / span 2;
     overflow-wrap: normal;
     padding: 20px;
 
 }
 
 .board {
-    width: 100%;
+    height: 200px;
 }
 
-.boardWrap {
-    height: 200px;
-    width: 300px;
-    overflow: hidden;
-    margin: auto;
+.tile {
+    display: flex;
+    height: max-content;
+    margin-bottom: 20px;
+}
+
+.content {
+    margin-left: 15px;
 }

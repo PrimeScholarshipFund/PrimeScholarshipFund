@@ -33,16 +33,11 @@ users to donate page)</p>
     <h2>The Board</h2>
 
     <div className="vertGrid">
+    <Paper className="tile">
       
-    </div>
-      </Paper>
-        
-      
-
-      <Paper>
-        <div className="boardWrap">
         <img src={PhotoIlana} alt="" className="board"/>
-        </div>
+       
+        <div className="content">
         <h4>Ilana Nagib - President</h4>
         <p>I am extremely passionate about equality, diversity and inclusion. I moved to the United States
 from Brazil 10 years ago, and ever since, I haven’t stopped working to increase opportunities for
@@ -50,33 +45,40 @@ underrepresented communities. I have a background in Communications and also rec
 graduated from Prime Digital Academy in the Kochab cohort. Technology has changed my life
 in so many ways and I am excited to be part of a group that is working hard to change the “face”
 of the tech industry in the Minneapolis / St. Paul area.</p>
+        </div>
       </Paper>
 
-      <Paper>
-        <div className="boardWrap">
-        <img src={PhotoEllen} alt="" className="board"/>
-        </div>
+      <Paper className="tile">
+    
         
+        <img src={PhotoEllen} alt="" className="board"/>
+  
+        <div className="content">
         <h4>Ellen Keal - IT Officer</h4>
         <p>I graduated from Prime in July 2018 in the Kochab cohort. Before that, I got a degree in Math
 and Physics from the University of Wisconsin, Madison. I strongly believe in the power of
 education, and believe everyone should be able to access education. When I'm not coding, I
 can be found helping younger students with their Math and Reading skills, or running around the
 lakes and trails in Minneapolis.</p>
+        </div>
       </Paper>
 
-       <Paper>
-       <div className="boardWrap">
+      <Paper className="tile">
+       
         <img src={PhotoAndy} alt="" className="board"/>
-        </div>
+
+        <div className="content">
         <h4>Andy Krueger - Evaluations Officer</h4>
         <p>I graduated from the University of Wisconsin-Eau Claire in 2003 with a degree in Management
 & Entrepreneurship. I was part of the 2018 Colfax cohort at Prime Digital Academy, and I work
 as a UX Designer at Merrill Corporation. My wife and I have organized craft fairs for the past 13
 years and currently run the Nicollet Makers Market, a popup shopping event featuring creators
 who represent the diversity of Minneapolis and surrounding neighborhoods.</p>
-      </Paper>
       </div>
+      </Paper>
+    </div>
+      </Paper>
+    </div>
     );
   }
 }
