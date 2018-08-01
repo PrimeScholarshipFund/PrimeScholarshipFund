@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,15 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import { lighten } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
 
 
@@ -53,6 +45,7 @@ class EnhancedTableHead extends React.Component {
 
     return (
       <TableHead>
+
         <TableRow>
           {columnData.map(column => {
             return (
@@ -78,6 +71,7 @@ class EnhancedTableHead extends React.Component {
             );
           }, this)}
         </TableRow>
+
       </TableHead>
     );
   }
@@ -113,10 +107,12 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'status',
       selected: [],
+
       data: [
         createData('Accepted', 'Sasha', 'Milenkovic', 'sashamilenkovic2@gmail.com', '(651)-222-2222'),
         createData('Rejected', 'Bill', 'Hickey', 'bhickz@hotmail.com', '(651)-666-6969'),
       ],
+
       page: 0,
       rowsPerPage: 5,
     };
@@ -190,7 +186,7 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody>
-              {data
+              {this.props.apps
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
@@ -202,10 +198,10 @@ class EnhancedTable extends React.Component {
                       selected={isSelected}
                     >
                       <TableCell>{n.status}</TableCell>
-                      <TableCell>{n.firstName}</TableCell>
-                      <TableCell>{n.lastName}</TableCell>
+                      <TableCell>{n.first_name}</TableCell>
+                      <TableCell>{n.last_name}</TableCell>
                       <TableCell>{n.email}</TableCell>
-                      <TableCell>{n.phone}</TableCell>
+                      <TableCell>{n.phone_number}</TableCell>
                       <TableCell><Button onClick={() => this.props.setActive(n)}>View</Button></TableCell>
                     </TableRow>
                   );

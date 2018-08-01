@@ -15,9 +15,9 @@ class AdminPage extends Component {
     active: null,
   };
 
-  // componentDidMount(){
-  //   this.props.dispatch({type: 'GET_ALL_APPLICATION'});
-  // }
+  componentDidMount(){
+    this.props.dispatch({type: 'GET_ALL_APPLICATION'});
+  }
 
   setActive = (person) => {
     this.setState({
@@ -26,13 +26,21 @@ class AdminPage extends Component {
   }
 
   render() {
+    let content =null;
+    if(this.props.apps){content = (
+      <EnhancedTable
+            setActive = {this.setActive}
+            apps = {this.props.apps}
+          />
+    )
+    };
+
+    
     return (
       <div>
         <h1>ADMIN PAGE</h1>
         {this.state.active === null? (
-          <EnhancedTable
-            setActive = {this.setActive}
-          />
+            content
         ) : (
           <FullScreenDialog
             person = {this.state.active}
