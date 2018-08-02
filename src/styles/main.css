@@ -101,6 +101,11 @@ li a:hover {
 
 }
 
+.bottom-2 {
+    grid-area: 5 /span 6;
+    padding: 20px;
+}
+
 .item {
     padding: 20px;
 }

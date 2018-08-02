@@ -51,7 +51,7 @@ class DonatePage extends Component {
           <div className="fakePic"></div>
 
           {/* grid area 3 */}
-          <Paper>
+          <Paper className="item">
             <TextField
             id="name"
             label="Name"
