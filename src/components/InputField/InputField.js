@@ -67,11 +67,17 @@ class InputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
+  componentDidMount() {
+    console.log(this.state);
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
+        <p>{this.state.status}</p>
+
         <TextField
           select
           className={classNames(classes.margin, classes.textField)}
@@ -96,40 +102,18 @@ class InputAdornments extends React.Component {
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
-        <FormControl
-          className={classNames(classes.margin, classes.withoutLabel, classes.textField)}
-          aria-describedby="weight-helper-text"
-        >
-          <Input
-            id="adornment-weight"
-            value={this.state.weight}
-            onChange={this.handleChange('weight')}
-            endAdornment={<InputAdornment position="start">Kg</InputAdornment>}
-            inputProps={{
-              'aria-label': 'Weight',
-            }}
-          />
-          <FormHelperText id="weight-helper-text">Weight</FormHelperText>
-        </FormControl>
-        <FormControl className={classNames(classes.margin, classes.textField)}>
-          <InputLabel htmlFor="adornment-password">Password</InputLabel>
-          <Input
-            id="adornment-password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                  onMouseDown={this.handleMouseDownPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
+
+        <FormControl fullWidth className={classes.margin}>
+          <TextField
+          id="multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax="20"
+          value={this.state.multiline}
+          onChange={this.handleChange('multiline')}
+          fullWidth
+          margin="normal"
+        />
         </FormControl>
       </div>
     );
