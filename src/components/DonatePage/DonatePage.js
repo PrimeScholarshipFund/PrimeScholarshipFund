@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
+import {Elements} from 'react-stripe-elements';
 
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import DonateForm from '../DonateForm/DonateForm';
+import Checkout from '../Checkout/Checkout';
+
+
 
 class DonatePage extends Component {
 
@@ -17,9 +22,11 @@ class DonatePage extends Component {
     }
   }
 
-  handleChange = (key) => (event) => {
-    this.setState({...this.state, [key]: event.target.value})
-  }
+  handleChange = (key) => (event) => 
+    this.setState({...this.state, [key]: event.target.value});
+  
+
+ 
 
   render() {
     return (
@@ -51,50 +58,20 @@ class DonatePage extends Component {
           <div className="fakePic"></div>
 
           {/* grid area 3 */}
-          <Paper>
-            <TextField
-            id="name"
-            label="Name"
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            margin="normal"
+          {/* <Elements>
+            <DonateForm 
+              name={this.state.name}
+              org={this.state.org}
+              address={this.state.address}
+              amount={this.state.amount}
+              handleChange={this.handleChange}
+
             />
-
-            <br/>
-
-            <TextField
-            id="org"
-            label="Organization"
-            value={this.state.org}
-            onChange={this.handleChange('org')}
-            margin="normal"
-            />
-            <br/>
-
-            <TextField
-            id="address"
-            label="Address"
-            value={this.state.address}
-            onChange={this.handleChange('address')}
-            margin="normal"
-            />
-            <br/>
-
-            <TextField
-            id="amount"
-            label="Amount"
-            type="number"
-            value={this.state.amount}
-            onChange={this.handleChange('amount')}
-            margin="normal"
-            />
-            <br/>
-
-          </Paper>
-
+          </Elements> */}
+          <Checkout 
+          />
 
         </div>
-
         </Paper>
       </div>
     );
