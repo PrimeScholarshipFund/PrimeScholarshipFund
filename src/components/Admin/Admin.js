@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EnhancedTable from '../Table/Table';
 import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
+import Autocomplete from '../Autocomplete/Autocomplete';
 
 import './Admin.css';
 
@@ -28,14 +29,21 @@ class AdminPage extends Component {
   render() {
     let content =null;
     if(this.props.apps){content = (
-      <EnhancedTable
-            setActive = {this.setActive}
-            apps = {this.props.apps}
-          />
+      <div>
+        <Autocomplete
+          apps = {this.props.apps}
+        />
+        <EnhancedTable
+              setActive = {this.setActive}
+              apps = {this.props.apps}
+            />
+
+      </div>
     )
+
     };
 
-    
+
     return (
       <div>
         <h1>ADMIN PAGE</h1>

@@ -20,7 +20,6 @@ function createData(status, first_name, last_name, email, phone, comment) {
 }
 
 function getSorting(order, orderBy) {
-  console.log(order, orderBy);
   return order === 'desc'
     ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
@@ -158,7 +157,6 @@ class EnhancedTable extends React.Component {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
-                    onClick={event => this.handleClick(event, n.id)}
                     role="checkbox"
                     aria-checked={isSelected}
                     tabIndex={-1}
