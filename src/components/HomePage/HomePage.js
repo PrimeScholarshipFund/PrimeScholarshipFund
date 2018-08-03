@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
+import SimpleTabs from '../SimpleTabs/SimpleTabs';
 
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+        <SimpleTabs />
         <Paper className="grid-3">
         <div className="top">
           <div className="fakePic">
@@ -19,7 +21,7 @@ class HomePage extends Component {
 Minneapolis / St. Paul tech industry. Through education and the opportunities it brings, students
 have a chance to make a difference in their lives and communities.</p>
         </div>
-          
+
         <div className="item">
           <h3>Our Story</h3>
           <div className="circle">Image Place Holder</div>
