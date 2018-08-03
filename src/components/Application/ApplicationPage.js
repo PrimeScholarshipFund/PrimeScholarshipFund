@@ -3,24 +3,27 @@ import React, { Component } from 'react';
 import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
 import Contact from './Contact';
+import Demographics from './Demographics';
+import Income from './Income';
+import Expenses from './Expenses';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 
 const getSteps = () => {
-  return ['Contact','Demographics','Income','Expenses']
+  return ['Landing', 'Contact','Demographics','Income','Expenses']
 }
 
 const getStepContent = (step) => {
   switch (step) {
-      case 0:
-
-          return 'Step 1: Please enter your contact information...';
       case 1:
 
-          return 'Step 2: Please enter your demographic information...';
+          return 'Step 1: Please enter your contact information...';
       case 2:
 
-          return 'Step 3: Income information will be used to determine eligibility...';
+          return 'Step 2: Please enter your demographic information...';
       case 3:
+
+          return 'Step 3: Income information will be used to determine eligibility...';
+      case 4:
 
           return 'Step 4: Expenses will be used to determine amount awarded...';
 
@@ -57,10 +60,6 @@ class ApplicationPage extends Component {
 
   componentDidMount() {
     console.log(this.state.completed);
-    // axios.post('/api/donation')
-    // .then(response => console.log(response.data))
-    // .catch(error => console.log(error))
-
   }
 
 
@@ -148,6 +147,15 @@ render() {
       break;
     case 1:
       content = <Contact />
+      break;
+    case 2:
+      content = <Demographics />
+      break;
+    case 3:
+      content = <Income />
+      break;
+    case 4:
+      content = <Expenses />
       break;
     // case 2:
     // content = <Page1 />

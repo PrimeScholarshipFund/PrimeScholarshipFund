@@ -1,0 +1,13 @@
+.board {
+    height: 200px;
+}
+
+.tile {
+    display: flex;
+    height: max-content;
+    margin-bottom: 20px;
+}
+
+.content {
+    margin-left: 15px;
+}

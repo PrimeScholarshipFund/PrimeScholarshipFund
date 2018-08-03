@@ -8,7 +8,6 @@ import {
 
 import MiniDrawer from './components/MiniDrawer/MiniDrawer';
 
-import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
@@ -72,7 +71,7 @@ const App = () => (
           <Route render={() => <h1>404</h1>} />
 
         </Switch>
-      
+        
       }/>
       </Router>
     </MuiThemeProvider>
