@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import Checkout from '../Checkout/Checkout';
+import {Elements} from 'react-stripe-elements';
+import InjectedDonateForm from '../DonateForm/DonateForm';
 
 
 
@@ -11,15 +12,29 @@ class DonatePage extends Component {
     super(props);
 
     this.state = {
-      name: '',
-      org: '',
-      address: '',
-      amount: null,
+      address_city: '',
+      address_country: '',
+      address_line1: '',
+      address_line1_check: '',
+      address_line2: '',
+      address_state: null,
+      address_zip: '',
+      address_zip_check: '',
+      country: '',
+      exp_month: '',
+      exp_year: '',
+      id: '',
+      last4: '',
     }
   }
 
   handleChange = (key) => (event) => 
     this.setState({...this.state, [key]: event.target.value});
+  
+  
+
+  setNewValue = (newValue) => 
+    this.setState({ ...this.state, address_state: newValue });
   
 
  
@@ -54,18 +69,22 @@ class DonatePage extends Component {
           <div className="fakePic"></div>
 
           {/* grid area 3 */}
-          {/* <Elements>
-            <DonateForm 
+          <Elements>
+          <InjectedDonateForm 
               name={this.state.name}
               org={this.state.org}
-              address={this.state.address}
+              address_line1={this.state.address_line1}
+              address_line2={this.state.address_line2}
+              address_city={this.state.address_city}
+              address_state={this.state.address_state}
+              address_zip={this.props.address_zip}
               amount={this.state.amount}
               handleChange={this.handleChange}
+              setNewValue={this.setNewValue}
 
-            />
-          </Elements> */}
-          <Checkout 
-          />
+            /> 
+            
+          </Elements>
 
         </div>
         </Paper>

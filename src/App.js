@@ -6,7 +6,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import MiniDrawer from './components/MiniDrawer/MiniDrawer';
-
+import config from './config/config';
+import {StripeProvider} from 'react-stripe-elements';
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
@@ -24,6 +25,7 @@ const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
       {/* <Header title="Project Base" /> */}
+      <StripeProvider apiKey={config.STRIPE_PUBLISHABLE}>
       <Router>
       <MiniDrawer content ={
         
@@ -72,6 +74,7 @@ const App = () => (
         
       }/>
       </Router>
+      </StripeProvider>
     </MuiThemeProvider>
   </div>
 );
