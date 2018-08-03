@@ -147,10 +147,10 @@ class IntegrationReactSelect extends React.Component {
     const { classes } = this.props;
 
     const suggestions = this.props.apps.map(suggestion => ({
-            value: suggestion.first_name,
+            value: suggestion,
             label: suggestion.first_name,
     }));
-    
+
     return (
       <div className={classes.root}>
         <NoSsr>

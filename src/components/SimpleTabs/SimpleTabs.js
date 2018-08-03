@@ -27,23 +27,35 @@ const styles = theme => ({
 
 class SimpleTabs extends React.Component {
 
+  state = {
+    value: 0,
+  }
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  }
+
   routeToView = (viewName) => {
     window.location.href = `#/${viewName}`
   }
 
   render() {
     const { classes } = this.props;
+    const { value } = this.state;
 
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs>
-            <Tab onClick={() => this.routeToView('home')} label="Home" />
-            <Tab onClick={() => this.routeToView('about')} label="About"/>
-            <Tab onClick={() => this.routeToView('donate')} label="Donate" />
-            <Tab onClick={() => this.routeToView('application')} label="Application"/>
+          <Tabs value={value} onChange={this.handleChange}>
+            <Tab label="Home" href="#/home"></Tab>
+            <Tab label="About" href="#/about"></Tab>
+            <Tab label="Donate" href="#/donate"></Tab>
+            <Tab label="Application" href="#/application"></Tab>
           </Tabs>
         </AppBar>
+        {value === 0}
+        {value === 1}
+        {value === 2}
       </div>
     );
   }
