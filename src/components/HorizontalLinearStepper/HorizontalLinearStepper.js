@@ -72,8 +72,11 @@ class HorizontalLinearStepper extends Component {
                                 value = {-1}
                                 className = {classes.button}
                             >
-                                Back HLS
+                                Previous Page
                             </Button>
+
+                            {/* {this.props.activeStep !== steps.length &&
+
                             <Button
                                 variant = "contained"
                                 color = "secondary"
@@ -91,15 +94,18 @@ class HorizontalLinearStepper extends Component {
                                 >
                                 Step {this.props.activeStep + 1} saved
                                 </Typography>
-                            ) : (
+
+                            ) : ( */}
                                 <Button
+
                                     variant = "contained"
                                     color = "secondary"
+                                    value={1}
                                     onClick = {this.props.handleComplete}
                                 >
                                 {this.props.completedSteps() === this.props.totalSteps() -1 ? 'Finish' : 'Save and Continue'}
                                 </Button>
-                            ))}
+                            {/* ))} */}
                         </div>
                     </div>
                 )}

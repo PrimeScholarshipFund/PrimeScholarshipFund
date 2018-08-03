@@ -3,33 +3,29 @@ import React, { Component } from 'react';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
-import Contact from './Contact';
-import Demographics from './Demographics';
-import Income from './Income';
-import Expenses from './Expenses';
+import PersonalInfo from './PersonalInfo';
+import IncomeExpenses from './IncomeExpenses';
+import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 
 const getSteps = () => {
-  return ['Landing', 'Contact','Demographics','Income','Expenses']
+  return ['Start', 'Personal Information','Income & Expenses','Submit']
 }
 
 const getStepContent = (step) => {
   switch (step) {
       case 1:
 
-          return 'Step 1: Please enter your contact information...';
+          return 'Step 1: Please enter your contact and demographic information...';
       case 2:
 
-          return 'Step 2: Please enter your demographic information...';
+          return 'Step 2: Please enter your income and expenses information...';
       case 3:
 
-          return 'Step 3: Income information will be used to determine eligibility...';
-      case 4:
-
-          return 'Step 4: Expenses will be used to determine amount awarded...';
+          return 'Review Your Application and Submit';
 
           default:
-          return 'Not a step';
+          return 'Get Started!';
         }
       }
 
@@ -64,13 +60,14 @@ class ApplicationPage extends Component {
   }
 
 
-  handleComplete = () => {
+  handleComplete = (event) => {
     const { completed } = this.state;
     completed[this.state.activeStep] = true;
     this.setState({
       completed,
     });
-    this.handleNext()
+    this.handleNext();
+    this.pageHandler(event);
   }
   
   handleNext = () => {
@@ -116,13 +113,10 @@ class ApplicationPage extends Component {
   pageHandler = (event) => {
     console.log(event.currentTarget.value);
     let _activeStep;
-    if (this.isLastStep() && !this.allStepsCompleted()) {
-      // It's the last step, but not all steps have been completed,
-      // find the first step that has been completed
-      const steps = getSteps();
-      _activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
+    if (this.state.activeStep === 3) {
+      //add sweet alert here
     } else {
-      _activeStep = this.state.activeStep + 1;
+      _activeStep = this.state.activeStep + Number(event.currentTarget.value);
       console.log('activeStep', _activeStep);
 
       this.setState({
@@ -148,26 +142,14 @@ render() {
       content = <Landing />
       break;
     case 1:
-      content = <Contact />
+      content = <PersonalInfo />
       break;
     case 2:
-      content = <Demographics />
+      content = <IncomeExpenses />
       break;
     case 3:
-      content = <Income />
+      content = <Review />
       break;
-    case 4:
-      content = <Expenses />
-      break;
-    // case 2:
-    // content = <Page1 />
-    //   break;
-    // case 3:
-    // content = <Page1 />
-    //   break;
-    // case 4:
-    // content = <Page1 />
-    //   break;
 
     default:
       break;
@@ -177,6 +159,7 @@ render() {
       <div>
         <SimpleTabs />
         <h1>APPLICATION PAGE</h1>
+
           <div>
           {content}
           <ApplicationButtons

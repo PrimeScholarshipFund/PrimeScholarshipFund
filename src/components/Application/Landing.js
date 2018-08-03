@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 
+import Paper from '@material-ui/core/Paper';
+
 class Landing extends Component {
     state = {  }
     render() { 
         return ( 
             <div>
-                <h2>Understanding the application process</h2>
+        <Paper className="grid-3">
+        <div className="top">
+        <h1>Application</h1>
+        <p className="sub">The scholarship fund is dedicated to providing scholarship funds and supplemental living costs
+to underrepresented students interested in learning software engineering and UX Design.</p>
+        <h3>Eligibility Requirements</h3>
+        <ul className="sub">
+            <li>Immigrants (regardless of status)</li>
+            <li>Students of color</li>
+            <li>Students with disabilities</li>
+            <li>LGBTQIA students</li>
+            <li>Be a Minnesota resident</li>
+            <li>Be interested in attending Prime Digital Academy as a full-stack software engineer or UX
+Design student</li>
+        </ul>
 
-                <p>Explaining the process: 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum tellus ligula, sed feugiat est aliquam sit amet. Curabitur ultricies lacus eu nisi tincidunt, vel porta mauris mollis. Sed cursus ex quis rutrum varius. Aenean et mattis sem, id vestibulum erat. Fusce quis lectus vestibulum, finibus purus ac, iaculis nibh. Vivamus quis est id nulla ultricies varius. Maecenas feugiat est et sem interdum viverra. Duis mollis ligula ligula, quis cursus leo vulputate nec. Vivamus iaculis vitae lectus vitae feugiat. Integer vehicula ac ante eget euismod.
-                Etiam egestas congue tellus, nec dictum lectus gravida eu. Cras nec dui tellus. Praesent molestie quam quis leo laoreet tincidunt. Etiam et mauris mattis, elementum mauris at, iaculis nunc. Etiam eget arcu tincidunt, auctor augue at, elementum ipsum. Proin congue luctus convallis. Cras in nibh volutpat, efficitur urna vel, fringilla nulla. Nullam eget massa condimentum, rutrum nulla ac, fermentum orci. Nam auctor sem et tempus vehicula. Phasellus id ipsum in arcu aliquet blandit vel sit amet urna. Mauris auctor mi non felis scelerisque, vel accumsan ipsum venenatis. Integer congue leo ac neque suscipit, sit amet euismod mi imperdiet. Mauris lobortis arcu at quam faucibus mollis.
-                </p>
-                <ol>
-                    <li>Contact Information</li>
-                    <li>Demographics</li>
-                    <li>Income</li>
-                    <li>Expenses</li>
-                </ol>
-            </div>
+        <h3>Before you begin filling up your application</h3>
+        <ul className="sub">
+            <li>Have access to your latest 1040 form or information about your annual income</li>
+            <li>Information about your typical monthly budget</li>
+        </ul>
+        
+        </div>
+        </Paper>
+      </div>
          );
     }
 }

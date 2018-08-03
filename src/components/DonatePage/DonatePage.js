@@ -39,6 +39,7 @@ class DonatePage extends Component {
 
           </div>
 
+
           <div className="grid-2">
             {/* grid area 1 */}
             <div>
@@ -55,6 +56,7 @@ class DonatePage extends Component {
                 resulting in positive changes in their lives and communities.</p>
               </div>
             </div>
+
 
             {/* grid area 2 */}
             <div className="fakePic"></div>
