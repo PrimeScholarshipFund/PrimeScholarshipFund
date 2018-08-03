@@ -139,7 +139,7 @@ class MiniDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography>{content}</Typography>
+          <div>{content}</div>
         </main>
       </div>
     );

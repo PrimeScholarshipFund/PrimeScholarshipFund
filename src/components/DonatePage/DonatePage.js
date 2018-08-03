@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-import {Elements} from 'react-stripe-elements';
-
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import DonateForm from '../DonateForm/DonateForm';
 import Checkout from '../Checkout/Checkout';
 
 
