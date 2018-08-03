@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -146,17 +145,18 @@ class IntegrationReactSelect extends React.Component {
 
   render() {
     const { classes } = this.props;
-    this.state.suggestions.map(suggestion => ({
-      value: suggestion.first_name,
-      label: suggestion.first_name,
-    }));
 
+    const suggestions = this.props.apps.map(suggestion => ({
+            value: suggestion.first_name,
+            label: suggestion.first_name,
+    }));
+    
     return (
       <div className={classes.root}>
         <NoSsr>
           <Select
             classes={classes}
-            options={this.state.suggestions}
+            options={suggestions}
             components={components}
             value={this.state.single}
             onChange={this.handleChange('single')}
