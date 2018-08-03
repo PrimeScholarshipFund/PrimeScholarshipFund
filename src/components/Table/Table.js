@@ -34,6 +34,16 @@ const columnData = [
   { id: 'comment', label: 'Comments' },
 ];
 
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
 class EnhancedTableHead extends React.Component {
 
   createSortHandler = property => event => {
@@ -49,7 +59,7 @@ class EnhancedTableHead extends React.Component {
         <TableRow>
           {columnData.map(column => {
             return (
-              <TableCell
+              <CustomTableCell
                 key={column.id}
                 numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
@@ -65,7 +75,7 @@ class EnhancedTableHead extends React.Component {
                     {column.label}
                   </TableSortLabel>
                 </Tooltip>
-              </TableCell>
+              </CustomTableCell>
             );
           }, this)}
         </TableRow>
@@ -83,6 +93,7 @@ TableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
+
 
 const styles = theme => ({
   root: {
