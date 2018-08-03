@@ -5,11 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-<<<<<<< HEAD
-import MiniDrawer from './components/MiniDrawer/MiniDrawer';
-=======
 import {StripeProvider} from 'react-stripe-elements';
->>>>>>> origin/creatingSagas
 
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';

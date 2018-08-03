@@ -33,7 +33,7 @@ have a chance to make a difference in their lives and communities.</p>
 
         {/* fill with content from here below */}
         <div className="item">
-          <h3>Our partner</h3>
+          <h3>Our Partner</h3>
           <div className="circle">Image Place Holder</div>
           <p>
           Prime Digital Academy is helping us change the tech industry in the greater Minneapolis / St.
@@ -43,7 +43,7 @@ Paul area.
         </div>
 
         <div className="item">
-          <h3>Invest</h3>
+          <h3>Donate</h3>
           <div className="circle">Image Place Holder</div>
           <p>
           Underrepresented students need investment and support to change their lives and their

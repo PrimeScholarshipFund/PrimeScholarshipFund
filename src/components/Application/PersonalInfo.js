@@ -4,16 +4,43 @@ import Paper from '@material-ui/core/Paper';
 
 class PersonalInfo extends Component {
     state = {
-      Fax: '',
-      doughnuts: '',
-      dinosaurs: '',
-      hamster: '',
+      contact: 
+        {
+          id: '',
+          form_id: '',
+          first_name: '',
+          last_name: '',
+          middle_initial: '',
+          address_line_1: '',
+          address_line_2: '',
+          city: '',
+          state: '',
+          zip_code: '',
+          phone_number: '',
+          email: '',
+          accepted_at_prime: '',
+          applied_at_prime: null,
+          msp_tech_scholar: false,
+          applied_for_msp: null
+        },
+      
+      demographics:
+        {
+          id: '',
+          form_id: '',
+          gender: '',
+          race: '',
+          age: null,
+          level_of_ed: '',
+          lgbtq_status: ''
+        }
+
      }
 
-  handleChange = name => event => {
-    console.log(this.state.Fax);
+  handleChangeContact = (key) => event => {
     this.setState({
-      [name]: event.target.value
+      ...this.state,
+      contact: {...this.state.contact, [key]: event.target.value}
     });
   };
 
@@ -24,23 +51,29 @@ class PersonalInfo extends Component {
         <Paper className="grid-3">
         
         <div className="top">
-        <h3>Personal Information</h3>
+        <h2>Personal Information</h2>
+        {JSON.stringify(this.state)}
+        <h3>Contact Information</h3>
         <TextField
-            label="Fax"
-            value={this.state.Fax}
-            onChange={this.handleChange('Fax')}
+            label="First Name*"
+            value={this.state.contact.first_name}
+            onChange={this.handleChangeContact('first_name')}
           />
           <TextField
-            label="How much do you like doughnuts?"
-            value={this.state.doughnuts}
+            label="Middle Initial"
+            value={this.state.contact.middle_initial}
+            onChange={this.handleChangeContact('middle_initial')}
+            maxlength="5"
           />
           <TextField
-            label="How important are dinosaurs to your personal life?"
-            value={this.state.dinosaurs}
+            label="Last Name"
+            value={this.state.contact.last_name}
+            onChange={this.handleChangeContact('last_name')}
           />
           <TextField
-            label="When murdering ewoks, how often do you think about your pet hamster?"
-            value={this.state.hamster}
+            label="Address Line 1"
+            value={this.state.contact.address_line_1}
+            onChange={this.handleChangeContact('address_line_1')}
           />
         </div>
         </Paper>
