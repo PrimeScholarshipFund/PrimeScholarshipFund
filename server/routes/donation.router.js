@@ -1,36 +1,33 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-// const stripe = require("stripe")("sk_test_vSIL1tunUMSX1IwoXH4CnQez");
+const stripe = require("stripe")("sk_test_vSIL1tunUMSX1IwoXH4CnQez");
 
+const postStripeCharge = res => (stripeErr, stripeRes) => {
+    if (stripeErr) {
+      res.status(500).send({ error: stripeErr });
+    } else {
+      res.status(200).send({ success: stripeRes });
+    }
+  }
 /**
  * GET route template
  */
 router.get('/', (req, res) => {
-    
+    res.send({ 
+        message: 'Hello Stripe checkout server!', 
+        timestamp: new Date().toISOString() 
+    });
 });
 
 /**
  * POST route template
  */
-// router.post('/', (req, res) => {
-//     const charge = stripe.charges.create({
-//         amount: 69420,
-//         currency: 'krw',
-//         source: 'tok_visa',
-//         receipt_email: 'sashamilenkovic2@gmail.com',
-//     })
-//     .then(result => {
-//         console.log(result)
-//         res.send(result)
-        
-//     })
-//     .catch(err => {
-//         console.log(err);
-        
-//     })
+router.post('/', (req, res) => {
+    console.log(req.body);
     
-// });
+    stripe.charges.create(req.body, postStripeCharge(res))
+});
 
 
 module.exports = router; 
