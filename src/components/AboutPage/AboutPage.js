@@ -6,13 +6,14 @@ import PhotoIlana from '../../photos/ilana.png';
 import PhotoEllen from '../../photos/ellen.png';
 
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 class AboutPage extends Component {
 
   render() {
     return (
-      <div className="aboutGrid">
-          <Paper id="about">
+      <div className="grid-3">
+          <Paper className="top">
           <h1>The Fund</h1>
         <p>The scholarship fund was found in 2018 by Prime Digital Academy alumni to increase the
 participation of underrepresented students from underserved communities in STEM industries in
@@ -26,8 +27,7 @@ students.
 
 The scholarship fund provides support for students seeking to cover tuition expenses at Prime
 Digital Academy and other supplemental expenses, such as selected living costs.
-Would you like to get involved? Please, contact (e-mail) or donate here. (here is a link that takes
-users to donate page)</p>
+Would you like to get involved? Please, <a href="mailto:ilana.nagib@gmail.com">contact</a> or donate <Link to="/donate">here</Link>.</p>
 
 
     <h2>The Board</h2>
