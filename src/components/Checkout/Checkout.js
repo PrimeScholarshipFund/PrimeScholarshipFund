@@ -6,9 +6,6 @@ import config from '../../config/config';
 
 const CURRENCY = 'EUR';
 
-
-const fromEuroToCent = amount => amount * 100;
-
 const successPayment = data => {
     alert('Payment Successful');
 };
