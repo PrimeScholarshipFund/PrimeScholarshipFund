@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
+import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
@@ -68,6 +69,7 @@ class ApplicationPage extends Component {
     this.handleNext();
     this.pageHandler(event);
   }
+  
   handleNext = () => {
     let _activeStep;
 
@@ -155,7 +157,9 @@ render() {
 
   return (
       <div>
-          {this.state.activeStep}
+        <SimpleTabs />
+        <h1>APPLICATION PAGE</h1>
+
           <div>
           {content}
           <ApplicationButtons

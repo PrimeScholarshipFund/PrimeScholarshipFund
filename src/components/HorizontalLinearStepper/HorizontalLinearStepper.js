@@ -25,33 +25,33 @@ const styles = theme => ({
 
 
 class HorizontalLinearStepper extends Component {
-    
+
     componentDidMount() {
         console.log(this.props);
-        
+
     }
 
     componentDidUpdate = (prevProps, currentProps) => {
     }
-    
-    
-    
-    
-    render() { 
+
+
+
+
+    render() {
         const { classes } = this.props;
         const steps = this.props.getSteps();
         let content;
         if (this.props.completed) {
-            content =       
+            content =
             <div>
                 {this.props.allStepsCompleted() ? (
                     <div>
-                        <Typography 
+                        <Typography
                         className={classes.instructions}
                         >
                         All steps completed - you&quot;re finished
                         </Typography>
-                        <Button 
+                        <Button
                             onClick={this.props.handleReset}
                         >
                         Reset
@@ -74,7 +74,19 @@ class HorizontalLinearStepper extends Component {
                             >
                                 Previous Page
                             </Button>
+
                             {/* {this.props.activeStep !== steps.length &&
+
+                            <Button
+                                variant = "contained"
+                                color = "secondary"
+                                onClick = {this.props.pageHandler}
+                                value = {1}
+                                className = {classes.button}
+                            >
+                                Next HLS
+                            </Button>
+                            {this.props.activeStep !== steps.length &&
                             (this.props.completed[this.props.activeStep] ? (
                                 <Typography
                                     variant = "caption"
@@ -82,8 +94,10 @@ class HorizontalLinearStepper extends Component {
                                 >
                                 Step {this.props.activeStep + 1} saved
                                 </Typography>
+
                             ) : ( */}
-                                <Button 
+                                <Button
+
                                     variant = "contained"
                                     color = "secondary"
                                     value={1}
@@ -97,9 +111,9 @@ class HorizontalLinearStepper extends Component {
                 )}
                 </div>;
         }
-        
-        return ( 
-            <div 
+
+        return (
+            <div
             className={classes.root}
             >
             <Stepper nonLinear activeStep={this.props.activeStep}>
@@ -118,7 +132,7 @@ class HorizontalLinearStepper extends Component {
             })}
             </Stepper>
                 {content}
-        </div> 
+        </div>
         );
     }
 }
@@ -126,5 +140,5 @@ class HorizontalLinearStepper extends Component {
 HorizontalLinearStepper.propTypes = {
     classes: PropTypes.object,
 }
- 
+
 export default withStyles(styles)(HorizontalLinearStepper);
