@@ -3,7 +3,7 @@ import { APPLICANT_ACTIONS } from '../actions/applicantActions';
 import { getApplicantRequest } from '../requests/applicantRequests';
 
 let applicantInfo = '';
-let userId = '';
+// let userId = '';
 
 function* getApplicant(action) {
   try {

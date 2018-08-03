@@ -5,8 +5,6 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {StripeProvider} from 'react-stripe-elements';
-
 import MiniDrawer from './components/MiniDrawer/MiniDrawer';
 
 import HomePage from './components/HomePage/HomePage';
@@ -18,7 +16,6 @@ import AboutPage from './components/AboutPage/AboutPage';
 import DonatePage from './components/DonatePage/DonatePage';
 import ApplicationPage from './components/Application/ApplicationPage';
 import AdminPage from './components/Admin/Admin';
-import config from './config/config'
 import './styles/main.css';
 import PSFTheme from './components/PSFTheme/PSFTheme';
 import { MuiThemeProvider } from '../node_modules/@material-ui/core';
