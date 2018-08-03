@@ -5,7 +5,11 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+<<<<<<< HEAD
 import MiniDrawer from './components/MiniDrawer/MiniDrawer';
+=======
+import {StripeProvider} from 'react-stripe-elements';
+>>>>>>> origin/creatingSagas
 
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -25,9 +29,8 @@ const App = () => (
     <MuiThemeProvider theme={PSFTheme}>
       {/* <Header title="Project Base" /> */}
       <Router>
-      <MiniDrawer content ={
-        
         <Switch>
+
           <Redirect exact from="/" to="/home" />
           <Route
             path="/home"
@@ -69,8 +72,6 @@ const App = () => (
           <Route render={() => <h1>404</h1>} />
 
         </Switch>
-        
-      }/>
       </Router>
     </MuiThemeProvider>
   </div>
