@@ -14,10 +14,16 @@ class AdminPage extends Component {
 
   state = {
     active: null,
+    selectedApplicant: [],
   };
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_ALL_APPLICATION'});
+    console.log(this.state);
+  }
+
+  componentDidUpdate = () => {
+    console.log(this.state);
   }
 
   setActive = (person) => {
@@ -26,20 +32,41 @@ class AdminPage extends Component {
     });
   }
 
+  handleChange = (prevState) => (value) => {
+    console.log(value);
+    if (prevState !== this.state) {
+      console.log('hello')
+      this.setState({
+        selectedApplicant: [...this.state.selectedApplicant, value.value]
+      });
+    }
+  };
 
   render() {
     let content =null;
     if(this.props.apps){content = (
       <div>
         <Autocomplete
-          searched = {this.state.searched}
           apps = {this.props.apps}
-          handleChange= {this.handleChange}
+          handleChange = {this.handleChange}
+          selectedApplicant = {this.state.selectedApplicant}
         />
-        <EnhancedTable
-              setActive = {this.setActive}
-              apps = {this.props.apps}
-            />
+      {this.state.selectedApplicant.length ? (
+        <div>
+          <EnhancedTable
+                setActive = {this.setActive}
+                apps = {this.state.selectedApplicant}
+          />
+        </div>
+      ) : (
+        <div>
+          <EnhancedTable
+                setActive = {this.setActive}
+                apps = {this.props.apps}
+          />
+        </div>
+      )}
+
 
       </div>
     )
@@ -50,7 +77,7 @@ class AdminPage extends Component {
     return (
       <div>
         <h1>ADMIN PAGE</h1>
-        {this.state.active === null? (
+        {this.state.active === null ? (
             content
         ) : (
           <FullScreenDialog
