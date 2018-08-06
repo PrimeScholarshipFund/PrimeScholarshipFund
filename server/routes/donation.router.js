@@ -5,6 +5,8 @@ const stripe = require("stripe")("sk_test_vSIL1tunUMSX1IwoXH4CnQez");
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
     if (stripeErr) {
+        console.log(stripeErr);
+        
       res.status(500).send({ error: stripeErr });
     } else {
       res.status(200).send({ success: stripeRes });
