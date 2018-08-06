@@ -225,6 +225,28 @@ router.post('/income', (req, res) => {
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
+        });
+});
+
+router.post('/expenses', (req, res) => {
+    const form_id = req.body.form_id;
+    const need_tuition = req.body.need_tuition;
+    const housing = req.body.housing;
+    const transportation = req.body.transportation;
+    const childcare = req.body.childcare;
+    const healthcare = req.body.healthcare;
+    const other_expenses = req.body.other_expenses;
+    const other_expenses_notes = req.body.other_expenses_notes;
+    
+    queryText = `INSERT INTO expenses (form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+    injection = [form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes];
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(201);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
         })
 })
 
