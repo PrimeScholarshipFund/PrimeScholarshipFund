@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 
 class PersonalInfo extends Component {
     state = {
@@ -48,7 +47,6 @@ class PersonalInfo extends Component {
       return (
         <div>
           
-        <Paper className="grid-3">
         
         <div className="top">
         <h2>Personal Information</h2>
@@ -76,7 +74,6 @@ class PersonalInfo extends Component {
             onChange={this.handleChangeContact('address_line_1')}
           />
         </div>
-        </Paper>
       </div>
       );
     }

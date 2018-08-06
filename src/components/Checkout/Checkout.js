@@ -6,9 +6,6 @@ import config from '../../config/config';
 
 const CURRENCY = 'EUR';
 
-
-const fromEuroToCent = amount => amount * 100;
-
 const successPayment = data => {
     alert('Payment Successful');
 };
@@ -22,7 +19,7 @@ const errorPayment = data => {
 const onToken = (amount, description) => token =>
 axios.post(config.PAYMENT_SERVER_URL,
     {
-        description,
+        description: description,
         source: token.id,
         currency: CURRENCY,
         amount: 1000
@@ -33,7 +30,7 @@ axios.post(config.PAYMENT_SERVER_URL,
     const Checkout = ({ name, description, amount }) =>
     <StripeCheckout
     name='James dickenson'
-    description={description}
+    description={'donating money'}
     amount={1000}
     token={onToken(amount, description)}
     currency={CURRENCY}

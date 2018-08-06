@@ -35,6 +35,10 @@ class SimpleTabs extends React.Component {
     this.setState({ value });
   }
 
+  componentDidMount() {
+    this.setState({ value: this.props.value });
+    
+  }
   routeToView = (viewName) => {
     window.location.href = `#/${viewName}`
   }
@@ -56,6 +60,7 @@ class SimpleTabs extends React.Component {
         {value === 0}
         {value === 1}
         {value === 2}
+        {value === 3}
       </div>
     );
   }

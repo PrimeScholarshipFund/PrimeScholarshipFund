@@ -10,7 +10,9 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <SimpleTabs />
+        <SimpleTabs
+         value = {0}
+        />
         <Paper className="grid-3">
         <div className="top">
           <div className="fakePic">

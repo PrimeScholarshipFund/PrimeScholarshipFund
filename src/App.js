@@ -5,6 +5,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+
+import config from './config/config';
 import {StripeProvider} from 'react-stripe-elements';
 
 import HomePage from './components/HomePage/HomePage';
@@ -24,6 +26,7 @@ const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
       {/* <Header title="Project Base" /> */}
+      <StripeProvider apiKey={config.STRIPE_PUBLISHABLE}>
       <Router>
         <Switch>
 
@@ -69,6 +72,7 @@ const App = () => (
 
         </Switch>
       </Router>
+      </StripeProvider>
     </MuiThemeProvider>
   </div>
 );

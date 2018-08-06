@@ -103,7 +103,12 @@ class HorizontalLinearStepper extends Component {
                                     value={1}
                                     onClick = {this.props.handleComplete}
                                 >
-                                {this.props.completedSteps() === this.props.totalSteps() -1 ? 'Finish' : 'Save and Continue'}
+                                {this.props.completedSteps() === this.props.totalSteps() -1 
+                                    ? ('Finish') 
+                                    : 
+                                    (this.props.activeStep===0 ? ('Start Application') 
+                                    : 
+                                    ('Save and Continue'))}
                                 </Button>
                             {/* ))} */}
                         </div>
@@ -123,7 +128,8 @@ class HorizontalLinearStepper extends Component {
                         <StepButton
                             onClick = {this.props.handleStep(index)}
                             completed={this.props.completed[index]}
-                            color="secondary"
+                            // color="secondary"
+                            id="stepperButton"
                         >
                             {label}
                         </StepButton>
