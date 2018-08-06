@@ -279,6 +279,30 @@ router.post('/income', (req, res) => {
         });
 });
 
+router.put('/income', (req, res) => {
+    const form_id = req.body.form_id;
+    const adjusted_gross_income = req.body.adjusted_gross_income;
+    const filing_status = req.body.filing_status;
+    const dependents = req.body.dependents;
+    const government_assistance = req.body.government_assistance;
+    const government_assistance_notes = req.body.government_assistance_notes;
+    const employed_during_prime = req.body.employed_during_prime;
+    const income_during_prime = req.body.income_during_prime;
+
+    queryText = `UPDATE income SET adjusted_gross_income=$1, filing_status=$2, dependents=$3,
+                government_assistance=$4, government_assistance_notes=$5, 
+                employed_during_prime=$6, income_during_prime=$7
+                WHERE form_id=$8`;
+    injection = [adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime, form_id];            
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+})
+
 router.post('/expenses', (req, res) => {
     const form_id = req.body.form_id;
     const need_tuition = req.body.need_tuition;
