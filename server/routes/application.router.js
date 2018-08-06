@@ -225,9 +225,9 @@ router.put('/personal', (req, res) => {
     const level_of_ed = req.body.level_of_ed;
     const lgbtq_status = req.body.lgbtq_status;
 
-    const injection = [first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id];
+    let injection = [first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id];
 
-    queryText = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3,
+    let queryText = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3,
         address_line_1=$4, address_line_2=$5, city=$6, state=$7, zip_code=$8, 
         phone_number=$9, email=$10, accepted_at_prime=$11, applied_at_prime=$12, 
         msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
@@ -238,22 +238,13 @@ router.put('/personal', (req, res) => {
             console.log({err});
             res.sendStatus(500);
         })
-});
 
-router.post('/demographics', (req, res) => {
-    const form_id = req.body.form_id;
-    const gender = req.body.gender;
-    const race = req.body.race;
-    const age = req.body.age;
-    const level_of_ed = req.body.level_of_ed;
-    const lgbtq_status = req.body.lgbtq_status;
-
-    queryText = `INSERT INTO demographics (form_id, gender, race, age, level_of_ed, lgbtq_status)
-                VALUES ($1, $2, $3, $4, $5, $6)`;
-    injection = [form_id, gender, race, age, level_of_ed, lgbtq_status];
+    queryText = `UPDATE demographics SET gender=$1, race=$2, age=$3, level_of_ed=$4, lgbtq_status=$5
+    WHERE form_id=$6`;
+    injection = [gender, race, age, level_of_ed, lgbtq_status, form_id];
     pool.query(queryText, injection)
         .then(response => {
-            res.sendStatus(201);
+            res.sendStatus(200);
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
@@ -268,16 +259,7 @@ router.put('/demographics', (req, res) => {
     const level_of_ed = req.body.level_of_ed;
     const lgbtq_status = req.body.lgbtq_status;
 
-    queryText = `UPDATE demographics SET gender=$1, race=$2, age=$3, level_of_ed=$4, lgbtq_status=$5
-                WHERE form_id=$6`;
-    injection = [gender, race, age, level_of_ed, lgbtq_status, form_id];
-    pool.query(queryText, injection)
-        .then(response => {
-            res.sendStatus(200);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
+    
 });
 
 router.post('/income', (req, res) => {
