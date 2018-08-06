@@ -233,7 +233,6 @@ router.put('/personal', (req, res) => {
         msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
     pool.query(queryText, injection)
         .then(response => {
-            res.sendStatus(200);
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
@@ -251,17 +250,6 @@ router.put('/personal', (req, res) => {
         });
 });
 
-router.put('/demographics', (req, res) => {
-    const form_id = req.body.form_id;
-    const gender = req.body.gender;
-    const race = req.body.race;
-    const age = req.body.age;
-    const level_of_ed = req.body.level_of_ed;
-    const lgbtq_status = req.body.lgbtq_status;
-
-    
-});
-
 router.post('/income', (req, res) => {
     const form_id = req.body.form_id;
     const adjusted_gross_income = req.body.adjusted_gross_income;
@@ -271,10 +259,27 @@ router.post('/income', (req, res) => {
     const government_assistance_notes = req.body.government_assistance_notes;
     const employed_during_prime = req.body.employed_during_prime;
     const income_during_prime = req.body.income_during_prime;
+    const need_tuition = req.body.need_tuition;
+    const housing = req.body.housing;
+    const transportation = req.body.transportation;
+    const childcare = req.body.childcare;
+    const healthcare = req.body.healthcare;
+    const other_expenses = req.body.other_expenses;
+    const other_expenses_notes = req.body.other_expenses_notes;
 
-    queryText = `INSERT INTO income (form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime)
+    let queryText = `INSERT INTO income (form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-    injection = [form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime];            
+    let injection = [form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime];            
+    pool.query(queryText, injection)
+        .then(response => {
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+    
+    queryText = `INSERT INTO expenses (form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+    injection = [form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes];
     pool.query(queryText, injection)
         .then(response => {
             res.sendStatus(201);
@@ -293,6 +298,13 @@ router.put('/income', (req, res) => {
     const government_assistance_notes = req.body.government_assistance_notes;
     const employed_during_prime = req.body.employed_during_prime;
     const income_during_prime = req.body.income_during_prime;
+    const need_tuition = req.body.need_tuition;
+    const housing = req.body.housing;
+    const transportation = req.body.transportation;
+    const childcare = req.body.childcare;
+    const healthcare = req.body.healthcare;
+    const other_expenses = req.body.other_expenses;
+    const other_expenses_notes = req.body.other_expenses_notes;
 
     queryText = `UPDATE income SET adjusted_gross_income=$1, filing_status=$2, dependents=$3,
                 government_assistance=$4, government_assistance_notes=$5, 
@@ -302,28 +314,6 @@ router.put('/income', (req, res) => {
     pool.query(queryText, injection)
         .then(response => {
             res.sendStatus(200);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
-});
-
-router.post('/expenses', (req, res) => {
-    const form_id = req.body.form_id;
-    const need_tuition = req.body.need_tuition;
-    const housing = req.body.housing;
-    const transportation = req.body.transportation;
-    const childcare = req.body.childcare;
-    const healthcare = req.body.healthcare;
-    const other_expenses = req.body.other_expenses;
-    const other_expenses_notes = req.body.other_expenses_notes;
-
-    queryText = `INSERT INTO expenses (form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-    injection = [form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes];
-    pool.query(queryText, injection)
-        .then(response => {
-            res.sendStatus(201);
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
