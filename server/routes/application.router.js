@@ -206,6 +206,28 @@ router.post('/demographics', (req, res) => {
         });
 });
 
+router.post('/income', (req, res) => {
+    const form_id = req.body.form_id;
+    const adjusted_gross_income = req.body.adjusted_gross_income;
+    const filing_status = req.body.filing_status;
+    const dependents = req.body.dependents;
+    const government_assistance = req.body.government_assistance;
+    const government_assistance_notes = req.body.government_assistance_notes;
+    const employed_during_prime = req.body.employed_during_prime;
+    const income_during_prime = req.body.income_during_prime;
+
+    queryText = `INSERT INTO income (form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+    injection = [form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime];            
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(201);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+})
+
 router.put('/', (req, res) => {
 
 });
