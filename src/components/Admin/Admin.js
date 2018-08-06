@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import EnhancedTable from '../Table/Table';
 import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 import Autocomplete from '../Autocomplete/Autocomplete';
+import Button from '@material-ui/core/Button';
 
 import './Admin.css';
 
@@ -17,7 +18,7 @@ class AdminPage extends Component {
     selectedApplicant: [],
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch({type: 'GET_ALL_APPLICATION'});
     console.log(this.state);
   }
@@ -41,6 +42,13 @@ class AdminPage extends Component {
     }
   };
 
+  reset = (event) => {
+    this.setState({
+      selectedApplicant: []
+    })
+  }
+
+
   render() {
 
     let content = null;
@@ -54,10 +62,11 @@ class AdminPage extends Component {
         />
       {this.state.selectedApplicant.length ? (
         <div>
-          <div className="DO NOT DELETE THIS DIV"></div>
+          <div></div>
           <EnhancedTable
                 setActive = {this.setActive}
                 apps = {this.state.selectedApplicant}
+                reset = {this.reset}
           />
         </div>
       ) : (
@@ -65,6 +74,7 @@ class AdminPage extends Component {
           <EnhancedTable
                 setActive = {this.setActive}
                 apps = {this.props.apps}
+                reset = {this.reset}
           />
         </div>
       )}
@@ -72,7 +82,6 @@ class AdminPage extends Component {
 
       </div>
     )
-
     };
 
 
