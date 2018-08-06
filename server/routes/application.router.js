@@ -325,6 +325,29 @@ router.post('/expenses', (req, res) => {
         });
 });
 
+router.put('/expenses', (req, res) => {
+    const form_id = req.body.form_id;
+    const need_tuition = req.body.need_tuition;
+    const housing = req.body.housing;
+    const transportation = req.body.transportation;
+    const childcare = req.body.childcare;
+    const healthcare = req.body.healthcare;
+    const other_expenses = req.body.other_expenses;
+    const other_expenses_notes = req.body.other_expenses_notes;
+
+    queryText = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, 
+                childcare=$4, healthcare=$5, other_expenses=$6, other_expenses_notes=$7
+                WHERE form_id=$8`;
+    injection = [need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes, form_id];
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+})
+
 
 
 module.exports = router;
