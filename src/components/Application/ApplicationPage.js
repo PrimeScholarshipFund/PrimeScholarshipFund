@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
-import ApplicationButtons from '../ApplicationButtons/ApplicationButtons';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
 import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
+import { Paper } from '../../../node_modules/@material-ui/core';
 
 const getSteps = () => {
   return ['Start', 'Personal Information','Income & Expenses','Submit']
@@ -157,16 +157,17 @@ render() {
 
   return (
       <div>
-        <SimpleTabs />
+        <SimpleTabs 
+          value = {3}
+        />
         <h1>APPLICATION PAGE</h1>
+        <Paper >
+
 
           <div>
           {content}
-          <ApplicationButtons
-          pageHandler = {this.pageHandler}
-          appPage = {this.state.appPage}
-          />
           </div>
+          < br />
           <HorizontalLinearStepper
           //TODO: make it so the stepper is grayed out on start(landing) page.
           activeStep={this.state.appPage}
@@ -181,7 +182,7 @@ render() {
           handleComplete = {this.handleComplete}
           totalSteps = {totalSteps}
           />
-
+        </Paper>
       </div>
     );
   }

@@ -42,7 +42,9 @@ class DonatePage extends Component {
     return (
       <div>
         <div>
-          <SimpleTabs />
+          <SimpleTabs
+            value = {2}
+          />
         </div>
         <div className="grid-3">
           <Paper className="top">
@@ -93,8 +95,8 @@ class DonatePage extends Component {
 
             {/* grid area 3 */}
  
-            <Checkout
-            />
+            {/* <Checkout
+            /> */}
 
 
           </div>

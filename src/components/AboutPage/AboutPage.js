@@ -16,7 +16,9 @@ class AboutPage extends Component {
     return (
       <div>
         <div>
-          <SimpleTabs />
+          <SimpleTabs
+            value = {1}
+          />
         </div>
         <div className="grid-3">
             <Paper className="top">

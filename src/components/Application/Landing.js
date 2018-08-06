@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-import Paper from '@material-ui/core/Paper';
 
 class Landing extends Component {
     state = {  }
     render() { 
         return ( 
             <div>
-        <Paper className="grid-3">
         <div className="top">
         <h1>Application</h1>
         <p className="sub">The scholarship fund is dedicated to providing scholarship funds and supplemental living costs
@@ -30,7 +28,6 @@ Design student</li>
         </ul>
         
         </div>
-        </Paper>
       </div>
          );
     }

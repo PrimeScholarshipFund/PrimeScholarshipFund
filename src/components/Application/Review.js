@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 
 class Review extends Component {
     state = {
@@ -20,7 +18,6 @@ class Review extends Component {
     render() {
       return (
         <div>
-        <Paper className="grid-3">
         <div className="top">
         <h1>Review</h1>
         <h3>Personal Information</h3>
@@ -34,7 +31,6 @@ class Review extends Component {
         </ul>
         
         </div>
-        </Paper>
       </div>
       );
     }

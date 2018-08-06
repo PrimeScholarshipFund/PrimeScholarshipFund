@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 
 class IncomeExpenses extends Component {
     state = {
@@ -20,7 +19,6 @@ class IncomeExpenses extends Component {
     render() {
       return (
         <div>
-        <Paper className="grid-3">
         <div className="top">
         <h3>Income & Expenses</h3>
         <TextField
@@ -41,7 +39,6 @@ class IncomeExpenses extends Component {
             value={this.state.hamster}
           />
         </div>
-        </Paper>
       </div>
       );
     }
