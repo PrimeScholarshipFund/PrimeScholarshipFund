@@ -185,37 +185,37 @@ router.post('/contact', (req, res) => {
         })
 });
 
-// router.put('/contact', (req, res) => {
-//     const first_name = req.body.first_name;
-//     const last_name = req.body.last_name;
-//     const middle_initial = req.body.middle_initial;
-//     const address_line_1 = req.body.address_line_1;
-//     const address_line_2 = req.body.address_line_2;
-//     const city = req.body.city;
-//     const state = req.body.state;
-//     const zip_code = req.body.zip_code;
-//     const phone_number = req.body.phone_number;
-//     const email = req.body.email;
-//     const accepted_at_prime = req.body.accepted_at_prime;
-//     const applied_at_prime = req.body.applied_at_prime;
-//     const msp_tech_scholar = req.body.msp_tech_scholar;
-//     const applied_for_msp = req.body.applied_for_msp;
-//     const form_id = req.body.form_id;
+router.put('/contact', (req, res) => {
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const middle_initial = req.body.middle_initial;
+    const address_line_1 = req.body.address_line_1;
+    const address_line_2 = req.body.address_line_2;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zip_code = req.body.zip_code;
+    const phone_number = req.body.phone_number;
+    const email = req.body.email;
+    const accepted_at_prime = req.body.accepted_at_prime;
+    const applied_at_prime = req.body.applied_at_prime;
+    const msp_tech_scholar = req.body.msp_tech_scholar;
+    const applied_for_msp = req.body.applied_for_msp;
+    const form_id = req.body.form_id;
 
-//     const injection = [first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id];
+    const injection = [first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id];
 
-//     queryText = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3,
-//         address_line_1=$4, address_line_2=$5, city=$6, state=$7, zip_code=$8, 
-//         phone_number=$9, email=$10, accepted_at_prime=$11, applied_at_prime=$12, 
-//         msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
-//     pool.query(queryText, injection)
-//         .then(response => {
-//             res.sendStatus(200);
-//         }).catch(err => {
-//             console.log({err});
-//             res.sendStatus(500);
-//         })
-// });
+    queryText = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3,
+        address_line_1=$4, address_line_2=$5, city=$6, state=$7, zip_code=$8, 
+        phone_number=$9, email=$10, accepted_at_prime=$11, applied_at_prime=$12, 
+        msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+});
 
 router.post('/demographics', (req, res) => {
     const form_id = req.body.form_id;
