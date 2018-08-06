@@ -138,8 +138,29 @@ router.post('/', (req, res) => {
             console.log({err});
             res.sendStatus(500);
         })
+});
 
+router.post('/new', (req, res) => {
+    const person_id = req.body.person_id;
+    const status = 'application in progress';
+
+    let queryText = `INSERT INTO form (status, person_id)
+        VALUES ($1, $2) RETURNING id`
+    pool.query(queryText, [status, person_id])
+        .then(response => {
+            res.send(response.rows[0]);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+});
+
+router.post('/contact', (req, res) => {
     
+});
+
+router.put('/', (req, res) => {
+
 });
 
 module.exports = router;
