@@ -35,7 +35,6 @@ class AdminPage extends Component {
   handleChange = (prevState) => (value) => {
     console.log(value);
     if (prevState !== this.state) {
-      console.log('hello')
       this.setState({
         selectedApplicant: [...this.state.selectedApplicant, value.value]
       });
@@ -43,7 +42,9 @@ class AdminPage extends Component {
   };
 
   render() {
-    let content =null;
+
+    let content = null;
+
     if(this.props.apps){content = (
       <div>
         <Autocomplete
@@ -53,6 +54,7 @@ class AdminPage extends Component {
         />
       {this.state.selectedApplicant.length ? (
         <div>
+          <div className="DO NOT DELETE THIS DIV"></div>
           <EnhancedTable
                 setActive = {this.setActive}
                 apps = {this.state.selectedApplicant}
