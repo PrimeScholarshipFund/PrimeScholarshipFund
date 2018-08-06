@@ -11,6 +11,7 @@ router.get('/admin', (req, res) => {
         JOIN demographics on demographics.form_id = form.id
         JOIN expenses on expenses.form_id = form.id
         JOIN income on income.form_id = form.id`;
+        // add order by
     pool.query(queryText)
         .then(response => {
             res.send(response.rows);
@@ -30,6 +31,8 @@ router.get('/applicant/:id', (req, res) => {
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
     JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
+    // add order by
+
     pool.query(queryText, [id])
         .then(response => {
             res.send(response.rows);
@@ -155,7 +158,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.post('/contact', (req, res) => {
+router.post('/personal', (req, res) => {
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const middle_initial = req.body.middle_initial;
@@ -171,21 +174,36 @@ router.post('/contact', (req, res) => {
     const msp_tech_scholar = req.body.msp_tech_scholar;
     const applied_for_msp = req.body.applied_for_msp;
     const form_id = req.body.form_id;
+    const gender = req.body.gender;
+    const race = req.body.race;
+    const age = req.body.age;
+    const level_of_ed = req.body.level_of_ed;
+    const lgbtq_status = req.body.lgbtq_status;
 
-    const injection = [form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp];
+    let injection = [form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp];
 
-    queryText = `INSERT INTO contact (form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp)
+    let queryText = `INSERT INTO contact (form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`;
+    pool.query(queryText, injection)
+        .then(response => {
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+
+    queryText = `INSERT INTO demographics (form_id, gender, race, age, level_of_ed, lgbtq_status)
+                VALUES ($1, $2, $3, $4, $5, $6)`;
+    injection = [form_id, gender, race, age, level_of_ed, lgbtq_status];
     pool.query(queryText, injection)
         .then(response => {
             res.sendStatus(201);
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
-        })
+        });
 });
 
-router.put('/contact', (req, res) => {
+router.put('/personal', (req, res) => {
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const middle_initial = req.body.middle_initial;
@@ -201,6 +219,11 @@ router.put('/contact', (req, res) => {
     const msp_tech_scholar = req.body.msp_tech_scholar;
     const applied_for_msp = req.body.applied_for_msp;
     const form_id = req.body.form_id;
+    const gender = req.body.gender;
+    const race = req.body.race;
+    const age = req.body.age;
+    const level_of_ed = req.body.level_of_ed;
+    const lgbtq_status = req.body.lgbtq_status;
 
     const injection = [first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id];
 
@@ -255,7 +278,7 @@ router.put('/demographics', (req, res) => {
             console.log({err});
             res.sendStatus(500);
         });
-})
+});
 
 router.post('/income', (req, res) => {
     const form_id = req.body.form_id;
@@ -301,7 +324,7 @@ router.put('/income', (req, res) => {
             console.log({err});
             res.sendStatus(500);
         });
-})
+});
 
 router.post('/expenses', (req, res) => {
     const form_id = req.body.form_id;
@@ -325,7 +348,9 @@ router.post('/expenses', (req, res) => {
         });
 });
 
-router.put('/expenses', (req, res) => {
+router.put('/income', (req, res) => {
+
+    // parseBody('expenses');
     const form_id = req.body.form_id;
     const need_tuition = req.body.need_tuition;
     const housing = req.body.housing;
@@ -346,7 +371,23 @@ router.put('/expenses', (req, res) => {
             console.log({err});
             res.sendStatus(500);
         });
-})
+});
+
+// const parseBody = function(call, table, body) {
+//     let queryText = '';
+//     let injection = [];
+//     if (call === 'post') {
+//         queryText = 'INSERT INTO';
+//         injection.push('form_id');
+//     } else {
+//         queryText = 'UPDATE';
+//     }
+//     switch(table) {
+//         case 'contact':
+        
+//     }
+    
+// };
 
 
 
