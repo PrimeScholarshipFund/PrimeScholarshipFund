@@ -156,7 +156,34 @@ router.post('/new', (req, res) => {
 });
 
 router.post('/contact', (req, res) => {
-    
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const middle_initial = req.body.middle_initial;
+    const address_line_1 = req.body.address_line_1;
+    const address_line_2 = req.body.address_line_2;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zip_code = req.body.zip_code;
+    const phone_number = req.body.phone_number;
+    const email = req.body.email;
+    const accepted_at_prime = req.body.accepted_at_prime;
+    const applied_at_prime = req.body.applied_at_prime;
+    const msp_tech_scholar = req.body.msp_tech_scholar;
+    const applied_for_msp = req.body.applied_for_msp;
+    const form_id = req.body.form_id;
+
+    const injection = [form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp];
+
+    queryText = `INSERT INTO contact (form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`;
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(201);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+
 });
 
 router.put('/', (req, res) => {
