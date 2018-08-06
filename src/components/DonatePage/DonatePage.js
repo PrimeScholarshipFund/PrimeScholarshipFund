@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {Elements} from 'react-stripe-elements';
 import InjectedDonateForm from '../DonateForm/DonateForm';
+import Checkout from '../Checkout/Checkout';
+import SimpleTabs from '../SimpleTabs/SimpleTabs';
+
+
 
 
 
@@ -28,45 +32,43 @@ class DonatePage extends Component {
     }
   }
 
-  handleChange = (key) => (event) => 
+  handleChange = (key) => (event) =>
     this.setState({...this.state, [key]: event.target.value});
-  
-  
 
-  setNewValue = (newValue) => 
-    this.setState({ ...this.state, address_state: newValue });
-  
 
- 
+
 
   render() {
     return (
-      <div className="grid-3">
-        <Paper className="top">
-        <h1>Donate</h1>
-        <div className="fakePic">
-
+      <div>
+        <div>
+          <SimpleTabs />
         </div>
+        <div className="grid-3">
+          <Paper className="top">
+          <h1>Donate</h1>
+          <div className="fakePic">
 
-        <div className="grid-2">
-          {/* grid area 1 */}
-          <div>
-            <h3>Why is important to increase the participation of minorities in STEM?</h3>
-
-            <div className="sub">
-              <p>STEM careers provide upward mobility and greater job opportunities. Professionals in STEM
-              careers earn significantly more than non-STEM counterparts. <b>Through those job
-              opportunities, underrepresented students can help shape the well-being of their
-              communities.</b></p>
-
-              <p>Making a contribution to the scholarship fund today, you are helping underrepresented students
-              to cover tuition and supplemental living costs. You are helping them achieve academic success,
-              resulting in positive changes in their lives and communities.</p>
-            </div>
           </div>
 
-          {/* grid area 2 */}
-          <div className="fakePic"></div>
+
+          <div className="grid-2">
+            {/* grid area 1 */}
+            <div>
+              <h3>Why is important to increase the participation of minorities in STEM?</h3>
+
+              <div className="sub">
+                <p>STEM careers provide upward mobility and greater job opportunities. Professionals in STEM
+                careers earn significantly more than non-STEM counterparts. <b>Through those job
+                opportunities, underrepresented students can help shape the well-being of their
+                communities.</b></p>
+
+                <p>Making a contribution to the scholarship fund today, you are helping underrepresented students
+                to cover tuition and supplemental living costs. You are helping them achieve academic success,
+                resulting in positive changes in their lives and communities.</p>
+              </div>
+            </div>
+
 
           {/* grid area 3 */}
           <Elements>
@@ -86,9 +88,20 @@ class DonatePage extends Component {
             
           </Elements>
 
+            {/* grid area 2 */}
+            <div className="fakePic"></div>
+
+            {/* grid area 3 */}
+ 
+            <Checkout
+            />
+
+
+          </div>
+          </Paper>
         </div>
-        </Paper>
       </div>
+
     );
   }
 }

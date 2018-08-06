@@ -31,7 +31,7 @@
     "react-router-dom": "^4.2.2",
     "react-script-loader": "0.0.1",
     "react-scripts": "^1.1.1",
-    "react-select-us-states": "^0.1.2",
+    "react-select": "^2.0.0",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^2.0.1",
     "redux": "^3.7.2",

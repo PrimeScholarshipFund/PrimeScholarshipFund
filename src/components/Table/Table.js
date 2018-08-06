@@ -14,9 +14,9 @@ import Button from '@material-ui/core/Button';
 
 
 let counter = 0;
-function createData(status, firstName, lastName, email, phone, comment) {
+function createData(status, first_name, last_name, email, phone, comment) {
   counter += 1;
-  return { id: counter, status, firstName, lastName, email, phone, comment };
+  return { id: counter, status, first_name, last_name, email, phone, comment };
 }
 
 function getSorting(order, orderBy) {
@@ -27,12 +27,22 @@ function getSorting(order, orderBy) {
 
 const columnData = [
   { id: 'status', label: 'Status' },
-  { id: 'firstName', label: 'First Name' },
-  {id: 'lastName', label: 'Last Name'},
+  { id: 'first_name', label: 'First Name' },
+  {id: 'last_name', label: 'Last Name'},
   { id: 'email', label: 'Email' },
   { id: 'phone', label: 'Phone Number' },
   { id: 'comment', label: 'Comments' },
 ];
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
 class EnhancedTableHead extends React.Component {
 
@@ -55,7 +65,7 @@ class EnhancedTableHead extends React.Component {
         <TableRow>
           {columnData.map(column => {
             return (
-              <TableCell
+              <CustomTableCell
                 key={column.id}
                 numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
@@ -66,14 +76,12 @@ class EnhancedTableHead extends React.Component {
                   enterDelay={200}
                 >
                   <TableSortLabel
-                    active={orderBy === column.id}
-                    direction={order}
                     onClick={this.createSortHandler(column.id)}
                   >
                     {column.label}
                   </TableSortLabel>
                 </Tooltip>
-              </TableCell>
+              </CustomTableCell>
             );
           }, this)}
         </TableRow>
@@ -91,6 +99,7 @@ TableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
+
 
 const styles = theme => ({
   root: {
@@ -110,14 +119,10 @@ class EnhancedTable extends React.Component {
     super(props);
 
     this.state = {
+      data: this.props.apps,
       order: 'asc',
       orderBy: 'status',
       selected: [],
-
-      data: [
-        createData('Accepted', 'Sasha', 'Milenkovic', 'sashamilenkovic2@gmail.com', '(651)-222-2222'),
-        createData('Rejected', 'Bill', 'Hickey', 'bhickz@hotmail.com', '(651)-666-6969'),
-      ],
 
       page: 0,
       rowsPerPage: 5,
@@ -131,37 +136,7 @@ class EnhancedTable extends React.Component {
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
-
     this.setState({ order, orderBy });
-  };
-
-  handleSelectAllClick = (event, checked) => {
-    if (checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
-
-  handleClick = (event, id) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    this.setState({ selected: newSelected });
   };
 
   handleChangePage = (event, page) => {
@@ -177,7 +152,7 @@ class EnhancedTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
@@ -192,16 +167,18 @@ class EnhancedTable extends React.Component {
               rowCount={data.length}
             />
             <TableBody>
-              {this.props.apps
+              {data
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
-                      hover
-                      key={n.id}
-                      selected={isSelected}
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    tabIndex={-1}
+                    key={n.id}
+                    selected={isSelected}
                     >
                       <TableCell>{n.status}</TableCell>
                       <TableCell>{n.first_name}</TableCell>
@@ -222,7 +199,7 @@ class EnhancedTable extends React.Component {
         </div>
         <TablePagination
           component="div"
-          count={data.length}
+          count={this.props.apps.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
