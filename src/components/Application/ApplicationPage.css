@@ -1,0 +1,19 @@
+.radios {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.radios input {
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.appForm {
+    margin: 0px;
+}
+
+.appContainer {
+    padding: 15px;
+    width: max-content;
+}
