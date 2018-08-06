@@ -186,6 +186,26 @@ router.post('/contact', (req, res) => {
 
 });
 
+router.post('/demographics', (req, res) => {
+    const form_id = req.body.form_id;
+    const gender = req.body.gender;
+    const race = req.body.race;
+    const age = req.body.age;
+    const level_of_ed = req.body.level_of_ed;
+    const lgbtq_status = req.body.lgbtq_status;
+
+    queryText = `INSERT INTO demographics (form_id, gender, race, age, level_of_ed, lgbtq_status)
+                VALUES ($1, $2, $3, $4, $5, $6)`;
+    injection = [form_id, gender, race, age, level_of_ed, lgbtq_status];
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(201);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+});
+
 router.put('/', (req, res) => {
 
 });
