@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+
 import config from './config/config';
 import {StripeProvider} from 'react-stripe-elements';
 

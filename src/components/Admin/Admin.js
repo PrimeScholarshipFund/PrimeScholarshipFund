@@ -26,12 +26,15 @@ class AdminPage extends Component {
     });
   }
 
+
   render() {
     let content =null;
     if(this.props.apps){content = (
       <div>
         <Autocomplete
+          searched = {this.state.searched}
           apps = {this.props.apps}
+          handleChange= {this.handleChange}
         />
         <EnhancedTable
               setActive = {this.setActive}
