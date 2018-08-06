@@ -237,6 +237,26 @@ router.post('/demographics', (req, res) => {
         });
 });
 
+router.put('/demographics', (req, res) => {
+    const form_id = req.body.form_id;
+    const gender = req.body.gender;
+    const race = req.body.race;
+    const age = req.body.age;
+    const level_of_ed = req.body.level_of_ed;
+    const lgbtq_status = req.body.lgbtq_status;
+
+    queryText = `UPDATE demographics SET gender=$1, race=$2, age=$3, level_of_ed=$4, lgbtq_status=$5
+                WHERE form_id=$6`;
+    injection = [gender, race, age, level_of_ed, lgbtq_status, form_id];
+    pool.query(queryText, injection)
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+})
+
 router.post('/income', (req, res) => {
     const form_id = req.body.form_id;
     const adjusted_gross_income = req.body.adjusted_gross_income;
