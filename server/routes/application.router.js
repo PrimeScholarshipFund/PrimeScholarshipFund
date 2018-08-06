@@ -306,11 +306,22 @@ router.put('/income', (req, res) => {
     const other_expenses = req.body.other_expenses;
     const other_expenses_notes = req.body.other_expenses_notes;
 
-    queryText = `UPDATE income SET adjusted_gross_income=$1, filing_status=$2, dependents=$3,
+    let queryText = `UPDATE income SET adjusted_gross_income=$1, filing_status=$2, dependents=$3,
                 government_assistance=$4, government_assistance_notes=$5, 
                 employed_during_prime=$6, income_during_prime=$7
                 WHERE form_id=$8`;
-    injection = [adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime, form_id];            
+    let injection = [adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime, form_id];            
+    pool.query(queryText, injection)
+        .then(response => {
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        });
+
+    queryText = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, 
+                childcare=$4, healthcare=$5, other_expenses=$6, other_expenses_notes=$7
+                WHERE form_id=$8`;
+    injection = [need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes, form_id];
     pool.query(queryText, injection)
         .then(response => {
             res.sendStatus(200);
@@ -332,17 +343,7 @@ router.put('/income', (req, res) => {
     const other_expenses = req.body.other_expenses;
     const other_expenses_notes = req.body.other_expenses_notes;
 
-    queryText = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, 
-                childcare=$4, healthcare=$5, other_expenses=$6, other_expenses_notes=$7
-                WHERE form_id=$8`;
-    injection = [need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes, form_id];
-    pool.query(queryText, injection)
-        .then(response => {
-            res.sendStatus(200);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
+    
 });
 
 // const parseBody = function(call, table, body) {
