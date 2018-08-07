@@ -68,6 +68,13 @@ class IncomeExpenses extends Component {
       dependents: '',
       governmentAssistance: null,
       governmentAssistanceText: '',
+      employed: null,
+      employedText: '',
+      rent: '',
+      transportation: '',
+      childCare: '',
+      healthCare: '',
+      otherExpenses: '',
      }
 
   handleChange = name => event => {
@@ -153,6 +160,7 @@ class IncomeExpenses extends Component {
                             {JSON.parse(this.state.governmentAssistance) ? (
                               <TextField
                                 fullWidth
+                                placeholder="If so, please specify."
                                 className={classes.formControl}
                                 value={this.state.governmentAssistanceText}
                                 onChange={this.handleChange('governmentAssistanceText')}
@@ -161,6 +169,137 @@ class IncomeExpenses extends Component {
                               null
                             )}
                           </div>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Do you plan to continue being employed while in Prime?"
+                      secondary={
+                          <div>
+                            <RadioGroup
+                              value={this.state.employed}
+                              onChange={this.handleChange('employed')}
+                            >
+                              <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                              <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                            </RadioGroup>
+                            {JSON.parse(this.state.employed) ? (
+                              <TextField
+                                fullWidth
+                                placeholder="If so, how much do you estimate you will make per month?"
+                                className={classes.formControl}
+                                value={this.state.employedText}
+                                onChange={this.handleChange('employed')}
+                              />
+                            ) : (
+                              null
+                            )}
+                          </div>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Do you need tuition assistance? If your tuition will be supplied through MSP TechHire/JFCS, select no."
+                      secondary={
+                          <div>
+                            <RadioGroup
+                              value={this.state.tuitionAssistance}
+                              onChange={this.handleChange('tuitionAssistance')}
+                            >
+                              <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                              <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                            </RadioGroup>
+                          </div>
+                      }
+                    />
+                  </ListItem>
+                  <Typography variant="title" className={classes.title}>
+                    Expenses Per Month
+                  </Typography>
+                  <ListItem>
+                    <ListItemText
+                      primary="Rent/Mortgage"
+                      secondary={
+                        <TextField
+                          className={classes.formControl}
+                          value={this.state.rent}
+                          placeholder="$"
+                          onChange={this.handleChange('rent')}
+                          id="formatted-numberformat-input"
+                          InputProps={{
+                            inputComponent: NumberFormatCustom,
+                          }}
+                        />
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Transportation, including vehicle or transit expenses"
+                      secondary={
+                        <TextField
+                          className={classes.formControl}
+                          value={this.state.transportation}
+                          placeholder="$"
+                          onChange={this.handleChange('transportation')}
+                          id="formatted-numberformat-input"
+                          InputProps={{
+                            inputComponent: NumberFormatCustom,
+                          }}
+                        />
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Childcare Expenses"
+                      secondary={
+                        <TextField
+                          className={classes.formControl}
+                          value={this.state.childCare}
+                          placeholder="$"
+                          onChange={this.handleChange('childCare')}
+                          id="formatted-numberformat-input"
+                          InputProps={{
+                            inputComponent: NumberFormatCustom,
+                          }}
+                        />
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Healthcare Expenses"
+                      secondary={
+                        <TextField
+                          className={classes.formControl}
+                          value={this.state.healthCare}
+                          placeholder="$"
+                          onChange={this.handleChange('healthCare')}
+                          id="formatted-numberformat-input"
+                          InputProps={{
+                            inputComponent: NumberFormatCustom,
+                          }}
+                        />
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Other Expenses"
+                      secondary={
+                        <TextField
+                          id="multiline-flexible"
+                          label="Please specify major monthly expenses (don’t feel the need to list absolutely everything)"
+                          multiline
+                          rowsMax="20"
+                          value={this.state.otherExpenses}
+                          onChange={this.handleChange('otherExpenses')}
+                          fullWidth
+                          margin="normal"
+                        />
                       }
                     />
                   </ListItem>
