@@ -71,7 +71,7 @@ class ApplicationPage extends Component {
     this.handleNext();
     this.pageHandler(event);
   }
-  
+
   handleNext = () => {
     let _activeStep;
 
@@ -159,11 +159,13 @@ render() {
 
   return (
       <div>
-        <SimpleTabs 
+        <SimpleTabs
           value = {3}
         />
         <h1>APPLICATION PAGE</h1>
-        <Paper>
+
+        <div >
+
 
 
           <div>
@@ -184,7 +186,7 @@ render() {
           handleComplete = {this.handleComplete}
           totalSteps = {totalSteps}
           />
-        </Paper>
+      </div>
       </div>
     );
   }
