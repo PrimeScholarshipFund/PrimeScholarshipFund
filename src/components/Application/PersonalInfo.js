@@ -33,8 +33,12 @@ class PersonalInfo extends Component {
           age: null,
           level_of_ed: '',
           lgbtq_status: ''
-        }
+        },
+      radioState: 
+        {
+          gender: '',
 
+        }
      }
 
   handleChangeContact = (key) => event => {

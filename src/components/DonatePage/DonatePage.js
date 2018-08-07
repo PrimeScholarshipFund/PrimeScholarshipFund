@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
 import {Elements} from 'react-stripe-elements';
 import InjectedDonateForm from '../DonateForm/DonateForm';
 import Checkout from '../Checkout/Checkout';
@@ -47,14 +46,14 @@ class DonatePage extends Component {
           />
         </div>
         <div className="grid-3">
-          <Paper className="top">
+          <div className="top">
           <h1>Donate</h1>
           <div className="fakePic">
 
           </div>
 
 
-          <div className="grid-2">
+          <div className="item">
             {/* grid area 1 */}
             <div>
               <h3>Why is important to increase the participation of minorities in STEM?</h3>
@@ -89,18 +88,13 @@ class DonatePage extends Component {
             /> 
             
           </Elements>
-
-            {/* grid area 2 */}
-            <div className="fakePic"></div>
-
-            {/* grid area 3 */}
  
             {/* <Checkout
             /> */}
 
 
           </div>
-          </Paper>
+          </div>
         </div>
       </div>
 
