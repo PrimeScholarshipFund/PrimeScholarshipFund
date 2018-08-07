@@ -9,6 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 
+import BoardIcon from '../../photos/boardIcon.png';
+import TopPhoto from '../../photos/scholarshipFund3.jpg'
+
+import TopImage from '../TopImage/TopImage';
+
 
 class AboutPage extends Component {
 
@@ -20,28 +25,34 @@ class AboutPage extends Component {
             value = {1}
           />
         </div>
-        <div className="grid-3">
-            <div className="top">
+        <TopImage image={TopPhoto}/>
+        <div className="wrapper">
+            <div className="fill">
             <h1>The Fund</h1>
-          <p>The scholarship fund was found in 2018 by Prime Digital Academy alumni to increase the
-  participation of underrepresented students from underserved communities in STEM industries in
-  the greater Minneapolis / St. Paul area.
-  Increasing diversity in STEM presents a number of challenges. Underrepresented students face
-  substantial barriers, including limited access to quality science education, fewer resources to
-  invest in career advancement, and covering additional living expenses while pursuing full-time
-  education. By removing some of the financial burdens associated with going back to school, the
-  scholarship fund plays a vital role in increasing access to education for underrepresented
-  students.
+            <p>The scholarship fund was found in 2018 by Prime Digital Academy alumni to increase the
+            participation of underrepresented students from underserved communities in STEM industries in
+            the greater Minneapolis / St. Paul area.
+            Increasing diversity in STEM presents a number of challenges. Underrepresented students face
+            substantial barriers, including limited access to quality science education, fewer resources to
+            invest in career advancement, and covering additional living expenses while pursuing full-time
+            education. By removing some of the financial burdens associated with going back to school, the
+            scholarship fund plays a vital role in increasing access to education for underrepresented
+            students.
 
-  The scholarship fund provides support for students seeking to cover tuition expenses at Prime
-  Digital Academy and other supplemental expenses, such as selected living costs.
-  Would you like to get involved? Please, <a href="mailto:ilana.nagib@gmail.com">contact</a> or donate <Link to="/donate">here</Link>.</p>
-
-
-      <h2>The Board</h2>
+            The scholarship fund provides support for students seeking to cover tuition expenses at Prime
+            Digital Academy and other supplemental expenses, such as selected living costs.
+            Would you like to get involved? Please, <a href="mailto:ilana.nagib@gmail.com">contact</a> or donate <Link to="/donate">here</Link>.</p>
+            </div>
+      
+      <div className="item">
+        <h2>The Board</h2>
+        <div className="iconContainer">
+            <img src={BoardIcon} alt="" className="icon"/>
+            </div>
+      </div>
 
       <div className="vertGrid">
-      <Paper className="tile">
+      <Paper className="tile item">
 
           <img src={PhotoIlana} alt="" className="board"/>
 
@@ -56,7 +67,7 @@ class AboutPage extends Component {
           </div>
         </Paper>
 
-        <Paper className="tile">
+        <Paper className="tile item">
 
 
           <img src={PhotoEllen} alt="" className="board"/>
@@ -71,7 +82,7 @@ class AboutPage extends Component {
           </div>
         </Paper>
 
-        <Paper className="tile">
+        <Paper className="tile item">
 
           <img src={PhotoAndy} alt="" className="board"/>
 
@@ -85,7 +96,7 @@ class AboutPage extends Component {
         </div>
         </Paper>
       </div>
-        </div>
+        
       </div>
       </div>
 

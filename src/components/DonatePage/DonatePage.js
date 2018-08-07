@@ -5,6 +5,9 @@ import InjectedDonateForm from '../DonateForm/DonateForm';
 import Checkout from '../Checkout/Checkout';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 
+import TopImage from '../TopImage/TopImage';
+import TopPhoto from '../../photos/scholarshipFund4.jpeg';
+
 
 
 
@@ -45,12 +48,12 @@ class DonatePage extends Component {
             value = {2}
           />
         </div>
-        <div className="grid-3">
-          <div className="top">
-          <h1>Donate</h1>
-          <div className="fakePic">
+        <TopImage image={TopPhoto}/>
+        <div className="wrapper">
 
-          </div>
+          <div className="fill">
+          <h1>Donate</h1>
+       
 
 
           <div className="item">
