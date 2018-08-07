@@ -21,7 +21,7 @@ class AboutPage extends Component {
           />
         </div>
         <div className="grid-3">
-            <Paper className="top">
+            <div className="top">
             <h1>The Fund</h1>
           <p>The scholarship fund was found in 2018 by Prime Digital Academy alumni to increase the
   participation of underrepresented students from underserved communities in STEM industries in
@@ -85,7 +85,7 @@ class AboutPage extends Component {
         </div>
         </Paper>
       </div>
-        </Paper>
+        </div>
       </div>
       </div>
 

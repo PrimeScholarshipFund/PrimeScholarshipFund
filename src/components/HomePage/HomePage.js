@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
-
-import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 
 class HomePage extends Component {
@@ -13,11 +11,12 @@ class HomePage extends Component {
         <SimpleTabs
          value = {0}
         />
-        <Paper className="grid-3">
-        <div className="top">
+        
           <div className="fakePic">
             <h3>Stand in for Photo</h3>
           </div>
+        <div className="grid-3">
+        <div className="top">
         <h1>EDUCATION CAN CHANGE LIVES</h1>
         <p>We are committed to increasing the participation of underrepresented students in the
 Minneapolis / St. Paul tech industry. Through education and the opportunities it brings, students
@@ -54,7 +53,7 @@ communities.
           <Link to="/donate"><p>Learn More</p></Link>
         </div>
 
-        </Paper>
+        </div>
       </div>
     );
   }

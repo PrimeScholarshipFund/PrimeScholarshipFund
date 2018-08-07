@@ -51,6 +51,13 @@ class PersonalInfo extends Component {
     });
   };
 
+  handleChangeRadio = (key) => event => {
+    this.setState({
+      ...this.state,
+      contact: {...this.state.contact, [key]: event.target.value}
+    });
+  };
+
   handleContactBoolean = (key) => event => {
     
     let input = null;
@@ -225,6 +232,11 @@ class PersonalInfo extends Component {
               <div className="radios">
                 <input type="radio" name="gender" value="do not wish to specify"/>do not wish to specify<br/>
               </div>
+            </form>
+
+            <form action="">
+              <p>Race</p>
+              <input type="text" name="" id=""/>
             </form>
 
         </div>
