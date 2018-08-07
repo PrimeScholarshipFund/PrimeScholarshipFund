@@ -1,6 +1,6 @@
 CREATE TABLE "person" (
     "id" serial PRIMARY KEY NOT NULL,
-    "username" varchar(50) NOT NULL UNIQUE,
+    "username" varchar(20) NOT NULL UNIQUE,
     "password" varchar(100) NOT NULL,
     "admin" BOOLEAN NOT NULL DEFAULT 'false'
 );
@@ -18,7 +18,7 @@ CREATE TABLE "form" (
 
 CREATE TABLE "contact" (
     "id" serial PRIMARY KEY NOT NULL,
-    "form_id" integer NOT NULL REFERENCES "form" ("id"),
+    "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "first_name" varchar(100) NOT NULL,
     "last_name" varchar(100) NOT NULL,
     "middle_initial" varchar(5),
@@ -39,7 +39,7 @@ CREATE TABLE "contact" (
 
 CREATE TABLE "demographics" (
     "id" serial PRIMARY KEY NOT NULL,
-    "form_id" integer NOT NULL REFERENCES "form" ("id"),
+    "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "gender" varchar(80) NOT NULL,
     "race" varchar(80) NOT NULL,
     "age" integer NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE "demographics" (
 
 CREATE TABLE "income" (
     "id" serial PRIMARY KEY NOT NULL,
-    "form_id" integer NOT NULL REFERENCES "form" ("id"),
+    "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "adjusted_gross_income" integer NOT NULL,
     "filing_status" varchar(80) NOT NULL,
     "dependents" integer NOT NULL,
@@ -60,6 +60,21 @@ CREATE TABLE "income" (
     "employed_during_prime" BOOLEAN NOT NULL,
     "income_during_prime" integer
 );
+
+
+
+CREATE TABLE "expenses" (
+    "id" serial PRIMARY KEY NOT NULL,
+    "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
+    "need_tuition" BOOLEAN NOT NULL,
+    "housing" integer NOT NULL,
+    "transportation" integer NOT NULL,
+    "childcare" integer NOT NULL,
+    "healthcare" integer NOT NULL,
+    "other_expenses" integer NOT NULL,
+    "other_expenses_notes" varchar(280)
+);
+
 
 
 
