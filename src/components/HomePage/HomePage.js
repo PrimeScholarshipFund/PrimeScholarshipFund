@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
-
-import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 
 // images
@@ -69,7 +67,7 @@ communities.
           <Link to="/donate"><p>Learn More</p></Link>
         </div>
 
-        </Paper>
+        </div>
       </div>
     );
   }

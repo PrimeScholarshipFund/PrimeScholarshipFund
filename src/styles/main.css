@@ -82,8 +82,9 @@ li a:hover {
 .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 100%;
+    grid-gap: 30px;
+    width: 72.5%;
+    margin: auto;
 }
 
 .grid-2 {
@@ -98,7 +99,6 @@ li a:hover {
     grid-area: 1 / span 3;
     overflow-wrap: normal;
     padding: 20px;
-
 }
 
 .bottom-2 {
