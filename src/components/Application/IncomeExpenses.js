@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import RadioButtonsGroup from '../RadioButtonsGroup/RadioButtonsGroup';
 
 class IncomeExpenses extends Component {
     state = {
@@ -19,26 +20,10 @@ class IncomeExpenses extends Component {
     render() {
       return (
         <div>
-        <div className="top">
-        <h3>Income & Expenses</h3>
-        <TextField
-            label="Fax"
-            value={this.state.Fax}
-            onChange={this.handleChange('Fax')}
-          />
-          <TextField
-            label="How much do you like doughnuts?"
-            value={this.state.doughnuts}
-          />
-          <TextField
-            label="How important are dinosaurs to your personal life?"
-            value={this.state.dinosaurs}
-          />
-          <TextField
-            label="When murdering ewoks, how often do you think about your pet hamster?"
-            value={this.state.hamster}
-          />
-        </div>
+          <div className="top">
+            <h3>Income & Expenses</h3>
+            <RadioButtonsGroup />
+          </div>
       </div>
       );
     }
