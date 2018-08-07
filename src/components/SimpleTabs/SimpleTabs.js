@@ -5,6 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import classNames from 'classnames';
 
 function TabContainer(props) {
   return (
@@ -21,7 +23,17 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: deepOrange,
+    align: 'right',
+  },
+  tabs: {
+    marginLeft: 'auto',
+  },
+  tabsIndicator: {
+    backgroundColor: '#B000B5',
+  },
+  donateButton: {
+    backgroundColor: deepOrange,
   },
 });
 
@@ -39,9 +51,6 @@ class SimpleTabs extends React.Component {
     this.setState({ value: this.props.value });
     
   }
-  routeToView = (viewName) => {
-    window.location.href = `#/${viewName}`
-  }
 
   render() {
     const { classes } = this.props;
@@ -50,11 +59,15 @@ class SimpleTabs extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
+          <Tabs
+          classes= {{
+            indicator: classes.tabsIndicator
+          }} 
+          className = {classNames(classes.tabs, classes.root)} value={value} onChange={this.handleChange}>
             <Tab label="Home" href="#/home"></Tab>
             <Tab label="About" href="#/about"></Tab>
-            <Tab label="Donate" href="#/donate"></Tab>
-            <Tab label="Application" href="#/application"></Tab>
+            <Tab label="Apply" href="#/application"></Tab>
+            <Tab className={classes.donateButton} label="Donate" href="#/donate"></Tab>
           </Tabs>
         </AppBar>
         {value === 0}

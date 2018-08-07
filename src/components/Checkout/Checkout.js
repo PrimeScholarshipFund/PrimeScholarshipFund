@@ -29,9 +29,9 @@ axios.post(config.PAYMENT_SERVER_URL,
     
     const Checkout = ({ name, description, amount }) =>
     <StripeCheckout
-    name='James dickenson'
-    description={'donating money'}
-    amount={1000}
+    name={name}
+    description={description}
+    amount={amount}
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={config.STRIPE_PUBLISHABLE}

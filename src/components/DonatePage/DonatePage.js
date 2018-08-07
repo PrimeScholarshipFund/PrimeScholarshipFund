@@ -43,7 +43,7 @@ class DonatePage extends Component {
       <div>
         <div>
           <SimpleTabs
-            value = {2}
+            value = {3}
           />
         </div>
         <div className="grid-3">
