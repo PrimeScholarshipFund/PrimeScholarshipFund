@@ -1,11 +1,11 @@
 .board {
-    height: 200px;
+    height: 250px;
 }
 
 .tile {
     display: flex;
     height: max-content;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
 }
 
 .content {

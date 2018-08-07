@@ -110,24 +110,23 @@ li a:hover {
     padding: 20px;
 }
 
-.circle {
-    width: 175px;
-    height: 175px;
+.iconContainer {
+    width: max-content;
     border-radius: 50%;
-    background-color: blue;
-    overflow: hidden;
-    text-align: center;
     margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .sub {
     margin-left: 15px;
 }
 
-
-/* holds place until pictures are deilvered. delete before deployment */
-.fakePic {
+.topImage {
     width: 100%;
-    height: 200px;
-    background-color: blue;
+}
+
+.icon {
+    height: 175px;
+    margin: auto;
 }
