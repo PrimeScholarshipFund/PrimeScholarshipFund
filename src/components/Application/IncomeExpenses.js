@@ -16,10 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
-
-
-
-
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const styles = theme => ({
@@ -69,15 +66,21 @@ class IncomeExpenses extends Component {
       adjustedGrossIncome: '',
       taxFilingStatus: '',
       dependents: '',
-      governmentAssistance: false,
+      governmentAssistance: null,
+      governmentAssistanceText: '',
      }
 
   handleChange = name => event => {
-    console.log(name, event);
     this.setState({
       [name]: event.target.value
     });
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.state.governmentAssistance !== prevProps.governmentAssistance) {
+      console.log(this.state.governmentAssistance);
+    }
+  }
 
     render() {
       const { classes } = this.props;
@@ -137,15 +140,27 @@ class IncomeExpenses extends Component {
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="Are you getting government assistance?* (yes/no radio)"
+                      primary="Are you getting government assistance?"
                       secondary={
-                        <RadioGroup
-                          value={this.state.governmentAssistance}
-                          onChange={this.handleChange('governmentAssistance')}
-                        >
-                          <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                          <FormControlLabel value="false" control={<Radio />} label="No" />
-                        </RadioGroup>
+                          <div>
+                            <RadioGroup
+                              value={this.state.governmentAssistance}
+                              onChange={this.handleChange('governmentAssistance')}
+                            >
+                              <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                              <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                            </RadioGroup>
+                            {JSON.parse(this.state.governmentAssistance) ? (
+                              <TextField
+                                fullWidth
+                                className={classes.formControl}
+                                value={this.state.governmentAssistanceText}
+                                onChange={this.handleChange('governmentAssistanceText')}
+                              />
+                            ) : (
+                              null
+                            )}
+                          </div>
                       }
                     />
                   </ListItem>
