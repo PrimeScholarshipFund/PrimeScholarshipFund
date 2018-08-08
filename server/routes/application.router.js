@@ -47,7 +47,7 @@ router.get('/applicant/:id', (req, res) => {
  */
 router.put('/all', (req, res) => {
     // parsing the body
-    stageQueries('all', req.body);
+    queriesAndInjections = stageQueries('all', req.body);
     
     pool.query()
 
@@ -126,16 +126,16 @@ router.post('/new', (req, res) => {
 });
 
 router.put('/personal', (req, res) => {
-    queryAndInjections = stageQueries('personal', req.body);    
+    queriesAndInjections = stageQueries('personal', req.body);    
 
-    pool.query(queryAndInjections.firstQuery, queryAndInjections.firstInjection)
+    pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
         .then(response => {
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
         })
 
-    pool.query(queryAndInjections.secondQuery, queryAndInjections.secondInjection)
+    pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
         .then(response => {
             res.sendStatus(200);
         }).catch(err => {
@@ -145,16 +145,16 @@ router.put('/personal', (req, res) => {
 });
 
 router.put('/income', (req, res) => {
-    queryAndInjections = stageQueries('income', req.body);
+    queriesAndInjections = stageQueries('income', req.body);
           
-    pool.query(queryAndInjections.firstQuery, queryAndInjections.firstInjection)
+    pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
         .then(response => {
         }).catch(err => {
             console.log({err});
             res.sendStatus(500);
         });
 
-    pool.query(queryAndInjections.secondQuery, queryAndInjections.secondInjection)
+    pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
         .then(response => {
             res.sendStatus(200);
         }).catch(err => {
@@ -250,7 +250,7 @@ const stageQueries = function(route, body) {
                 firstInjection = thirdInjection;
                 secondInjection = fourthInjection;
             }
-    }
+    } // end route switch
 
     returnObject = {
         firstQuery: firstQuery,
