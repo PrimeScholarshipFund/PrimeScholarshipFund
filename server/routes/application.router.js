@@ -2,38 +2,17 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET all information about every applicant
- */
-router.get('/admin', (req, res) => {
-    let queryText = `SELECT * from form
-        JOIN contact on contact.form_id = form.id
-        JOIN demographics on demographics.form_id = form.id
-        JOIN expenses on expenses.form_id = form.id
-        JOIN income on income.form_id = form.id`;
-        // add order by
-    pool.query(queryText)
-        .then(response => {
-            res.send(response.rows);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        })
-});
-
 //get route for individual application applicatn side
 //edit this later to operate solely from form.id
 router.get('/applicant/:id', (req, res) => {
     console.log('cheetah time', req.params.id);
     const id = req.params.id;
     let queryText = `SELECT * FROM person
-    JOIN form on form.user_id = person.id
+    JOIN form on form.person_id = person.id
     JOIN demographics on demographics.form_id = form.id
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
     JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
-    // add order by
-
     pool.query(queryText, [id])
         .then(response => {
             res.send(response.rows);
@@ -47,6 +26,7 @@ router.get('/applicant/:id', (req, res) => {
  * NEEDS TO BE REFACTORED
  */
 router.put('/all', (req, res) => {
+
     // parsing the body
     queriesAndInjections = stageQueries('all', req.body);
 
@@ -109,41 +89,73 @@ router.put('/all', (req, res) => {
     //         console.log({err});
     //         res.sendStatus(500);
     //     })
+
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        const queriesAndInjections = await stageQueries('all', req.body);
+        try{
+            console.log('in async put');
+            
+            await client.query('BEGIN');
+            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
+            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
+            await client.query(queriesAndInjections.thirdQuery, queriesAndInjections.thirdInjection);
+            await client.query(queriesAndInjections.fourthQuery, queriesAndInjections.fourthInjection);
+            await client.query(queriesAndInjections.fifthQuery, queriesAndInjections.fifthInjection);
+            await client.query('COMMIT');
+            res.sendStatus(200);
+        } catch (err) {
+            await pool.query('ROLLBACK');
+            console.log({err});
+            res.sendStatus(500);
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
+
 });
 
 router.post('/new', (req, res) => {
     const person_id = req.body.person_id;
-    const status = 'application in progress';
 
-    let queryText = `INSERT INTO form (status, person_id)
-        VALUES ($1, $2) RETURNING id`
-    pool.query(queryText, [status, person_id])
-        .then(response => {
-            res.send(response.rows[0]);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
-});
 
 router.put('/personal', (req, res) => {
     queriesAndInjections = stageQueries('personal', req.body);
 
-    pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
-        .then(response => {
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        })
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        try{
+            await client.query('BEGIN');
+            const { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
+            let form_id = rows[0].id;
+            
+            await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
 
-    pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
-        .then(response => {
+
+            await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
+            await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
+            await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+
+            await client.query('COMMIT');
             res.sendStatus(200);
-        }).catch(err => {
+        } catch (err) {
+            await pool.query('ROLLBACK');
             console.log({err});
             res.sendStatus(500);
-        });
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
 });
+
 
 router.put('/income', (req, res) => {
     queriesAndInjections = stageQueries('income', req.body);
@@ -157,13 +169,31 @@ router.put('/income', (req, res) => {
 
     pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
         .then(response => {
+
+router.put('/:page', (req, res) => {
+    const page = req.params.page;
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        const queriesAndInjections = await stageQueries(page, req.body);
+        try{
+            await client.query('BEGIN');
+            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
+            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
+            await client.query('COMMIT');
             res.sendStatus(200);
-        }).catch(err => {
+        } catch (err) {
+            await pool.query('ROLLBACK');
             console.log({err});
             res.sendStatus(500);
-        });
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
 });
-
 
 const stageQueries = function(route, body) {
     console.log('in stageQueries');
