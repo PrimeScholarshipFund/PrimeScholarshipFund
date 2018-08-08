@@ -4,7 +4,7 @@ const router = express.Router();
 
 //get route for individual application applicatn side
 //edit this later to operate solely from form.id
-router.get('/applicant/', (req, res) => {
+router.get('/applicant/:id', (req, res) => {
     const id = req.body.id;
     let queryText = `SELECT * FROM person
     JOIN form on form.person_id = person.id
