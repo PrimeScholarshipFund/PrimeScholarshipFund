@@ -61,6 +61,10 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  applicant: state.applicant,
+});
+
 class IncomeExpenses extends Component {
     state = {
       adjustedGrossIncome: '',
@@ -83,10 +87,12 @@ class IncomeExpenses extends Component {
     });
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.state.governmentAssistance !== prevProps.governmentAssistance) {
-      console.log(this.state.governmentAssistance);
-    }
+  componentDidUpdate() {
+
+  }
+
+  componentDidMount() {
+    console.log(this.props.applicant);
   }
 
     render() {
@@ -190,7 +196,7 @@ class IncomeExpenses extends Component {
                                 placeholder="If so, how much do you estimate you will make per month?"
                                 className={classes.formControl}
                                 value={this.state.employedText}
-                                onChange={this.handleChange('employed')}
+                                onChange={this.handleChange('employedText')}
                               />
                             ) : (
                               null

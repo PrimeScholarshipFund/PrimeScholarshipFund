@@ -1,12 +1,12 @@
 export const APPLICANT_ACTIONS = {
-  GET_APPLICANT: 'GET_APPLICANTS',
+  GET_APPLICANT: 'GET_APPLICANT',
   FILL_DATA: 'FILL_FORM',
 };
 
-export const getApplicant = () => ({
+export const getApplicant = (userId) => ({
   type: APPLICANT_ACTIONS.GET_APPLICANT,
   payload: {
-    // userId,
+    userId,
   }
 });
 

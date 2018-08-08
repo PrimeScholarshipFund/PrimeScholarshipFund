@@ -16,6 +16,7 @@ class AdminPage extends Component {
   state = {
     active: null,
     selectedApplicant: [],
+    allApplicants: this.props.apps,
   };
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class AdminPage extends Component {
   }
 
   componentDidUpdate = () => {
-    console.log(this.state);
+    console.log(this.props.apps);
   }
 
   setActive = (person) => {
