@@ -4,7 +4,7 @@ const router = express.Router();
 
 //get route for individual application applicatn side
 //edit this later to operate solely from form.id
-router.get('/applicant/', (req, res) => {
+router.get('/applicant/:id', (req, res) => {
     const id = req.body.id;
     let queryText = `SELECT * FROM person
     JOIN form on form.person_id = person.id
@@ -55,17 +55,34 @@ router.put('/all', (req, res) => {
 
 router.post('/new', (req, res) => {
     const person_id = req.body.person_id;
-    const status = 'application in progress';
 
-    let queryText = `INSERT INTO form (status, person_id)
-        VALUES ($1, $2) RETURNING id`
-    pool.query(queryText, [status, person_id])
-        .then(response => {
-            res.send(response.rows[0]);
-        }).catch(err => {
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        try{
+            await client.query('BEGIN');
+            const { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
+            let form_id = rows[0].id;
+            
+            await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
+
+            await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
+            await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
+            await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+
+            await client.query('COMMIT');
+            res.sendStatus(200);
+        } catch (err) {
+            await pool.query('ROLLBACK');
             console.log({err});
             res.sendStatus(500);
-        });
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
 });
 
 router.put('/:page', (req, res) => {

@@ -9,9 +9,10 @@ CREATE TABLE "person" (
 
 CREATE TABLE "form" (
     "id" serial PRIMARY KEY NOT NULL,
-    "status" varchar(100) NOT NULL,
+    "status" varchar(100) NOT NULL DEFAULT 'application in progress',
     "person_id" integer NOT NULL REFERENCES "person" ("id"),
-    "archived" BOOLEAN NOT NULL DEFAULT 'false'
+    "archived" BOOLEAN NOT NULL DEFAULT 'false',
+    "comments" varchar(1000)
 );
 
 
@@ -19,19 +20,19 @@ CREATE TABLE "form" (
 CREATE TABLE "contact" (
     "id" serial PRIMARY KEY NOT NULL,
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
-    "first_name" varchar(100) NOT NULL,
-    "last_name" varchar(100) NOT NULL,
+    "first_name" varchar(100) NOT NULL DEFAULT '',
+    "last_name" varchar(100) NOT NULL DEFAULT '',
     "middle_initial" varchar(5),
-    "address_line_1" varchar(100) NOT NULL,
+    "address_line_1" varchar(100) NOT NULL DEFAULT '',
     "address_line_2" varchar(100),
-    "city" varchar(100) NOT NULL,
-    "state" varchar(100) NOT NULL,
-    "zip_code" varchar(100) NOT NULL,
-    "phone_number" varchar(15) NOT NULL,
-    "email" varchar(100) NOT NULL,
-    "accepted_at_prime" BOOLEAN NOT NULL,
+    "city" varchar(100) NOT NULL DEFAULT '',
+    "state" varchar(100) NOT NULL DEFAULT '',
+    "zip_code" varchar(100) NOT NULL DEFAULT '',
+    "phone_number" varchar(15) NOT NULL DEFAULT '',
+    "email" varchar(100) NOT NULL DEFAULT '',
+    "accepted_at_prime" BOOLEAN NOT NULL DEFAULT false,
     "applied_at_prime" BOOLEAN,
-    "msp_tech_scholar" BOOLEAN NOT NULL,
+    "msp_tech_scholar" BOOLEAN NOT NULL DEFAULT false,
     "applied_for_msp" BOOLEAN
 );
 
@@ -40,11 +41,11 @@ CREATE TABLE "contact" (
 CREATE TABLE "demographics" (
     "id" serial PRIMARY KEY NOT NULL,
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
-    "gender" varchar(80) NOT NULL,
-    "race" varchar(80) NOT NULL,
-    "age" integer NOT NULL,
-    "level_of_ed" varchar(80) NOT NULL,
-    "lgbtq_status" varchar(80) NOT NULL
+    "gender" varchar(80) NOT NULL DEFAULT '',
+    "race" varchar(80) NOT NULL DEFAULT '',
+    "age" integer NOT NULL DEFAULT 0,
+    "level_of_ed" varchar(80) NOT NULL DEFAULT '',
+    "lgbtq_status" varchar(80) NOT NULL DEFAULT ''
 );
 
 
@@ -52,12 +53,12 @@ CREATE TABLE "demographics" (
 CREATE TABLE "income" (
     "id" serial PRIMARY KEY NOT NULL,
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
-    "adjusted_gross_income" integer NOT NULL,
-    "filing_status" varchar(80) NOT NULL,
-    "dependents" integer NOT NULL,
+    "adjusted_gross_income" integer NOT NULL DEFAULT 0,
+    "filing_status" varchar(80) NOT NULL DEFAULT '',
+    "dependents" integer NOT NULL DEFAULT 0,
     "government_assistance" BOOLEAN,
     "government_assistance_notes" varchar(280),
-    "employed_during_prime" BOOLEAN NOT NULL,
+    "employed_during_prime" BOOLEAN NOT NULL DEFAULT false,
     "income_during_prime" integer
 );
 
@@ -66,28 +67,13 @@ CREATE TABLE "income" (
 CREATE TABLE "expenses" (
     "id" serial PRIMARY KEY NOT NULL,
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
-    "need_tuition" BOOLEAN NOT NULL,
-    "housing" integer NOT NULL,
-    "transportation" integer NOT NULL,
-    "childcare" integer NOT NULL,
-    "healthcare" integer NOT NULL,
-    "other_expenses" integer NOT NULL,
+    "need_tuition" BOOLEAN NOT NULL DEFAULT false,
+    "housing" integer NOT NULL DEFAULT 0,
+    "transportation" integer NOT NULL DEFAULT 0,
+    "childcare" integer NOT NULL DEFAULT 0,
+    "healthcare" integer NOT NULL DEFAULT 0,
+    "other_expenses" integer NOT NULL DEFAULT 0,
     "other_expenses_notes" varchar(280)
-);
-
-
-
-
-CREATE TABLE "expenses" (
-    "id" serial PRIMARY KEY NOT NULL,
-    "form_id" integer NOT NULL REFERENCES "form" ("id"),
-    "need_tuition" BOOLEAN NOT NULL,
-    "housing" integer NOT NULL,
-    "transportation" integer NOT NULL,
-    "childcare" integer NOT NULL,
-    "healthcare" integer NOT NULL,
-    "other_expenses" integer NOT NULL,
-    "other_expenses_notes" varchar(8000)
 );
 
 INSERT INTO person ("username", "password", "admin")
