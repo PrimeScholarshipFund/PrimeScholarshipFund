@@ -47,7 +47,7 @@ router.get('/applicant/:id', (req, res) => {
  */
 router.put('/all', (req, res) => {
     // parsing the body
-    stageQueries('put', 'all', req.body);
+    stageQueries('all', req.body);
     
     pool.query()
 
@@ -126,7 +126,7 @@ router.post('/new', (req, res) => {
 });
 
 router.put('/personal', (req, res) => {
-    queryAndInjections = stageQueries('put', 'personal', req.body);    
+    queryAndInjections = stageQueries('personal', req.body);    
 
     pool.query(queryAndInjections.firstQuery, queryAndInjections.firstInjection)
         .then(response => {
@@ -145,7 +145,7 @@ router.put('/personal', (req, res) => {
 });
 
 router.put('/income', (req, res) => {
-    queryAndInjections = stageQueries('put', 'income', req.body);
+    queryAndInjections = stageQueries('income', req.body);
           
     pool.query(queryAndInjections.firstQuery, queryAndInjections.firstInjection)
         .then(response => {
@@ -164,7 +164,7 @@ router.put('/income', (req, res) => {
 });
 
 
-const stageQueries = function(call, route, body) {
+const stageQueries = function(route, body) {
     console.log('in stageQueries');
     
     let firstQuery = '';
