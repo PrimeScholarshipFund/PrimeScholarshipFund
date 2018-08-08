@@ -21,8 +21,19 @@ router.get('/applicants', (req, res) => {
         })
 });
 
-// router.put('/save', (req, res) => {
+router.put('/save', (req, res) => {
+    const comments = req.body.comments;
+    const status = req.body.status;
+    const form_id = req.body.form_id;
 
-// });
+    let queryText = `UPDATE form SET comments=$1, status=$2 WHERE id=$3`;
+    pool.query(queryText, [comments, status, form_id])
+        .then(response => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log({err});
+            res.sendStatus(500);
+        })
+});
 
 module.exports = router;
