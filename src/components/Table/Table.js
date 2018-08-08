@@ -44,6 +44,10 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 class EnhancedTableHead extends React.Component {
 
   createSortHandler = property => event => {
@@ -229,6 +233,15 @@ Table.propTypes = {
 };
 
 export default withStyles(styles)(EnhancedTable);
+// export default compose(connect(mapStateToProps))(Table);
+// export default compose(
+//   withStyles(styles, {
+//     name: 'AppFrame',
+//   }),
+//   withWidth(),
+//   connect(),
+// )(AppFrame);
+
 
 
 

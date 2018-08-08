@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
@@ -7,6 +8,8 @@ import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 import { Paper } from '../../../node_modules/@material-ui/core';
+import { getApplicant } from '../../redux/actions/applicantActions';
+
 
 import './ApplicationPage.css';
 
@@ -34,6 +37,11 @@ const getStepContent = (step) => {
 const totalSteps = () => {
         return getSteps().length;
       }
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 class ApplicationPage extends Component {
   state = {
     appPage: 0,
@@ -47,18 +55,17 @@ class ApplicationPage extends Component {
   }
 
   completedSteps = () => {
-    console.log(this.state);
 
     return Object.keys(this.state.completed).length;
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state);
 
   }
 
   componentDidMount() {
-    console.log(this.state.completed);
+    console.log(this.props.user.id);
+    this.props.dispatch(getApplicant(this.props.user.id))
   }
 
 
@@ -192,4 +199,5 @@ render() {
   }
 }
 
-export default ApplicationPage;
+export default compose(connect(mapStateToProps))(ApplicationPage);
+// export default compose(connect(mapStateToProps))(Table);

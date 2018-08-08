@@ -1,15 +1,11 @@
 export const APPLICANT_ACTIONS = {
-  GET_APPLICANT: 'GET_APPLICANTS',
-  FILL_DATA: 'FILL_FORM',
+  GET_APPLICANT: 'GET_APPLICANT',
+  SET_DATA: 'SET_DATA',
 };
 
-export const getApplicant = () => ({
+export const getApplicant = (userId) => ({
   type: APPLICANT_ACTIONS.GET_APPLICANT,
   payload: {
-    // userId,
+    userId,
   }
-});
-
-export const setGame = () => ({
-  type: APPLICANT_ACTIONS.FILL_FORM,
 });
