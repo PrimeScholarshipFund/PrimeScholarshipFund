@@ -55,11 +55,10 @@ router.put('/all', (req, res) => {
 
 router.post('/new', (req, res) => {
     const person_id = req.body.person_id;
-    const status = 'application in progress';
 
-    let queryText = `INSERT INTO form (status, person_id)
-        VALUES ($1, $2) RETURNING id`
-    pool.query(queryText, [status, person_id])
+    let queryText = `INSERT INTO form (person_id)
+        VALUES ($1) RETURNING id`
+    pool.query(queryText, [person_id])
         .then(response => {
             res.send(response.rows[0]);
         }).catch(err => {
