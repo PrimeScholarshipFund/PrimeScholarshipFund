@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
-const adminApplication = (state = {}, action) => {
+const adminApplication = (state = '', action) => {
   switch (action.type) {
-    case 'SET_DATA':
-      return {
-        state: action.payload,
-      }
+    case 'SET_ALL_APPLICATION':
+      return [...action.payload];
     default:
       return state;
   }

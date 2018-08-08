@@ -9,7 +9,7 @@ function* getApplicant(action) {
   try {
     applicantInfo = yield getApplicantRequest(action.payload);
     yield put({
-      type: APPLICANT_ACTIONS.SET_DATA,
+      type: APPLICANT_ACTIONS.FILL_FORM,
       payload: applicantInfo,
     })
   } catch (error) {
