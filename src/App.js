@@ -13,7 +13,6 @@ import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import DonatePage from './components/DonatePage/DonatePage';
 import ApplicationPage from './components/Application/ApplicationPage';
@@ -54,10 +53,6 @@ const App = () => (
           <Route
             path="/user"
             component={UserPage}
-          />
-          <Route
-            path="/info"
-            component={InfoPage}
           />
           <Route
             path="/application"
