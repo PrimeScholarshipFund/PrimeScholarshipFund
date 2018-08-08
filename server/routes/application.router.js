@@ -46,68 +46,34 @@ router.get('/applicant/:id', (req, res) => {
  * NEEDS TO BE REFACTORED
  */
 router.put('/all', (req, res) => {
-    // parsing the body
-    queriesAndInjections = stageQueries('all', req.body);
+    console.log('in all route');
     
-    pool.query()
-
-    // insert into form table first
-    // let queryText = `INSERT INTO form (status, user_id)
-    //     VALUES ($1, $2) RETURNING id`
-    // pool.query(queryText, [status, user_id])
-    //     .then(response => {
-    //         // console.log(response.rows[0]);
-    //         let form_id = response.rows[0].id;
-    //         // console.log({form_id});
-    //         let injection = [form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp];
-
-    //         // insert into contact table
-    //         queryText = `INSERT INTO contact (form_id, first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp)
-    //             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`;
-    //         pool.query(queryText, injection)
-    //             .then(response => {
-    //             }).catch(err => {
-    //                 console.log({err});
-    //                 res.sendStatus(500);
-    //             })
-
-    //         // insert into demographics
-    //         queryText = `INSERT INTO demographics (form_id, gender, race, age, level_of_ed, lgbtq_status)
-    //             VALUES ($1, $2, $3, $4, $5, $6)`;
-    //         injection = [form_id, gender, race, age, level_of_ed, lgbtq_status];
-    //         pool.query(queryText, injection)
-    //             .then(response => {
-    //             }).catch(err => {
-    //                 console.log({err});
-    //                 res.sendStatus(500);
-    //             })
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        const queriesAndInjections = await stageQueries('all', req.body);
+        try{
+            console.log('in async put');
             
-    //         // insert into income
-    //         queryText = `INSERT INTO income (form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime)
-    //             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-    //         injection = [form_id, adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime];            
-    //         pool.query(queryText, injection)
-    //             .then(response => {
-    //             }).catch(err => {
-    //                 console.log({err});
-    //                 res.sendStatus(500);
-    //             })
-
-    //         // insert into expenses
-    //         queryText = `INSERT INTO expenses (form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes)
-    //             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-    //         injection = [form_id, need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes];
-    //         pool.query(queryText, injection)
-    //             .then(response => {
-    //                 res.sendStatus(201);
-    //             }).catch(err => {
-    //                 console.log({err});
-    //                 res.sendStatus(500);
-    //             })
-    //     }).catch(err => {
-    //         console.log({err});
-    //         res.sendStatus(500);
-    //     })
+            await client.query('BEGIN');
+            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
+            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
+            await client.query(queriesAndInjections.thirdQuery, queriesAndInjections.thirdInjection);
+            await client.query(queriesAndInjections.fourthQuery, queriesAndInjections.fourthInjection);
+            await client.query(queriesAndInjections.fifthQuery, queriesAndInjections.fifthInjection);
+            await client.query('COMMIT');
+            res.sendStatus(200);
+        } catch (err) {
+            await pool.query('ROLLBACK');
+            console.log({err});
+            res.sendStatus(500);
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
 });
 
 router.post('/new', (req, res) => {
@@ -126,7 +92,7 @@ router.post('/new', (req, res) => {
 });
 
 router.put('/personal', (req, res) => {
-    queriesAndInjections = stageQueries('personal', req.body);    
+    queriesAndInjections = stageQueries('personal', req.body);
 
     pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
         .then(response => {
