@@ -10,8 +10,8 @@ router.get('/admin', (req, res) => {
         JOIN contact on contact.form_id = form.id
         JOIN demographics on demographics.form_id = form.id
         JOIN expenses on expenses.form_id = form.id
-        JOIN income on income.form_id = form.id`;
-        // add order by
+        JOIN income on income.form_id = form.id
+        ORDER BY form.id`;
     pool.query(queryText)
         .then(response => {
             res.send(response.rows);
@@ -31,8 +31,6 @@ router.get('/applicant/:id', (req, res) => {
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
     JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
-    // add order by
-
     pool.query(queryText, [id])
         .then(response => {
             res.send(response.rows);
@@ -46,8 +44,6 @@ router.get('/applicant/:id', (req, res) => {
  * NEEDS TO BE REFACTORED
  */
 router.put('/all', (req, res) => {
-    console.log('in all route');
-    
     (async () => {
         console.log('in the async');
         
@@ -91,44 +87,30 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.put('/personal', (req, res) => {
-    queriesAndInjections = stageQueries('personal', req.body);
-
-    pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
-        .then(response => {
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        })
-
-    pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
-        .then(response => {
+router.put('/:page', (req, res) => {
+    const page = req.params.page;
+    (async () => {
+        console.log('in the async');
+        
+        const client = await pool.connect();
+        console.log('connected');
+        
+        const queriesAndInjections = await stageQueries(page, req.body);
+        try{
+            await client.query('BEGIN');
+            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
+            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
+            await client.query('COMMIT');
             res.sendStatus(200);
-        }).catch(err => {
+        } catch (err) {
+            await pool.query('ROLLBACK');
             console.log({err});
             res.sendStatus(500);
-        });
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
 });
-
-router.put('/income', (req, res) => {
-    queriesAndInjections = stageQueries('income', req.body);
-          
-    pool.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection)
-        .then(response => {
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
-
-    pool.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection)
-        .then(response => {
-            res.sendStatus(200);
-        }).catch(err => {
-            console.log({err});
-            res.sendStatus(500);
-        });
-});
-
 
 const stageQueries = function(route, body) {
     console.log('in stageQueries');
