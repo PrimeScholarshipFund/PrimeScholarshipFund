@@ -22,6 +22,7 @@ router.get('/applicant/:id', (req, res) => {
         })
 }); //end applicant get call
 
+
 /**
  * NEEDS TO BE REFACTORED
  */
