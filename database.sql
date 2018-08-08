@@ -85,9 +85,9 @@ INSERT INTO person ("username", "password", "admin")
     
 INSERT INTO form ("status", "person_id", "archived")
     VALUES ('applied', 2, false),
-    ('waiting for interview', 2, false),
-    ('interviewed', 2, false),
-    ('denied post interview', 2, true);
+    ('waiting for interview', 3, false),
+    ('interviewed', 4, false),
+    ('denied post interview', 5, true);
     
 INSERT INTO contact ("form_id", "first_name", "last_name", "middle_initial", "address_line_1", "address_line_2", "city", "state", "zip_code", "phone_number", "email", "accepted_at_prime", "applied_at_prime", "msp_tech_scholar", "applied_for_msp")
 VALUES (1, 'Test', 'User', 'Y.', '123 Fake St', 'Apt #42', 'Springfield', 'MN', '12345', '555-555-5555', 'testyuser@fake.ninja', true, null, false, null),
