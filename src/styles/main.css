@@ -96,8 +96,10 @@ li a:hover {
 }
 
 .wrapper {
+    z-index: 0;
     width: 72.5%;
     margin: auto;
+    height: 1000px;
 }
 
 .fill {
@@ -123,6 +125,7 @@ li a:hover {
     text-align: center;
     margin: 150px auto 150px auto;
 }
+
 
 .iconContainer {
     width: max-content;

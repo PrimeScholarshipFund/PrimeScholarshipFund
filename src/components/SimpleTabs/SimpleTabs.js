@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import classNames from 'classnames';
+import './SimpleTabs.css'
+import { Button } from '../../../node_modules/@material-ui/core';
 
 function TabContainer(props) {
   return (
@@ -23,14 +25,19 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: deepOrange,
+    backgroundColor: theme.palette.background.paper,
     align: 'right',
+    width: '100vw',
   },
   tabs: {
     marginLeft: 'auto',
   },
+  tabsRoot: {
+    borderBottom: '1px solid #7986cb'
+  },
   tabsIndicator: {
-    backgroundColor: '#B000B5',
+    backgroundColor: '#FF8A65',
+    height: '2px',
   },
   donateButton: {
     backgroundColor: deepOrange,
@@ -63,11 +70,11 @@ class SimpleTabs extends React.Component {
           classes= {{
             indicator: classes.tabsIndicator
           }} 
-          className = {classNames(classes.tabs, classes.root)} value={value} onChange={this.handleChange}>
+          className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
             <Tab label="Home" href="#/home"></Tab>
             <Tab label="About" href="#/about"></Tab>
             <Tab label="Apply" href="#/application"></Tab>
-            <Tab className={classes.donateButton} label="Donate" href="#/donate"></Tab>
+            <Tab className='appbar' label="Donate" href="#/donate">Donate</Tab>
           </Tabs>
         </AppBar>
         {value === 0}
