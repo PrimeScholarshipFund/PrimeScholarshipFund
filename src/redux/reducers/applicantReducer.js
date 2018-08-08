@@ -11,3 +11,5 @@ const applicant = (state = {}, action) => {
       return state;
   }
 };
+
+export default applicant;

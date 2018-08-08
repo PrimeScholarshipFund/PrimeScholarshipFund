@@ -2,15 +2,16 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { APPLICANT_ACTIONS } from '../actions/applicantActions';
 import { getApplicantRequest } from '../requests/applicantRequests';
 
-let applicantInfo = '';
-// let userId = '';
+let formData = '';
 
 function* getApplicant(action) {
   try {
-    applicantInfo = yield getApplicantRequest(action.payload);
+    console.log(action.payload.userId);
+    formData = yield getApplicantRequest(action.payload.userId);
+    console.log(formData);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
-      payload: applicantInfo,
+      payload: formData,
     })
   } catch (error) {
     console.log('WHOOPSIES', error);
