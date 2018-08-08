@@ -4,10 +4,10 @@ const router = express.Router();
 
 //get route for individual application applicatn side
 //edit this later to operate solely from form.id
-router.get('/applicant/:id', (req, res) => {
+router.get('/applicant/', (req, res) => {
     const id = req.body.id;
     let queryText = `SELECT * FROM person
-    JOIN form on form.user_id = person.id
+    JOIN form on form.person_id = person.id
     JOIN demographics on demographics.form_id = form.id
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
