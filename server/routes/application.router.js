@@ -10,8 +10,8 @@ router.get('/admin', (req, res) => {
         JOIN contact on contact.form_id = form.id
         JOIN demographics on demographics.form_id = form.id
         JOIN expenses on expenses.form_id = form.id
-        JOIN income on income.form_id = form.id`;
-        // add order by
+        JOIN income on income.form_id = form.id
+        ORDER BY form.id`;
     pool.query(queryText)
         .then(response => {
             res.send(response.rows);
@@ -31,8 +31,6 @@ router.get('/applicant/:id', (req, res) => {
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
     JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
-    // add order by
-
     pool.query(queryText, [id])
         .then(response => {
             res.send(response.rows);
