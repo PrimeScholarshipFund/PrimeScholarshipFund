@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET all information about every applicant
  */
-router.get('/admin', (req, res) => {
+router.get('/applicants', (req, res) => {
     let queryText = `SELECT * from form
         JOIN contact on contact.form_id = form.id
         JOIN demographics on demographics.form_id = form.id
@@ -20,5 +20,7 @@ router.get('/admin', (req, res) => {
             res.sendStatus(500);
         })
 });
+
+router.put('/save')
 
 module.exports = router;
