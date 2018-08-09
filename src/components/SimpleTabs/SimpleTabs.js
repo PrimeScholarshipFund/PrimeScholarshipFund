@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import deepOrange from '@material-ui/core/colors/deepOrange';
+import { StickyContainer, Sticky } from 'react-sticky';
 import classNames from 'classnames';
 import './SimpleTabs.css'
 import { Button } from '../../../node_modules/@material-ui/core';
@@ -40,7 +41,7 @@ const styles = theme => ({
     height: '2px',
   },
   donateButton: {
-    backgroundColor: deepOrange,
+    backgroundColor: '#FF7043',
   },
 });
 
@@ -65,18 +66,18 @@ class SimpleTabs extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs
-          classes= {{
-            indicator: classes.tabsIndicator
-          }} 
-          className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
-            <Tab label="Home" href="#/home"></Tab>
-            <Tab label="About" href="#/about"></Tab>
-            <Tab label="Apply" href="#/application"></Tab>
-            <Tab className='appbar' label="Donate" href="#/donate">Donate</Tab>
-          </Tabs>
-        </AppBar>
+          <AppBar position="sticky">
+            <Tabs
+            classes= {{
+              indicator: classes.tabsIndicator
+            }} 
+            className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
+              <Tab label="Home" href="#/home"></Tab>
+              <Tab label="About" href="#/about"></Tab>
+              <Tab label="Apply" href="#/application"></Tab>
+              <Tab disableRipple classes={{root: classes.donateButton}} label="Donate" href="#/donate">Donate</Tab>
+            </Tabs>
+          </AppBar>
         {value === 0}
         {value === 1}
         {value === 2}

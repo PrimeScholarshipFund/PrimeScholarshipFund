@@ -1,5 +1,9 @@
+
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
+
 }
 
 .instructions h1 {
@@ -143,3 +147,47 @@ li a:hover {
     height: 175px;
     margin: auto;
 }
+
+.donationBox {
+    background-color: lightgray;
+    border-radius: 25px;
+    align-content: center;
+    width: 50vw;
+    margin: auto
+
+}
+
+.donationButton {
+    margin-top: auto;
+    padding-bottom: 20px;
+}
+
+h1  {
+    color: #3F51B5;
+}
+
+h2 {
+    color: #3F51B5;
+}
+h3 {
+    color: #3F51B5;
+}
+
+h4 h5 h6 {
+    color: #3F51B5;
+}
+
+h5 {
+    color: #3F51B5;
+}
+
+h6 {
+    color: #3F51B5;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 0px 25px;
+}
+

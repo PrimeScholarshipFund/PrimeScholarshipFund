@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import TopImage from '../TopImage/TopImage';
+import TopPhoto from '../../photos/scholarshipFund4.jpeg';
 
 
 class Landing extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>
+        <div>
+            <TopImage image={TopPhoto}/>
         <div className="top">
         <h1>Application</h1>
         <p className="sub">The scholarship fund is dedicated to providing scholarship funds and supplemental living costs

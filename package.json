@@ -21,6 +21,7 @@
     "eslint-plugin-react": "^7.7.0",
     "express": "^4.16.3",
     "mdi-react": "^4.0.0",
+    "pace-js": "^1.0.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.4.1",
