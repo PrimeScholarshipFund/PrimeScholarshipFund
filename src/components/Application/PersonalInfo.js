@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -29,9 +31,15 @@ const styles = theme => ({
   },
 });
 
+const mapStateToProps = state => ({
+  applicant: state.applicant,
+});
+
 class PersonalInfo extends Component {
     state = {
-      contact: 
+      personalInfo: {},
+
+      contact:
         {
           id: '',
           form_id: '',
@@ -50,7 +58,7 @@ class PersonalInfo extends Component {
           msp_tech_scholar: null,
           applied_for_msp: null
         },
-      
+
       demographics:
         {
           id: '',
@@ -74,19 +82,34 @@ class PersonalInfo extends Component {
         }
      }
 
-  handleChangeContact = (key) => event => {
+  componentDidMount() {
+    console.log(this.props.applicant.state);
     this.setState({
-      ...this.state,
-      contact: {...this.state.contact, [key]: event.target.value}
-    });
-  };
+      ... this.state,
+      personalInfo: this.props.applicant.state
+    })
+  }
 
-  handleChangeDemo = (key) => event => {
+  handleChange = (key) => event => {
     this.setState({
       ...this.state,
-      demographics: {...this.state.demographics, [key]: event.target.value}
-    });
-  };
+      personalInfo: {...this.state.personalInfo, [key]: event.target.value}
+    })
+  }
+
+  // handleChange = (key) => event => {
+  //   this.setState({
+  //     ...this.state,
+  //     contact: {...this.state.contact, [key]: event.target.value}
+  //   });
+  // };
+  //
+  // handleChange = (key) => event => {
+  //   this.setState({
+  //     ...this.state,
+  //     demographics: {...this.state.demographics, [key]: event.target.value}
+  //   });
+  // };
 
   handleChangeRace =(key) => event => {
     this.changeRaceState(key);
@@ -130,10 +153,10 @@ class PersonalInfo extends Component {
       product += 'DNWTS '
     }
     console.log(product);
-    
+
     this.setState({
       ...this.state,
-      demographics: {...this.state.demographics, race: product}
+      personalInfo: {...this.state.personalInfo, race: product}
     });
   }
 
@@ -142,8 +165,8 @@ class PersonalInfo extends Component {
 
       return (
         <div>
-          
-        
+
+
         <div className="top">
         <h2>Personal Information</h2>
         {JSON.stringify(this.state)}
@@ -155,11 +178,11 @@ class PersonalInfo extends Component {
                       primary="First Name"
                       secondary={
                         <TextField
-                        
-                          value={this.state.first_name}
+
+                          value={this.state.personalInfo.first_name}
                           placeholder="required"
-                          onChange={this.handleChangeContact('first_name')}
-                         
+                          onChange={this.handleChange('first_name')}
+
                         />
                       }
                     />
@@ -170,11 +193,11 @@ class PersonalInfo extends Component {
                       primary="Last Name"
                       secondary={
                         <TextField
-                        
-                          value={this.state.last_name}
+
+                          value={this.state.personalInfo.last_name}
                           placeholder="required"
-                          onChange={this.handleChangeContact('last_name')}
-                         
+                          onChange={this.handleChange('last_name')}
+
                         />
                       }
                     />
@@ -185,9 +208,9 @@ class PersonalInfo extends Component {
                       primary="Middle Initial"
                       secondary={
                         <TextField
-                          value={this.state.middle_initial}
+                          value={this.state.personalInfo.middle_initial}
                           placeholder=""
-                          onChange={this.handleChangeContact('middle_initial')}
+                          onChange={this.handleChange('middle_initial')}
                         />
                       }
                     />
@@ -198,21 +221,21 @@ class PersonalInfo extends Component {
                       primary="Address:"
                       secondary={
                         <TextField
-                          value={this.state.address_line_1}
+                          value={this.state.personalInfo.address_line_1}
                           placeholder="Line 1"
-                          onChange={this.handleChangeContact('address_line_1')}
+                          onChange={this.handleChange('address_line_1')}
                         />
                       }
                     />
                   </ListItem>
-                  
+
                   <ListItem>
                     <ListItemText
                       secondary={
                         <TextField
-                          value={this.state.address_line_2}
+                          value={this.state.personalInfo.address_line_2}
                           placeholder="Line 2"
-                          onChange={this.handleChangeContact('address_line_2')}
+                          onChange={this.handleChange('address_line_2')}
                         />
                       }
                     />
@@ -223,9 +246,9 @@ class PersonalInfo extends Component {
                       primary="City"
                       secondary={
                         <TextField
-                          value={this.state.city}
+                          value={this.state.personalInfo.city}
                           placeholder="City"
-                          onChange={this.handleChangeContact('city')}
+                          onChange={this.handleChange('city')}
                         />
                       }
                     />
@@ -236,9 +259,9 @@ class PersonalInfo extends Component {
                       primary="State"
                       secondary={
                         <TextField
-                          value={this.state.state}
+                          value={this.state.personalInfo.state}
                           placeholder="State"
-                          onChange={this.handleChangeContact('state')}
+                          onChange={this.handleChange('state')}
                         />
                       }
                     />
@@ -249,9 +272,9 @@ class PersonalInfo extends Component {
                       primary="Zip Code"
                       secondary={
                         <TextField
-                          value={this.state.zip_code}
+                          value={this.state.personalInfo.zip_code}
                           placeholder="Zip Code"
-                          onChange={this.handleChangeContact('zip_code')}
+                          onChange={this.handleChange('zip_code')}
                         />
                       }
                     />
@@ -262,9 +285,9 @@ class PersonalInfo extends Component {
                       primary="Phone Number"
                       secondary={
                         <TextField
-                          value={this.state.phone_number}
+                          value={this.state.personalInfo.phone_number}
                           placeholder="Phone Number"
-                          onChange={this.handleChangeContact('phone_number')}
+                          onChange={this.handleChange('phone_number')}
                         />
                       }
                     />
@@ -275,9 +298,9 @@ class PersonalInfo extends Component {
                       primary="Email"
                       secondary={
                         <TextField
-                          value={this.state.email}
+                          value={this.state.personalInfo.email}
                           placeholder="Email"
-                          onChange={this.handleChangeContact('email')}
+                          onChange={this.handleChange('email')}
                         />
                       }
                     />
@@ -289,18 +312,18 @@ class PersonalInfo extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.contact.accepted_at_prime}
-                              onChange={this.handleChangeContact('accepted_at_prime')}
+                              value={this.state.personalInfo.accepted_at_prime}
+                              onChange={this.handleChange('accepted_at_prime')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {JSON.parse(this.state.contact.accepted_at_prime) === false ? (
+                            {this.state.personalInfo.accepted_at_prime === "false" ? (
                              <div className="sub">
                               <p>If not, have you applied?</p>
                               <RadioGroup
-                              value={this.state.contact.applied_at_prime}
-                              onChange={this.handleChangeContact('applied_at_prime')}
+                              value={this.state.personalInfo.applied_at_prime}
+                              onChange={this.handleChange('applied_at_prime')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
@@ -313,25 +336,25 @@ class PersonalInfo extends Component {
                       }
                     />
                   </ListItem>
-                  
+
                   <ListItem>
                   <ListItemText
                       primary="Have you received the MSP TechHire/JFCS scholarship?"
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.contact.msp_tech_scholar}
-                              onChange={this.handleChangeContact('msp_tech_scholar')}
+                              value={this.state.personalInfo.msp_tech_scholar}
+                              onChange={this.handleChange('msp_tech_scholar')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {JSON.parse(this.state.contact.msp_tech_scholar) === false ? (
+                            {this.state.personalInfo.msp_tech_scholar === "false" ? (
                              <div className="sub">
                               <p>If not, have you applied?</p>
                               <RadioGroup
-                              value={this.state.contact.applied_for_msp}
-                              onChange={this.handleChangeContact('applied_for_msp')}
+                              value={this.state.personalInfo.applied_for_msp}
+                              onChange={this.handleChange('applied_for_msp')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
@@ -356,22 +379,22 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.demographics.gender}
-                              onChange={this.handleChangeDemo('gender')}
+                              value={this.state.personalInfo.gender}
+                              onChange={this.handleChange('gender')}
                             >
                               <FormControlLabel value={'Male'} control={<Radio />} label="Male" />
                               <FormControlLabel value={'Female'} control={<Radio />} label="Female" />
                               <FormControlLabel value={'Other'} control={<Radio />} label="Other" />
                               <FormControlLabel value={'DNWTS'} control={<Radio />} label="Do not wish to specify" />
                             </RadioGroup>
-                            {this.state.demographics.gender == "Male" || this.state.demographics.gender == "Female" || this.state.demographics.gender == "DNWTS" ? (
+                            {this.state.personalInfo.gender == "Male" || this.state.personalInfo.gender == "Female" || this.state.personalInfo.gender == "DNWTS" ? (
                               null
                              ) : (
                               <div className="sub">
                                 <TextField
-                            
+
                                 placeholder="Specify"
-                                onChange={this.handleChangeDemo('gender')}
+                                onChange={this.handleChange('gender')}
                               />
                               </div>
                              )}
@@ -385,12 +408,12 @@ class PersonalInfo extends Component {
                       primary="Race"
                       secondary={
                          <div className="sub">
-                          
+
                               <FormGroup>
                                 <FormControlLabel
                                   control={
-                                    <Checkbox checked={this.state.raceBuilder.AmInAlNat} 
-                                    onChange={this.handleChangeRace('AmInAlNat')} 
+                                    <Checkbox checked={this.state.raceBuilder.AmInAlNat}
+                                    onChange={this.handleChangeRace('AmInAlNat')}
                                     value="AmInAlNat" />
                                   }
                                   label="American Indian or Alaska Native"
@@ -400,8 +423,8 @@ class PersonalInfo extends Component {
                               <FormGroup>
                                 <FormControlLabel
                                   control={
-                                    <Checkbox checked={this.state.raceBuilder.asian} 
-                                    onChange={this.handleChangeRace('asian')} 
+                                    <Checkbox checked={this.state.raceBuilder.asian}
+                                    onChange={this.handleChangeRace('asian')}
                                     value="asian" />
                                   }
                                   label="Asian"
@@ -411,8 +434,8 @@ class PersonalInfo extends Component {
                               <FormGroup>
                                 <FormControlLabel
                                   control={
-                                    <Checkbox checked={this.state.raceBuilder.AfricanAm} 
-                                    onChange={this.handleChangeRace('AfricanAm')} 
+                                    <Checkbox checked={this.state.raceBuilder.AfricanAm}
+                                    onChange={this.handleChangeRace('AfricanAm')}
                                     value="AfricanAm" />
                                   }
                                   label="Black or African American"
@@ -422,8 +445,8 @@ class PersonalInfo extends Component {
                               <FormGroup>
                                 <FormControlLabel
                                   control={
-                                    <Checkbox checked={this.state.raceBuilder.hispLat} 
-                                    onChange={this.handleChangeRace('hispLat')} 
+                                    <Checkbox checked={this.state.raceBuilder.hispLat}
+                                    onChange={this.handleChangeRace('hispLat')}
                                     value="hispLat" />
                                   }
                                   label="Hispanic or Latino"
@@ -433,8 +456,8 @@ class PersonalInfo extends Component {
                               <FormGroup>
                                 <FormControlLabel
                                   control={
-                                    <Checkbox checked={this.state.raceBuilder.midEastNorthAf} 
-                                    onChange={this.handleChangeRace('midEastNorthAf')} 
+                                    <Checkbox checked={this.state.raceBuilder.midEastNorthAf}
+                                    onChange={this.handleChangeRace('midEastNorthAf')}
                                     value="midEastNorthAf" />
                                   }
                                   label="Middle Eastern or North African"
@@ -445,7 +468,7 @@ class PersonalInfo extends Component {
                                 <FormControlLabel
                                   control={
                                     <Checkbox checked={this.state.raceBuilder.white}
-                                    onChange={this.handleChangeRace('white')} 
+                                    onChange={this.handleChangeRace('white')}
                                     value="white" />
                                   }
                                   label="White"
@@ -456,7 +479,7 @@ class PersonalInfo extends Component {
                                 <FormControlLabel
                                   control={
                                     <Checkbox checked={this.state.raceBuilder.DNWTS}
-                                    onChange={this.handleChangeRace('DNWTS')} 
+                                    onChange={this.handleChangeRace('DNWTS')}
                                     value="DNWTS" />
                                   }
                                   label="Do not wish to specify"
@@ -473,21 +496,21 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.demographics.lgbtq_status}
-                              onChange={this.handleChangeDemo('lgbtq_status')}
+                              value={this.state.personalInfo.lgbtq_status}
+                              onChange={this.handleChange('lgbtq_status')}
                             >
                               <FormControlLabel value={'Yes'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'No'} control={<Radio />} label="No" />
                               <FormControlLabel value={'DNWTS'} control={<Radio />} label="Do not wish to specify" />
                             </RadioGroup>
-                            {this.state.demographics.gender == "Male" || this.state.demographics.gender == "Female" || this.state.demographics.gender == "DNWTS" ? (
+                            {this.state.personalInfo.gender == "Male" || this.state.personalInfo.gender == "Female" || this.state.personalInfo.gender == "DNWTS" ? (
                               null
                              ) : (
                               <div className="sub">
                                 <TextField
-                            
+
                                 placeholder="Specify"
-                                onChange={this.handleChangeDemo('gender')}
+                                onChange={this.handleChange('gender')}
                               />
                               </div>
                              )}
@@ -502,8 +525,8 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.demographics.age}
-                              onChange={this.handleChangeDemo('age')}
+                              value={this.state.personalInfo.age}
+                              onChange={this.handleChange('age')}
                             >
                               <FormControlLabel value={'< 20'} control={<Radio />} label="< 20" />
                               <FormControlLabel value={'20-29'} control={<Radio />} label="20-29" />
@@ -524,8 +547,8 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.demographics.level_of_ed}
-                              onChange={this.handleChangeDemo('level_of_ed')}
+                              value={this.state.personalInfo.level_of_ed}
+                              onChange={this.handleChange('level_of_ed')}
                             >
                               <FormControlLabel value={'No High School'} control={<Radio />} label="No High School" />
                               <FormControlLabel value={'High School'} control={<Radio />} label="High School" />
@@ -549,4 +572,4 @@ PersonalInfo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PersonalInfo);
+export default compose(withStyles(styles),connect(mapStateToProps),)(PersonalInfo);

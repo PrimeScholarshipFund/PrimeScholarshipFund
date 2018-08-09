@@ -66,8 +66,7 @@ class ApplicationPage extends Component {
   }
 
   componentDidMount() {
-    console.log('elephant', this.props.user.id);
-    this.props.dispatch(getApplicant(this.props.user.id))
+    this.props.dispatch(getApplicant())
   }
 
 
