@@ -105,6 +105,7 @@ router.post('/new', (req, res) => {
 });
 
 router.put('/:page', (req, res) => {
+  console.log('dinotime', req.body);
     const page = req.params.page;
     (async () => {
         console.log('in the async');
@@ -112,7 +113,7 @@ router.put('/:page', (req, res) => {
         const client = await pool.connect();
         console.log('connected');
 
-        const queriesAndInjections = await stageQueries(page, req.body);
+        const queriesAndInjections = await stageQueries(page, req.body.data);
         try{
             await client.query('BEGIN');
             await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);

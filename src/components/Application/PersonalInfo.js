@@ -12,6 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
+import { editApplication } from '../../redux/actions/applicantActions';
+
 
 
 const styles = theme => ({
@@ -39,37 +41,6 @@ class PersonalInfo extends Component {
     state = {
       personalInfo: {},
 
-      contact:
-        {
-          id: '',
-          form_id: '',
-          first_name: '',
-          last_name: '',
-          middle_initial: '',
-          address_line_1: '',
-          address_line_2: '',
-          city: '',
-          state: '',
-          zip_code: '',
-          phone_number: '',
-          email: '',
-          accepted_at_prime: null,
-          applied_at_prime: null,
-          msp_tech_scholar: null,
-          applied_for_msp: null
-        },
-
-      demographics:
-        {
-          id: '',
-          form_id: '',
-          gender: 'DNWTS',
-          race: '',
-          age: '',
-          level_of_ed: '',
-          lgbtq_status: ''
-        },
-
       raceBuilder:
         {
           AmInAlNat: false,
@@ -83,33 +54,16 @@ class PersonalInfo extends Component {
      }
 
   componentDidMount() {
-    console.log(this.props.applicant.state);
+    console.log(this.props.applicant);
     this.setState({
       ... this.state,
-      personalInfo: this.props.applicant.state
+      personalInfo: this.props.applicant
     })
   }
 
   handleChange = (key) => event => {
-    this.setState({
-      ...this.state,
-      personalInfo: {...this.state.personalInfo, [key]: event.target.value}
-    })
+    this.props.dispatch(editApplication({key: key, value: event.target.value}))
   }
-
-  // handleChange = (key) => event => {
-  //   this.setState({
-  //     ...this.state,
-  //     contact: {...this.state.contact, [key]: event.target.value}
-  //   });
-  // };
-  //
-  // handleChange = (key) => event => {
-  //   this.setState({
-  //     ...this.state,
-  //     demographics: {...this.state.demographics, [key]: event.target.value}
-  //   });
-  // };
 
   handleChangeRace =(key) => event => {
     this.changeRaceState(key);
@@ -131,33 +85,31 @@ class PersonalInfo extends Component {
     let race = this.state.raceBuilder;
 
     if(race.AmInAlNat){
-      product += 'American Indian or Alaskan Native '
+      product += 'American Indian or Alaskan Native -'
     }
     if(race.asian){
-      product += 'Asian '
+      product += 'Asian -'
     }
     if(race.AfricanAm){
-      product += 'Black or African American '
+      product += 'Black or African American -'
     }
     if(race.hispLat){
-      product += 'Hispanic or Latino '
+      product += 'Hispanic or Latino -'
     }
     if(race.midEastNorthAf){
-      product += 'Middle Eastern or North African '
+      product += 'Middle Eastern or North African -'
     }
     if(race.white){
-      product += 'White '
+      product += 'White -'
     }
 
     if(race.DNWTS){
-      product += 'DNWTS '
+      product += 'DNWTS -'
     }
     console.log(product);
 
-    this.setState({
-      ...this.state,
-      personalInfo: {...this.state.personalInfo, race: product}
-    });
+    this.props.dispatch(editApplication({key: 'race', value: product}))
+
   }
 
     render() {
@@ -179,7 +131,7 @@ class PersonalInfo extends Component {
                       secondary={
                         <TextField
 
-                          value={this.state.personalInfo.first_name}
+                          value={this.props.applicant.first_name}
                           placeholder="required"
                           onChange={this.handleChange('first_name')}
 
@@ -194,7 +146,7 @@ class PersonalInfo extends Component {
                       secondary={
                         <TextField
 
-                          value={this.state.personalInfo.last_name}
+                          value={this.props.applicant.last_name}
                           placeholder="required"
                           onChange={this.handleChange('last_name')}
 
@@ -208,7 +160,7 @@ class PersonalInfo extends Component {
                       primary="Middle Initial"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.middle_initial}
+                          value={this.props.applicant.middle_initial}
                           placeholder=""
                           onChange={this.handleChange('middle_initial')}
                         />
@@ -221,7 +173,7 @@ class PersonalInfo extends Component {
                       primary="Address:"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.address_line_1}
+                          value={this.props.applicant.address_line_1}
                           placeholder="Line 1"
                           onChange={this.handleChange('address_line_1')}
                         />
@@ -233,7 +185,7 @@ class PersonalInfo extends Component {
                     <ListItemText
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.address_line_2}
+                          value={this.props.applicant.address_line_2}
                           placeholder="Line 2"
                           onChange={this.handleChange('address_line_2')}
                         />
@@ -246,7 +198,7 @@ class PersonalInfo extends Component {
                       primary="City"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.city}
+                          value={this.props.applicant.city}
                           placeholder="City"
                           onChange={this.handleChange('city')}
                         />
@@ -259,7 +211,7 @@ class PersonalInfo extends Component {
                       primary="State"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.state}
+                          value={this.props.applicant.state}
                           placeholder="State"
                           onChange={this.handleChange('state')}
                         />
@@ -272,7 +224,7 @@ class PersonalInfo extends Component {
                       primary="Zip Code"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.zip_code}
+                          value={this.props.applicant.zip_code}
                           placeholder="Zip Code"
                           onChange={this.handleChange('zip_code')}
                         />
@@ -285,7 +237,7 @@ class PersonalInfo extends Component {
                       primary="Phone Number"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.phone_number}
+                          value={this.props.applicant.phone_number}
                           placeholder="Phone Number"
                           onChange={this.handleChange('phone_number')}
                         />
@@ -298,7 +250,7 @@ class PersonalInfo extends Component {
                       primary="Email"
                       secondary={
                         <TextField
-                          value={this.state.personalInfo.email}
+                          value={this.props.applicant.email}
                           placeholder="Email"
                           onChange={this.handleChange('email')}
                         />
@@ -312,17 +264,17 @@ class PersonalInfo extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.personalInfo.accepted_at_prime}
+                              value={this.props.applicant.accepted_at_prime}
                               onChange={this.handleChange('accepted_at_prime')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {this.state.personalInfo.accepted_at_prime === "false" ? (
+                            {this.props.applicant.accepted_at_prime === "false" ? (
                              <div className="sub">
                               <p>If not, have you applied?</p>
                               <RadioGroup
-                              value={this.state.personalInfo.applied_at_prime}
+                              value={this.props.applicant.applied_at_prime}
                               onChange={this.handleChange('applied_at_prime')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
@@ -343,17 +295,17 @@ class PersonalInfo extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.personalInfo.msp_tech_scholar}
+                              value={this.props.applicant.msp_tech_scholar}
                               onChange={this.handleChange('msp_tech_scholar')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {this.state.personalInfo.msp_tech_scholar === "false" ? (
+                            {this.props.applicant.msp_tech_scholar === "false" ? (
                              <div className="sub">
                               <p>If not, have you applied?</p>
                               <RadioGroup
-                              value={this.state.personalInfo.applied_for_msp}
+                              value={this.props.applicant.applied_for_msp}
                               onChange={this.handleChange('applied_for_msp')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
@@ -379,7 +331,7 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.personalInfo.gender}
+                              value={this.props.applicant.gender}
                               onChange={this.handleChange('gender')}
                             >
                               <FormControlLabel value={'Male'} control={<Radio />} label="Male" />
@@ -387,7 +339,7 @@ class PersonalInfo extends Component {
                               <FormControlLabel value={'Other'} control={<Radio />} label="Other" />
                               <FormControlLabel value={'DNWTS'} control={<Radio />} label="Do not wish to specify" />
                             </RadioGroup>
-                            {this.state.personalInfo.gender == "Male" || this.state.personalInfo.gender == "Female" || this.state.personalInfo.gender == "DNWTS" ? (
+                            {this.props.applicant.gender == "Male" || this.props.applicant.gender == "Female" || this.props.applicant.gender == "DNWTS" ? (
                               null
                              ) : (
                               <div className="sub">
@@ -496,14 +448,14 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.personalInfo.lgbtq_status}
+                              value={this.props.applicant.lgbtq_status}
                               onChange={this.handleChange('lgbtq_status')}
                             >
                               <FormControlLabel value={'Yes'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'No'} control={<Radio />} label="No" />
                               <FormControlLabel value={'DNWTS'} control={<Radio />} label="Do not wish to specify" />
                             </RadioGroup>
-                            {this.state.personalInfo.gender == "Male" || this.state.personalInfo.gender == "Female" || this.state.personalInfo.gender == "DNWTS" ? (
+                            {this.props.applicant.gender == "Male" || this.props.applicant.gender == "Female" || this.props.applicant.gender == "DNWTS" ? (
                               null
                              ) : (
                               <div className="sub">
@@ -525,7 +477,7 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.personalInfo.age}
+                              value={this.props.applicant.age}
                               onChange={this.handleChange('age')}
                             >
                               <FormControlLabel value={'< 20'} control={<Radio />} label="< 20" />
@@ -547,7 +499,7 @@ class PersonalInfo extends Component {
                       secondary={
                          <div className="sub">
                             <RadioGroup
-                              value={this.state.personalInfo.level_of_ed}
+                              value={this.props.applicant.level_of_ed}
                               onChange={this.handleChange('level_of_ed')}
                             >
                               <FormControlLabel value={'No High School'} control={<Radio />} label="No High School" />
