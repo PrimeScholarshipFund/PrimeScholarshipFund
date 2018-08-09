@@ -18,7 +18,7 @@ export function updateApplication(payload) {
 }
 
 export function getAllApplicationsRequest() {
-  return axios.get(`api/application/admin`, {
+  return axios.get(`api/admin/applicants`, {
   })
     .then(response => response.data)
     .catch((error) => { throw error.response || error; });

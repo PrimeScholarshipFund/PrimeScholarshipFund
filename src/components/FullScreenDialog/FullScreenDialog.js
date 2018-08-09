@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import InputAdornments from '../InputField/InputField';
+import { saveApplication } from '../../redux/actions/adminActions';
+
 
 const styles = {
   appBar: {
@@ -24,6 +28,10 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
+const mapStateToProps = state => ({
+  applicant: state.applicant,
+});
+
 class FullScreenDialog extends React.Component {
   state = {
     open: true,
@@ -37,6 +45,10 @@ class FullScreenDialog extends React.Component {
     this.setState({ open: false });
     this.props.setActive(null);
   };
+
+  handleSave = () => {
+    this.props.dispatch(saveApplication(this.props.person));
+  }
 
   render() {
     const { classes } = this.props;
@@ -57,7 +69,7 @@ class FullScreenDialog extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 {this.props.person.first_name + ' ' + this.props.person.middle_initial + ' ' + this.props.person.last_name}
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
+              <Button color="inherit" onClick={this.handleSave}>
                 save
               </Button>
             </Toolbar>
@@ -75,4 +87,4 @@ FullScreenDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FullScreenDialog);
+export default compose(withStyles(styles),connect(),)(FullScreenDialog);
