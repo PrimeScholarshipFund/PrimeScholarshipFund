@@ -5,13 +5,12 @@ const router = express.Router();
 //get route for individual application applicatn side
 //edit this later to operate solely from form.id
 router.get('/applicant/:id', (req, res) => {
-    const id = req.body.id;
-    let queryText = `SELECT * FROM person
-    JOIN form on form.person_id = person.id
+    const id = req.params.id;
+    let queryText = `SELECT * FROM form
     JOIN demographics on demographics.form_id = form.id
     JOIN expenses on expenses.form_id = form.id
     JOIN income on income.form_id = form.id
-    JOIN contact on contact.form_id = form.id WHERE person.id = $1 AND form.archived = false;`;
+    JOIN contact on contact.form_id = form.id WHERE form.id = $1 AND form.archived = false;`;
     pool.query(queryText, [id])
         .then(response => {
             res.send(response.rows);
@@ -28,14 +27,14 @@ router.get('/applicant/:id', (req, res) => {
 router.put('/all', (req, res) => {
     (async () => {
         console.log('in the async');
-        
+
         const client = await pool.connect();
         console.log('connected');
-        
+
         const queriesAndInjections = await stageQueries('all', req.body);
         try{
             console.log('in async put');
-            
+
             await client.query('BEGIN');
             await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
             await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
@@ -57,7 +56,9 @@ router.put('/all', (req, res) => {
 router.post('/new', (req, res) => {
     console.log('Gorilla', req.user.id);
     const person_id = req.user.id;
+
     let formId;
+
 
     (async () => {
         console.log('in the async');
@@ -67,6 +68,7 @@ router.post('/new', (req, res) => {
 
         try{
             await client.query('BEGIN');
+
             // get all non-archived form data for the person id
             let { rows } = await client.query(`SELECT * FROM form WHERE person_id=$1 and archived=false`, [person_id])
 
@@ -106,10 +108,10 @@ router.put('/:page', (req, res) => {
     const page = req.params.page;
     (async () => {
         console.log('in the async');
-        
+
         const client = await pool.connect();
         console.log('connected');
-        
+
         const queriesAndInjections = await stageQueries(page, req.body);
         try{
             await client.query('BEGIN');
@@ -129,7 +131,7 @@ router.put('/:page', (req, res) => {
 
 const stageQueries = function(route, body) {
     console.log('in stageQueries');
-    
+
     let firstQuery = '';
     let secondQuery = '';
     let thirdQuery = '';
@@ -148,7 +150,7 @@ const stageQueries = function(route, body) {
         case 'all':
         case 'personal':
             console.log('in personal switch');
-            
+
             const first_name = body.first_name;
             const last_name = body.last_name;
             const middle_initial = body.middle_initial;
@@ -169,7 +171,7 @@ const stageQueries = function(route, body) {
             const level_of_ed = body.level_of_ed;
             const lgbtq_status = body.lgbtq_status;
 
-        
+
             firstQuery = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3, address_line_1=$4, address_line_2=$5, city=$6, state=$7, zip_code=$8, phone_number=$9, email=$10, accepted_at_prime=$11, applied_at_prime=$12, msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
             console.log({firstQuery});
             secondQuery = `UPDATE demographics SET gender=$1, race=$2, age=$3, level_of_ed=$4, lgbtq_status=$5 WHERE form_id=$6`;
@@ -177,13 +179,13 @@ const stageQueries = function(route, body) {
             firstInjection.push(first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id);
             console.log({firstInjection});
             secondInjection.push(gender, race, age, level_of_ed, lgbtq_status, form_id)
-            
+
             if(route === 'personal'){
                 break;
             }
-        case 'income': 
+        case 'income':
             console.log('in income switch');
-            
+
             const adjusted_gross_income = body.adjusted_gross_income;
             const filing_status = body.filing_status;
             const dependents = body.dependents;
@@ -203,7 +205,7 @@ const stageQueries = function(route, body) {
             fourthQuery = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, childcare=$4, healthcare=$5, other_expenses=$6, other_expenses_notes=$7 WHERE form_id=$8`;
             thirdInjection.push(adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime, form_id);
             fourthInjection.push(need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes, form_id);
-            
+
             if(route === 'all') {
                 fifthQuery = `UPDATE form SET status='applied' WHERE id=$1`;
                 fifthInjection = [form_id]
@@ -235,7 +237,7 @@ const stageQueries = function(route, body) {
     }
 
     console.log({returnObject});
-    
+
     return returnObject;
 };
 

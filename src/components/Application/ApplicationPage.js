@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
@@ -7,6 +8,9 @@ import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 import { Paper } from '../../../node_modules/@material-ui/core';
+import './ApplicationPage.css';
+import { getApplicant } from '../../redux/actions/applicantActions';
+
 
 const getSteps = () => {
   return ['Start', 'Personal Information','Income & Expenses','Submit']
@@ -30,8 +34,14 @@ const getStepContent = (step) => {
       }
 
 const totalSteps = () => {
-        return getSteps().length;
-      }
+  return getSteps().length;
+}
+
+const mapStateToProps = state => ({
+  user: state.user,
+  applicant: state.applicant,
+});
+
 class ApplicationPage extends Component {
   state = {
     appPage: 0,
@@ -56,7 +66,7 @@ class ApplicationPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.completed);
+    this.props.dispatch(getApplicant())
   }
 
 
@@ -69,7 +79,7 @@ class ApplicationPage extends Component {
     this.handleNext();
     this.pageHandler(event);
   }
-  
+
   handleNext = () => {
     let _activeStep;
 
@@ -157,11 +167,13 @@ render() {
 
   return (
       <div>
-        <SimpleTabs 
+        <SimpleTabs
           value = {3}
         />
         <h1>APPLICATION PAGE</h1>
-        <Paper >
+
+        <div >
+
 
 
           <div>
@@ -182,10 +194,10 @@ render() {
           handleComplete = {this.handleComplete}
           totalSteps = {totalSteps}
           />
-        </Paper>
+      </div>
       </div>
     );
   }
 }
 
-export default ApplicationPage;
+export default compose(connect(mapStateToProps))(ApplicationPage);

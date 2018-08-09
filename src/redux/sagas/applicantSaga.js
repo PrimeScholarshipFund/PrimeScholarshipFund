@@ -1,16 +1,20 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { APPLICANT_ACTIONS } from '../actions/applicantActions';
-import { getApplicantRequest } from '../requests/applicantRequests';
+import { checkApplicantRequest } from '../requests/applicantRequests';
+import { getApplicationRequest } from '../requests/applicantRequests';
 
-let applicantInfo = '';
-// let userId = '';
+let formId = '';
+let formData = '';
 
-function* getApplicant(action) {
+function* getApplicant() {
   try {
-    applicantInfo = yield getApplicantRequest(action.payload);
+    formId = yield checkApplicantRequest();
+    console.log('Giraffe', formId);
+    formData = yield getApplicationRequest(formId.id);
+    console.log('Elephant', formData);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
-      payload: applicantInfo,
+      payload: formData[0],
     })
   } catch (error) {
     console.log('WHOOPSIES', error);

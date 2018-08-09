@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-export function getApplicantRequest(userId) {
-  return axios.get(`/table/getHandInfo/${userId}`, {
+export function checkApplicantRequest() {
+  return axios.post('/api/application/new', {
+  })
+  .then(response => response.data)
+  .catch((error) => { throw error.response || error; });
+}
+
+export function getApplicationRequest(formId) {
+  return axios.get(`/api/application/applicant/${formId}`, {
   })
     .then(response => response.data)
     .catch((error) => { throw error.response || error; });

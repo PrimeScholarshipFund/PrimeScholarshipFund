@@ -52,11 +52,11 @@ class EnhancedTableHead extends React.Component {
 
   render() {
     const {
-      //  onSelectAllClick, 
-       order, 
-       orderBy, 
-      //  numSelected, 
-      //  rowCount, 
+      //  onSelectAllClick,
+       order,
+       orderBy,
+      //  numSelected,
+      //  rowCount,
       } = this.props;
 
     return (
@@ -114,6 +114,7 @@ const styles = theme => ({
   },
 });
 
+
 class EnhancedTable extends React.Component {
   constructor(props) {
     super(props);
@@ -127,6 +128,12 @@ class EnhancedTable extends React.Component {
       page: 0,
       rowsPerPage: 5,
     };
+  }
+
+  resetButton = () => {
+    return (
+      <Button color="primary" onClick={this.props.reset}>Reset</Button>
+    )
   }
 
   handleRequestSort = (event, property) => {
@@ -198,6 +205,7 @@ class EnhancedTable extends React.Component {
           </Table>
         </div>
         <TablePagination
+          ActionsComponent={this.resetButton}
           component="div"
           count={this.props.apps.length}
           rowsPerPage={rowsPerPage}

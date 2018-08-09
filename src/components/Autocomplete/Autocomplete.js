@@ -130,16 +130,9 @@ const components = {
 
 class IntegrationReactSelect extends React.Component {
   state = {
-    single: null,
     suggestions: this.props.apps,
   };
 
-  handleChange = name => value => {
-    console.log(name, value);
-    this.setState({
-      [name]: value,
-    });
-  };
 
   render() {
     const { classes } = this.props;
@@ -156,8 +149,8 @@ class IntegrationReactSelect extends React.Component {
             classes={classes}
             options={suggestions}
             components={components}
-            value={this.state.single}
-            onChange={this.handleChange('single')}
+            value={this.props.selectedApplicant}
+            onChange={this.props.handleChange('selectedApplicant')}
             placeholder="Search for Applicant"
           />
         </NoSsr>
