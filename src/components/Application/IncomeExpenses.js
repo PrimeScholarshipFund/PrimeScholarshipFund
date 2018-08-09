@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,6 +19,8 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
+import { editApplication } from '../../redux/actions/applicantActions';
+
 
 
 const styles = theme => ({
@@ -66,30 +70,10 @@ const mapStateToProps = state => ({
 });
 
 class IncomeExpenses extends Component {
-    state = {
-      adjustedGrossIncome: '',
-      taxFilingStatus: '',
-      dependents: '',
-      governmentAssistance: null,
-      governmentAssistanceText: '',
-      employed: null,
-      employedText: '',
-      rent: '',
-      transportation: '',
-      childCare: '',
-      healthCare: '',
-      otherExpenses: '',
-     }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
+  handleChange = (key) => event => {
+    this.props.dispatch(editApplication({key: key, value: event.target.value}))
   };
-
-  componentDidUpdate() {
-
-  }
 
   componentDidMount() {
     console.log(this.props.applicant);
@@ -110,9 +94,9 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.adjustedGrossIncome}
+                          value={this.props.applicant.adjusted_gross_income}
                           placeholder="$"
-                          onChange={this.handleChange('adjustedGrossIncome')}
+                          onChange={this.handleChange('adjusted_gross_income')}
                           id="formatted-numberformat-input"
                           InputProps={{
                             inputComponent: NumberFormatCustom,
@@ -127,9 +111,9 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.taxFilingStatus}
+                          value={this.props.applicant.filing_status}
                           placeholder="$"
-                          onChange={this.handleChange('taxFilingStatus')}
+                          onChange={this.handleChange('filing_status')}
                           id="formatted-numberformat-input"
                           InputProps={{
                             inputComponent: NumberFormatCustom,
@@ -144,7 +128,7 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.dependents}
+                          value={this.props.applicant.dependents}
                           onChange={this.handleChange('dependents')}
                           type="number"
                         />
@@ -157,19 +141,19 @@ class IncomeExpenses extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.governmentAssistance}
-                              onChange={this.handleChange('governmentAssistance')}
+                              value={this.props.applicant.government_assistance}
+                              onChange={this.handleChange('government_assistance')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {JSON.parse(this.state.governmentAssistance) ? (
+                            {this.props.applicant.government_assistance === "true" ? (
                               <TextField
                                 fullWidth
                                 placeholder="If so, please specify."
                                 className={classes.formControl}
-                                value={this.state.governmentAssistanceText}
-                                onChange={this.handleChange('governmentAssistanceText')}
+                                value={this.props.applicant.government_assistance_notes}
+                                onChange={this.handleChange('government_assistance_notes')}
                               />
                             ) : (
                               null
@@ -184,18 +168,18 @@ class IncomeExpenses extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.employed}
-                              onChange={this.handleChange('employed')}
+                              value={this.props.applicant.employed_during_prime}
+                              onChange={this.handleChange('employed_during_prime')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {JSON.parse(this.state.employed) ? (
+                            {this.props.applicant.employed === "true" ? (
                               <TextField
                                 fullWidth
                                 placeholder="If so, how much do you estimate you will make per month?"
                                 className={classes.formControl}
-                                value={this.state.employedText}
+                                value={this.props.applicant.employedText}
                                 onChange={this.handleChange('employedText')}
                               />
                             ) : (
@@ -211,8 +195,8 @@ class IncomeExpenses extends Component {
                       secondary={
                           <div>
                             <RadioGroup
-                              value={this.state.tuitionAssistance}
-                              onChange={this.handleChange('tuitionAssistance')}
+                              value={this.props.applicant.need_tuition}
+                              onChange={this.handleChange('need_tuition')}
                             >
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
@@ -230,9 +214,9 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.rent}
+                          value={this.props.applicant.housing}
                           placeholder="$"
-                          onChange={this.handleChange('rent')}
+                          onChange={this.handleChange('housing')}
                           id="formatted-numberformat-input"
                           InputProps={{
                             inputComponent: NumberFormatCustom,
@@ -247,7 +231,7 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.transportation}
+                          value={this.props.applicant.transportation}
                           placeholder="$"
                           onChange={this.handleChange('transportation')}
                           id="formatted-numberformat-input"
@@ -264,9 +248,9 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.childCare}
+                          value={this.props.applicant.childcare}
                           placeholder="$"
-                          onChange={this.handleChange('childCare')}
+                          onChange={this.handleChange('childcare')}
                           id="formatted-numberformat-input"
                           InputProps={{
                             inputComponent: NumberFormatCustom,
@@ -281,9 +265,9 @@ class IncomeExpenses extends Component {
                       secondary={
                         <TextField
                           className={classes.formControl}
-                          value={this.state.healthCare}
+                          value={this.props.applicant.healthcare}
                           placeholder="$"
-                          onChange={this.handleChange('healthCare')}
+                          onChange={this.handleChange('healthcare')}
                           id="formatted-numberformat-input"
                           InputProps={{
                             inputComponent: NumberFormatCustom,
@@ -301,8 +285,8 @@ class IncomeExpenses extends Component {
                           label="Please specify major monthly expenses (don’t feel the need to list absolutely everything)"
                           multiline
                           rowsMax="20"
-                          value={this.state.otherExpenses}
-                          onChange={this.handleChange('otherExpenses')}
+                          value={this.props.applicant.other_expenses_notes}
+                          onChange={this.handleChange('other_expenses_notes')}
                           fullWidth
                           margin="normal"
                         />
@@ -319,4 +303,4 @@ IncomeExpenses.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IncomeExpenses);
+export default compose(withStyles(styles),connect(mapStateToProps),)(IncomeExpenses);

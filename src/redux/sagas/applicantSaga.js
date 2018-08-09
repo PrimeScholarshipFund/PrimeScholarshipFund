@@ -11,7 +11,6 @@ let formData = '';
 function* getApplicant() {
   try {
     formId = yield checkApplicantRequest();
-    console.log('Giraffe', formId);
     formData = yield getApplicationRequest(formId.id);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
@@ -24,7 +23,7 @@ function* getApplicant() {
 
 function* saveApplication(action) {
   try {
-    console.log('baby making');
+    console.log('cheetah', action.payload);
     yield saveApplicationRequest(action.payload);
     formData = yield getApplicationRequest(formId.id);
     console.log('Elephant', formData);

@@ -1,13 +1,15 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { ADMIN_ACTIONSu, } from '../actions/adminActions';
 import { updateApplication } from '../requests/adminRequests';
+import { getAllApplicationsRequest } from '../requests/adminRequests';
 
 // return all applications to admin page
-function* fetchAllApplication() {
+let apps = '';
+function* fetchAllApplications() {
   try {
-        const apps = yield call(axios.get, `api/application/admin`);
-        yield put({ type: 'SET_ALL_APPLICATION', payload: apps.data});
+        apps = yield getAllApplicationsRequest();
+        console.log(apps);
+        yield put({ type: 'SET_ALL_APPLICATIONS', payload: apps});
     } catch (error) {
         console.log('Error in fetch all application');
 
@@ -16,6 +18,7 @@ function* fetchAllApplication() {
 
 function* updateApplicationSaga(action) {
     try {
+      console.log(action.payload);
         yield updateApplication(action.payload);
         yield put({ type: 'GET_ALL_APPLICATIONS' });
     } catch (error) {
@@ -25,8 +28,8 @@ function* updateApplicationSaga(action) {
 
 //compile saga functions here with calling type
 function* adminSaga() {
-    yield takeLatest('GET_ALL_APPLICATION', fetchAllApplication);
-    yield takeLatest('SAVE_COMMENTS_AND_STATUS', updateApplicationSaga);
+    yield takeLatest('GET_ALL_APPLICATIONS', fetchAllApplications);
+    yield takeLatest('SAVE_APPLICATION', updateApplicationSaga);
 }
 
 export default adminSaga;

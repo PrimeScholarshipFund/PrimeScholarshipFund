@@ -64,14 +64,9 @@ const ranges = [
 ];
 
 class InputAdornments extends React.Component {
-  state = this.props.person;
-
-  handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
-  };
 
   componentDidMount() {
-    console.log(this.state);
+    console.log(this.props.person);
   }
 
   render() {
@@ -83,8 +78,8 @@ class InputAdornments extends React.Component {
           <TextField
             select
             className={classNames(classes.margin, classes.textField)}
-            value={this.state.status}
-            onChange={this.handleChange('status')}
+            value={this.props.status}
+            onChange={this.props.handleChange('status')}
           >
             {ranges.map(option => (
               <MenuItem key={option.value} value={option.value}>
@@ -100,50 +95,50 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Phone Number'
-              value={this.state.phone_number}
-              onChange={this.handleChange('phone_number')}
+              value={this.props.person.phone_number}
+              onChange={this.props.handleChange('phone_number')}
             >
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Email'
-              value={this.state.email}
-              onChange={this.handleChange('email')}
+              value={this.props.person.email}
+              onChange={this.props.handleChange('email')}
             >
             </TextField>
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Address Line 1'
-              value={this.state.address_line_1}
-              onChange={this.handleChange('address_line_1')}
+              value={this.props.person.address_line_1}
+              onChange={this.props.handleChange('address_line_1')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Address Line 2'
-              value={this.state.address_line_2}
-              onChange={this.handleChange('address_line_2')}
+              value={this.props.person.address_line_2}
+              onChange={this.props.handleChange('address_line_2')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='City'
-              value={this.state.city}
-              onChange={this.handleChange('city')}
+              value={this.props.person.city}
+              onChange={this.props.handleChange('city')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Zip Code'
-              value={this.state.zip_code}
-              onChange={this.handleChange('zip_code')}
+              value={this.props.person.zip_code}
+              onChange={this.props.handleChange('zip_code')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='State'
-              value={this.state.state}
-              onChange={this.handleChange('state')}
+              value={this.props.person.state}
+              onChange={this.props.handleChange('state')}
             >
             </TextField>
           </Paper>
@@ -152,36 +147,36 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Age'
-              value={this.state.age}
-              onChange={this.handleChange('age')}
+              value={this.props.person.age}
+              onChange={this.props.handleChange('age')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Gender'
-              value={this.state.gender}
-              onChange={this.handleChange('gender')}
+              value={this.props.person.gender}
+              onChange={this.props.handleChange('gender')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Level of Education'
-              value={this.state.level_of_ed}
-              onChange={this.handleChange('level_of_ed')}
+              value={this.props.person.level_of_ed}
+              onChange={this.props.handleChange('level_of_ed')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='LGBTQ Status'
-              value={this.state.lgbtq_status}
-              onChange={this.handleChange('lgbtq_status')}
+              value={this.props.person.lgbtq_status}
+              onChange={this.props.handleChange('lgbtq_status')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Race'
-              value={this.state.race}
-              onChange={this.handleChange('race')}
+              value={this.props.person.race}
+              onChange={this.props.handleChange('race')}
             >
             </TextField>
           </Paper>
@@ -190,43 +185,43 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Adjusted Gross Income'
-              value={this.state.adjusted_gross_income}
-              onChange={this.handleChange('adjusted_gross_income')}
+              value={this.props.person.adjusted_gross_income}
+              onChange={this.props.handleChange('adjusted_gross_income')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Filing Status'
-              value={this.state.filing_status}
-              onChange={this.handleChange('filing_status')}
+              value={this.props.person.filing_status}
+              onChange={this.props.handleChange('filing_status')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Government. Assistance'
-              value={this.state.government_assistance}
-              onChange={this.handleChange('government_assistance')}
+              value={this.props.person.government_assistance}
+              onChange={this.props.handleChange('government_assistance')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Government Assistance Notes'
-              value={this.state.government_assistance_notes}
-              onChange={this.handleChange('government_assistance_notes')}
+              value={this.props.person.government_assistance_notes}
+              onChange={this.props.handleChange('government_assistance_notes')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Income During Prime'
-              value={this.state.income_during_prime}
-              onChange={this.handleChange('income_during_prime')}
+              value={this.props.person.income_during_prime}
+              onChange={this.props.handleChange('income_during_prime')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Need Tuition'
-              value={this.state.need_tuition}
-              onChange={this.handleChange('need_tuition')}
+              value={this.props.person.need_tuition}
+              onChange={this.props.handleChange('need_tuition')}
             >
             </TextField>
           </Paper>
@@ -235,64 +230,64 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Applied For MSP'
-              value={this.state.applied_for_msp}
-              onChange={this.handleChange('applied_for_msp')}
+              value={this.props.person.applied_for_msp}
+              onChange={this.props.handleChange('applied_for_msp')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Childcare'
-              value={this.state.childcare}
-              onChange={this.handleChange('childcare')}
+              value={this.props.person.childcare}
+              onChange={this.props.handleChange('childcare')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Dependents'
-              value={this.state.dependents}
-              onChange={this.handleChange('dependents')}
+              value={this.props.person.dependents}
+              onChange={this.props.handleChange('dependents')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Healthcare'
-              value={this.state.healthcare}
-              onChange={this.handleChange('healthcare')}
+              value={this.props.person.healthcare}
+              onChange={this.props.handleChange('healthcare')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Housing'
-              value={this.state.housing}
-              onChange={this.handleChange('housing')}
+              value={this.props.person.housing}
+              onChange={this.props.handleChange('housing')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='MSP Tech Scholar'
-              value={this.state.msp_tech_scholar}
-              onChange={this.handleChange('msp_tech_scholar')}
+              value={this.props.person.msp_tech_scholar}
+              onChange={this.props.handleChange('msp_tech_scholar')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Other Expenses'
-              value={this.state.other_expenses}
-              onChange={this.handleChange('other_expenses')}
+              value={this.props.person.other_expenses}
+              onChange={this.props.handleChange('other_expenses')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Other Expenses Notes'
-              value={this.state.other_expenses_notes}
-              onChange={this.handleChange('other_expenses_notes')}
+              value={this.props.person.other_expenses_notes}
+              onChange={this.props.handleChange('other_expenses_notes')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Transportation'
-              value={this.state.transportation}
-              onChange={this.handleChange('transportation')}
+              value={this.props.person.transportation}
+              onChange={this.props.handleChange('transportation')}
             >
             </TextField>
           </Paper>
@@ -304,8 +299,8 @@ class InputAdornments extends React.Component {
             label="Multiline"
             multiline
             rowsMax="20"
-            value={this.state.multiline}
-            onChange={this.handleChange('multiline')}
+            value={this.props.comments}
+            onChange={this.props.handleChange('comments')}
             fullWidth
             margin="normal"
           />

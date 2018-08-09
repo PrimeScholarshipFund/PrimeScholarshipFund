@@ -6,6 +6,7 @@ const router = express.Router();
  * GET all information about every applicant
  */
 router.get('/applicants', (req, res) => {
+  console.log(req.user);
     if(req.user.admin) {
         let queryText = `SELECT * from form
         JOIN contact on contact.form_id = form.id
@@ -25,13 +26,15 @@ router.get('/applicants', (req, res) => {
         console.log(`you can't do that!!`);
         res.sendStatus(500);
     }
-    
+
 });
 
 router.put('/save', (req, res) => {
     const comments = req.body.comments;
     const status = req.body.status;
     const form_id = req.body.form_id;
+
+    console.log(comments, status, form_id);
 
     let queryText = `UPDATE form SET comments=$1, status=$2 WHERE id=$3`;
     pool.query(queryText, [comments, status, form_id])
