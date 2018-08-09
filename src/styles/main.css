@@ -105,6 +105,33 @@ ul {
     padding-bottom: 20px;
 }
 
+.footer {
+    background-color: #36454f;
+    height: 35vh;
+    color: lightgrey;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    padding-top: 10vh;
+    
+}
+
+.footer h5 {
+    color: whitesmoke;
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+
+}
+
+.footer h6 {
+    color: whitesmoke;
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+
+}
+
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -189,6 +216,21 @@ ul {
     width: 72.5%;
     margin: auto;
     height: 1000px;
+}
+
+#socialIcon {
+    height: auto;
+    width: 34vw;
+    margin: auto;
+
+    
+}
+
+#stripe {
+    margin: auto;
+    /* position: fixed; */
+    bottom: 15px;
+    right: 15px;
 }
 
 
