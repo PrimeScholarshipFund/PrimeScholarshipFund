@@ -20,6 +20,7 @@ import AdminPage from './components/Admin/Admin';
 import './styles/main.css';
 import PSFTheme from './components/PSFTheme/PSFTheme';
 import { MuiThemeProvider } from '../node_modules/@material-ui/core';
+import Footer from './components/Footer/Footer';
 
 const App = () => (
   <div>
@@ -68,6 +69,7 @@ const App = () => (
 
             </Switch>
           </Router>
+          <Footer />
         </ParallaxProvider>
       </StripeProvider>
     </MuiThemeProvider>
