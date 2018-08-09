@@ -5,6 +5,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import { StickyContainer, Sticky } from 'react-sticky';
+import classNames from 'classnames';
+import './SimpleTabs.css'
+import { Button } from '../../../node_modules/@material-ui/core';
 
 function TabContainer(props) {
   return (
@@ -22,6 +27,21 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    align: 'right',
+    width: '100vw',
+  },
+  tabs: {
+    marginLeft: 'auto',
+  },
+  tabsRoot: {
+    borderBottom: '1px solid #7986cb'
+  },
+  tabsIndicator: {
+    backgroundColor: '#FF8A65',
+    height: '2px',
+  },
+  donateButton: {
+    backgroundColor: '#FF7043',
   },
 });
 
@@ -39,9 +59,6 @@ class SimpleTabs extends React.Component {
     this.setState({ value: this.props.value });
 
   }
-  routeToView = (viewName) => {
-    window.location.href = `#/${viewName}`
-  }
 
   render() {
     const { classes } = this.props;
@@ -49,14 +66,18 @@ class SimpleTabs extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Home" href="#/home"></Tab>
-            <Tab label="About" href="#/about"></Tab>
-            <Tab label="Donate" href="#/donate"></Tab>
-            <Tab label="Application" href="#/application"></Tab>
-          </Tabs>
-        </AppBar>
+          <AppBar position="sticky">
+            <Tabs
+            classes= {{
+              indicator: classes.tabsIndicator
+            }} 
+            className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
+              <Tab label="Home" href="#/home"></Tab>
+              <Tab label="About" href="#/about"></Tab>
+              <Tab label="Apply" href="#/application"></Tab>
+              <Tab disableRipple classes={{root: classes.donateButton}} label="Donate" href="#/donate">Donate</Tab>
+            </Tabs>
+          </AppBar>
         {value === 0}
         {value === 1}
         {value === 2}

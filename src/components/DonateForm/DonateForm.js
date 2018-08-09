@@ -3,7 +3,7 @@ import { Paper, TextField, Button, Select, MenuItem, InputLabel } from '../../..
 import {injectStripe} from 'react-stripe-elements';
 import Checkout from '../Checkout/Checkout';
 import CardSection from './CardSection';
-import './DonateForm.css'
+// import './DonateForm.css'
 import Axios from '../../../node_modules/axios';
 import config from '../../config/config';
 
@@ -150,7 +150,11 @@ class InjectedDonateForm extends Component {
                     onClick={this.handleSubmit}> Submit Donation </Button>
                     </form>
                     </Paper> 
-                    <Checkout />
+                    <Checkout
+                        name={this.props.name}
+                        description={'Prime Scholarship Fund'}
+                        amount={23047230942409}
+                    />
             </div>
          );
     }

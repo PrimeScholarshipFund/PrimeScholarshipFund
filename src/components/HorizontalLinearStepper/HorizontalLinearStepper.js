@@ -6,10 +6,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+import classNames from 'classnames';
+
 
 const styles = theme => ({
     root: {
         width: '90%',
+        justifyContent: 'center',
     },
     button: {
         marginRight: theme.spacing.unit,
@@ -21,6 +25,25 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         marginBottom: theme.spacing.unit,
     },
+    leftIcon: {
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        fontSize: 16,
+      },
+      rightIcon: {
+        marginLeft: theme.spacing.unit,
+        
+      },
+      iconSmall: {
+        fontSize: 20,
+        marginRight: theme.spacing.unit,        
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        textAlign: 'center',
+      },
 })
 
 
@@ -75,42 +98,27 @@ class HorizontalLinearStepper extends Component {
                                 Previous Page
                             </Button>
 
-                            {/* {this.props.activeStep !== steps.length &&
-
                             <Button
+                                className={classes.button}
                                 variant = "contained"
                                 color = "secondary"
-                                onClick = {this.props.pageHandler}
-                                value = {1}
-                                className = {classes.button}
+                                value={1}
+                                onClick = {this.props.handleComplete}
                             >
-                                Next HLS
+                            {this.props.activeStep === 3 
+                                ? ('Finish') 
+                                : 
+                                (this.props.activeStep===0 ? ('Start Application') 
+                                : 
+                                (
+                                <span className={classes.leftIcon}>   
+                                        <SaveIcon 
+                                            className={classes.iconSmall}
+                                        />
+                                    {'Save & Continue'}  
+                                </span>
+                                ))}
                             </Button>
-                            {this.props.activeStep !== steps.length &&
-                            (this.props.completed[this.props.activeStep] ? (
-                                <Typography
-                                    variant = "caption"
-                                    className = {classes.completed}
-                                >
-                                Step {this.props.activeStep + 1} saved
-                                </Typography>
-
-                            ) : ( */}
-                                <Button
-
-                                    variant = "contained"
-                                    color = "secondary"
-                                    value={1}
-                                    onClick = {this.props.handleComplete}
-                                >
-                                {this.props.completedSteps() === this.props.totalSteps() -1 
-                                    ? ('Finish') 
-                                    : 
-                                    (this.props.activeStep===0 ? ('Start Application') 
-                                    : 
-                                    ('Save and Continue'))}
-                                </Button>
-                            {/* ))} */}
                         </div>
                     </div>
                 )}
@@ -148,3 +156,5 @@ HorizontalLinearStepper.propTypes = {
 }
 
 export default withStyles(styles)(HorizontalLinearStepper);
+
+
