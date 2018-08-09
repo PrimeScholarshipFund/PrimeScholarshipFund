@@ -91,7 +91,6 @@ router.post('/new', (req, res) => {
                 await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [formId.id]);
             }
             console.log({formId});
-            
             await client.query('COMMIT');
             res.send(formId);
         } catch (err) {
