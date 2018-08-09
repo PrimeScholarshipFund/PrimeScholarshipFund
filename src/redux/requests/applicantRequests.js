@@ -13,3 +13,11 @@ export function getApplicationRequest(formId) {
     .then(response => response.data)
     .catch((error) => { throw error.response || error; });
 }
+
+export function saveApplicationRequest(data) {
+  return axios.put(`/api/application/${data.url}`, {
+    data: data.data,
+  })
+  .then(response => response.data)
+  .catch((error) => { throw error.response || error; });
+}

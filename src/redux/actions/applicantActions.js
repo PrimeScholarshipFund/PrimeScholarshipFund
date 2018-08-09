@@ -10,16 +10,15 @@ export const getApplicant = () => ({
 });
 
 // Used on the save and continue button, pushes data in store to server.
-export const saveApplication = () => ({
+export const saveApplication = (data) => ({
   type: APPLICANT_ACTIONS.SAVE_APPLICATION,
+  payload: data,
 });
 
 // Makes changes to redux store on user input changes
-export const editApplication = (question, answer) => ({
+export const editApplication = (data) => ({
   type: APPLICANT_ACTIONS.EDIT_APPLICATION,
-  payload: {
-    [question]: answer,
-  }
+  payload: data,
 })
 
 

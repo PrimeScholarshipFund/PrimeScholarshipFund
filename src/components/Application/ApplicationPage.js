@@ -10,6 +10,8 @@ import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinear
 import { Paper } from '../../../node_modules/@material-ui/core';
 import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
+import { saveApplication } from '../../redux/actions/applicantActions';
+
 
 
 const getSteps = () => {
@@ -55,8 +57,6 @@ class ApplicationPage extends Component {
   }
 
   completedSteps = () => {
-    console.log(this.state);
-
     return Object.keys(this.state.completed).length;
   }
 
@@ -69,7 +69,7 @@ class ApplicationPage extends Component {
   }
 
   handleChange = (key) => event => {
-    
+
     this.setState({
       ...this.state,
       personalInfo: {...this.state.personalInfo, [key]: event.target.value}
@@ -85,6 +85,23 @@ class ApplicationPage extends Component {
     });
     this.handleNext();
     this.pageHandler(event);
+    this.saveApplication();
+  }
+
+  saveApplication = () => {
+    console.log('savehdjkfhdjskhfd');
+    switch (this.state.activeStep) {
+      case 1:
+        this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
+        break;
+      case 2:
+        this.props.dispatch(saveApplication('income'));
+        break;
+      case 3:
+        this.props.dispatch(saveApplication('all'));
+        break;
+      default:
+    }
   }
 
   handleNext = () => {
