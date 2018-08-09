@@ -56,6 +56,7 @@ router.put('/all', (req, res) => {
 
 router.post('/new', (req, res) => {
     const person_id = req.body.person_id;
+    let form_id;
 
     (async () => {
         console.log('in the async');
@@ -65,14 +66,22 @@ router.post('/new', (req, res) => {
         
         try{
             await client.query('BEGIN');
-            const { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
-            let form_id = rows[0].id;
-            
-            await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
+            let { rows } = await client.query(`SELECT * FROM form WHERE person_id=$1 and archived=false`, [person_id])
 
-            await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
-            await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
-            await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+            if(rows[0]){
+                
+            } else {
+                { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
+                form_id = rows[0].id;
+                
+                await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
+
+                await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
+                await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
+                await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+            }
+            
+            
 
             await client.query('COMMIT');
             res.sendStatus(200);
