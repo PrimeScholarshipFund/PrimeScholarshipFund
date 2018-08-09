@@ -8,7 +8,7 @@ import {
 
 import config from './config/config';
 import {StripeProvider} from 'react-stripe-elements';
-
+import {ParallaxProvider} from 'react-scroll-parallax'
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
@@ -20,53 +20,57 @@ import AdminPage from './components/Admin/Admin';
 import './styles/main.css';
 import PSFTheme from './components/PSFTheme/PSFTheme';
 import { MuiThemeProvider } from '../node_modules/@material-ui/core';
+import Footer from './components/Footer/Footer';
 
 const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
       {/* <Header title="Project Base" /> */}
       <StripeProvider apiKey={config.STRIPE_PUBLISHABLE}>
-      <Router>
-        <Switch>
+        <ParallaxProvider>
+          <Router>
+            <Switch>
 
-          <Redirect exact from="/" to="/home" />
-          <Route
-            path="/home"
-            component={HomePage}
-          />
-          <Route
-            path="/about"
-            component={AboutPage}
-          />
-          <Route
-            path="/donate"
-            component={DonatePage}
-          />
-          <Route
-            path="/login"
-            component={LoginPage}
-          />
-          <Route
-            path="/register"
-            component={RegisterPage}
-          />
-          <Route
-            path="/user"
-            component={UserPage}
-          />
-          <Route
-            path="/application"
-            component={ApplicationPage}
-          />
-          <Route
-            path="/admin"
-            component={AdminPage}
-          />
-          {/* OTHERWISE (no path!) */}
-          <Route render={() => <h1>404</h1>} />
+              <Redirect exact from="/" to="/home" />
+              <Route
+                path="/home"
+                component={HomePage}
+              />
+              <Route
+                path="/about"
+                component={AboutPage}
+              />
+              <Route
+                path="/donate"
+                component={DonatePage}
+              />
+              <Route
+                path="/login"
+                component={LoginPage}
+              />
+              <Route
+                path="/register"
+                component={RegisterPage}
+              />
+              <Route
+                path="/user"
+                component={UserPage}
+              />
+              <Route
+                path="/application"
+                component={ApplicationPage}
+              />
+              <Route
+                path="/admin"
+                component={AdminPage}
+              />
+              {/* OTHERWISE (no path!) */}
+              <Route render={() => <h1>404</h1>} />
 
-        </Switch>
-      </Router>
+            </Switch>
+          </Router>
+          <Footer />
+        </ParallaxProvider>
       </StripeProvider>
     </MuiThemeProvider>
   </div>

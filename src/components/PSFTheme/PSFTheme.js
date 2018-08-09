@@ -24,12 +24,5 @@ export default createMuiTheme({
         secondary: deepPurple,
         error: deepOrange,
     },
-    overrides: {
-        MuiButton: {
-            root: {
-                background: deepOrange,
-            }
-        }
-    } 
 });
 

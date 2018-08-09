@@ -10,6 +10,7 @@ import HeadImage from '../../photos/ScholarshipFundPic.jpg';
 import AboutIcon from '../../photos/aboutUsIcon1.png';
 import PrimeIcon from '../../photos/aboutUsIcon.png';
 import DonateIcon from '../../photos/DonateIcon.png';
+import { Parallax } from '../../../node_modules/react-scroll-parallax';
 
 class HomePage extends Component {
 
@@ -19,18 +20,18 @@ class HomePage extends Component {
         <SimpleTabs
          value = {0}
         />
-       
-        <TopImage image={HeadImage}/>
-  
-        <div className="wrapper">
-        <div className="fill">
+   
+          <TopImage image={HeadImage}/>
         
-        <h1>EDUCATION CAN CHANGE LIVES</h1>
-        <p>We are committed to increasing the participation of underrepresented students in the
-Minneapolis / St. Paul tech industry. Through education and the opportunities it brings, students
-have a chance to make a difference in their lives and communities.</p>
-    
-        </div>
+        <div className="wrapper">
+          <div className="fill">
+            <h1>EDUCATION CAN CHANGE LIVES</h1>
+            <p>
+              We are committed to increasing the participation of underrepresented students in the
+              Minneapolis / St. Paul tech industry. Through education and the opportunities it brings, students
+              have a chance to make a difference in their lives and communities.
+            </p>
+          </div>
         <div className="grid-3">
           <div className="item">
             <h3>Our Story</h3>

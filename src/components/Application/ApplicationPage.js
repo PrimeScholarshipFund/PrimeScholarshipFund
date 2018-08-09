@@ -78,11 +78,11 @@ class ApplicationPage extends Component {
 
 
   handleComplete = (event) => {
-    const { completed } = this.state;
-    completed[this.state.activeStep] = true;
-    this.setState({
-      completed,
-    });
+    // const { completed } = this.state;
+    // completed[this.state.activeStep] = true;
+    // this.setState({
+    //   completed,
+    // });
     this.handleNext();
     this.pageHandler(event);
     this.saveApplication();
@@ -197,15 +197,10 @@ render() {
 
   return (
       <div>
-        <SimpleTabs
-          value = {3}
+        <SimpleTabs 
+          value = {2}
         />
-        <h1>APPLICATION PAGE</h1>
-
         <div >
-
-
-
           <div>
           {content}
           </div>
