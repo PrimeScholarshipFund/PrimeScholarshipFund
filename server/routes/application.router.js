@@ -55,36 +55,43 @@ router.put('/all', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-    const person_id = req.body.person_id;
-    let form_id;
+    console.log('Gorilla', req.body.id);
+    const person_id = req.body.id;
+    let formId;
 
     (async () => {
         console.log('in the async');
-        
+
         const client = await pool.connect();
         console.log('connected');
-        
+
         try{
             await client.query('BEGIN');
+            // get all non-archived form data for the person id
             let { rows } = await client.query(`SELECT * FROM form WHERE person_id=$1 and archived=false`, [person_id])
 
+            // if the form data exists...
             if(rows[0]){
+                console.log('in true');
                 
+                // ...prepare the object to send using the 
+                formId = {id: rows[0].id}
             } else {
-                { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
-                form_id = rows[0].id;
+                console.log('in false');
                 
-                await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
+                let { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
+                formId = {id: rows[0].id};
+                
+                await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [formId.id]);
 
-                await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
-                await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
-                await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+                await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [formId.id]);
+                await client.query(`INSERT INTO income (form_id) VALUES($1)`, [formId.id]);
+                await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [formId.id]);
             }
+            console.log({formId});
             
-            
-
             await client.query('COMMIT');
-            res.sendStatus(200);
+            res.send(formId);
         } catch (err) {
             await pool.query('ROLLBACK');
             console.log({err});
