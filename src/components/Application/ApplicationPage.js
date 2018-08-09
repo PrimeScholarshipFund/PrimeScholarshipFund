@@ -89,16 +89,22 @@ class ApplicationPage extends Component {
   }
 
   saveApplication = () => {
+    if (this.props.applicant.government_assistance === '') {
+      this.props.applicant.government_assistance = false;
+    }
+    if (this.props.applicant.employed_during_prime === '') {
+      this.props.applicant.employed_during_prime = false;
+    }
     console.log('savehdjkfhdjskhfd');
     switch (this.state.activeStep) {
       case 1:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
         break;
       case 2:
-        this.props.dispatch(saveApplication('income'));
+        this.props.dispatch(saveApplication({url: 'income', data: this.props.applicant}));
         break;
       case 3:
-        this.props.dispatch(saveApplication('all'));
+        this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
         break;
       default:
     }

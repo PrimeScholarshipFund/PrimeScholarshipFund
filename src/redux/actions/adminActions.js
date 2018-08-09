@@ -1,9 +1,14 @@
 export const ADMIN_ACTIONS = {
   GET_ALL_APPLICATIONS: 'GET_ALL_APPLICATIONS',
   SET_ALL_APPLICATIONS: 'SET_ALL_APPLICATIONS',
-  SAVE_COMMENTS_AND_STATUS: 'SAVE_COMMENTS_AND_STATUS'
+  SAVE_APPLICATION: 'SAVE_APPLICATION',
 };
 
 export const getAllApplications = () => ({
   type: ADMIN_ACTIONS.GET_ALL_APPLICATIONS,
 });
+
+export const saveApplication = (data) => ({
+  type: ADMIN_ACTIONS.SAVE_APPLICATION,
+  payload: data,
+})
