@@ -12,7 +12,7 @@ CREATE TABLE "form" (
     "status" varchar(100) NOT NULL DEFAULT 'application in progress',
     "person_id" integer NOT NULL REFERENCES "person" ("id"),
     "archived" BOOLEAN NOT NULL DEFAULT 'false',
-    "comments" varchar(1000)
+    "comments" varchar(1000) NOT NULL DEFAULT ''
 );
 
 
@@ -22,18 +22,18 @@ CREATE TABLE "contact" (
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "first_name" varchar(100) NOT NULL DEFAULT '',
     "last_name" varchar(100) NOT NULL DEFAULT '',
-    "middle_initial" varchar(5),
+    "middle_initial" varchar(5) NOT NULL DEFAULT '',
     "address_line_1" varchar(100) NOT NULL DEFAULT '',
-    "address_line_2" varchar(100),
+    "address_line_2" varchar(100) NOT NULL DEFAULT '',
     "city" varchar(100) NOT NULL DEFAULT '',
     "state" varchar(100) NOT NULL DEFAULT '',
     "zip_code" varchar(100) NOT NULL DEFAULT '',
     "phone_number" varchar(15) NOT NULL DEFAULT '',
     "email" varchar(100) NOT NULL DEFAULT '',
     "accepted_at_prime" BOOLEAN NOT NULL DEFAULT false,
-    "applied_at_prime" BOOLEAN,
+    "applied_at_prime" BOOLEAN NOT NULL DEFAULT false,
     "msp_tech_scholar" BOOLEAN NOT NULL DEFAULT false,
-    "applied_for_msp" BOOLEAN
+    "applied_for_msp" BOOLEAN NOT NULL DEFAULT false
 );
 
 
@@ -56,10 +56,11 @@ CREATE TABLE "income" (
     "adjusted_gross_income" integer NOT NULL DEFAULT 0,
     "filing_status" varchar(80) NOT NULL DEFAULT '',
     "dependents" integer NOT NULL DEFAULT 0,
-    "government_assistance" BOOLEAN,
-    "government_assistance_notes" varchar(280),
+    "government_assistance" BOOLEAN DEFAULT false,
+    "government_assistance_notes" varchar(280) NOT NULL DEFAULT '',
     "employed_during_prime" BOOLEAN NOT NULL DEFAULT false,
-    "income_during_prime" integer
+    "employed_during_prime_notes" varchar(280) NOT NULL DEFAULT '',
+    "income_during_prime" INTEGER NOT NULL DEFAULT 0
 );
 
 
@@ -72,22 +73,8 @@ CREATE TABLE "expenses" (
     "transportation" integer NOT NULL DEFAULT 0,
     "childcare" integer NOT NULL DEFAULT 0,
     "healthcare" integer NOT NULL DEFAULT 0,
-    "other_expenses" integer NOT NULL DEFAULT 0,
-    "other_expenses_notes" varchar(280)
+    "other_expenses_notes" varchar(280) NOT NULL DEFAULT ''
 );
-
-INSERT INTO person ("username", "password", "admin")
-    VALUES ('administrator', '1234', true),
-    ('testUser', '1234', false),
-    ('buffy', '1234', false),
-    ('willow', '1234', false),
-    ('xander', '1234', false);
-    
-INSERT INTO form ("status", "person_id", "archived")
-    VALUES ('applied', 2, false),
-    ('waiting for interview', 3, false),
-    ('interviewed', 4, false),
-    ('denied post interview', 5, true);
     
 INSERT INTO contact ("form_id", "first_name", "last_name", "middle_initial", "address_line_1", "address_line_2", "city", "state", "zip_code", "phone_number", "email", "accepted_at_prime", "applied_at_prime", "msp_tech_scholar", "applied_for_msp")
 VALUES (1, 'Test', 'User', 'Y.', '123 Fake St', 'Apt #42', 'Springfield', 'MN', '12345', '555-555-5555', 'testyuser@fake.ninja', true, null, false, null),
