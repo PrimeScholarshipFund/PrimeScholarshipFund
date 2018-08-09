@@ -57,6 +57,9 @@ router.post('/new', (req, res) => {
     console.log('Gorilla', req.user.id);
     const person_id = req.user.id;
 
+    let formId;
+
+
     (async () => {
         console.log('in the async');
 
@@ -65,16 +68,30 @@ router.post('/new', (req, res) => {
 
         try{
             await client.query('BEGIN');
-            const { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
-            let form_id = rows[0].id;
-            let formId = {id: form_id};
 
-            await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [form_id]);
+            // get all non-archived form data for the person id
+            let { rows } = await client.query(`SELECT * FROM form WHERE person_id=$1 and archived=false`, [person_id])
 
-            await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [form_id]);
-            await client.query(`INSERT INTO income (form_id) VALUES($1)`, [form_id]);
-            await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [form_id]);
+            // if the form data exists...
+            if(rows[0]){
+                console.log('in true');
+                
+                // ...prepare the object to send using the 
+                formId = {id: rows[0].id}
+            } else {
+                console.log('in false');
+                
+                let { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
+                formId = {id: rows[0].id};
+                
+                await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [formId.id]);
 
+                await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [formId.id]);
+                await client.query(`INSERT INTO income (form_id) VALUES($1)`, [formId.id]);
+                await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [formId.id]);
+            }
+            console.log({formId});
+            
             await client.query('COMMIT');
             res.send(formId);
         } catch (err) {
