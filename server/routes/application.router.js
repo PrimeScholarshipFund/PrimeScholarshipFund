@@ -55,8 +55,8 @@ router.put('/all', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-    console.log('Gorilla', req.body.id);
-    const person_id = req.body.id;
+    console.log('Gorilla', req.user.id);
+    const person_id = req.user.id;
     let formId;
 
     (async () => {
