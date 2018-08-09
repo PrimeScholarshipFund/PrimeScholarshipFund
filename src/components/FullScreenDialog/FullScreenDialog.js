@@ -35,10 +35,22 @@ const mapStateToProps = state => ({
 class FullScreenDialog extends React.Component {
   state = {
     open: true,
+    comments: this.props.person.comments,
+    status: this.props.person.status,
+    form_id: this.props.person.form_id,
   };
 
   confirmClose = () => {
 
+  };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  handleChange = prop => event => {
+    console.log(prop, event.target.value);
+    this.setState({ [prop]: event.target.value });
   };
 
   handleClose = () => {
@@ -47,7 +59,7 @@ class FullScreenDialog extends React.Component {
   };
 
   handleSave = () => {
-    this.props.dispatch(saveApplication(this.props.person));
+    this.props.dispatch(saveApplication(this.state));
   }
 
   render() {
@@ -76,6 +88,9 @@ class FullScreenDialog extends React.Component {
           </AppBar>
           <InputAdornments
             person={this.props.person}
+            comments={this.state.comments}
+            status={this.state.status}
+            handleChange={this.handleChange}
           />
         </Dialog>
       </div>
