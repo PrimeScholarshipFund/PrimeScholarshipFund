@@ -12,6 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
+import { editApplication } from '../../redux/actions/applicantActions';
+
 
 
 const styles = theme => ({
@@ -39,37 +41,6 @@ class PersonalInfo extends Component {
     state = {
       personalInfo: {},
 
-      contact:
-        {
-          id: '',
-          form_id: '',
-          first_name: '',
-          last_name: '',
-          middle_initial: '',
-          address_line_1: '',
-          address_line_2: '',
-          city: '',
-          state: '',
-          zip_code: '',
-          phone_number: '',
-          email: '',
-          accepted_at_prime: null,
-          applied_at_prime: null,
-          msp_tech_scholar: null,
-          applied_for_msp: null
-        },
-
-      demographics:
-        {
-          id: '',
-          form_id: '',
-          gender: 'DNWTS',
-          race: '',
-          age: '',
-          level_of_ed: '',
-          lgbtq_status: ''
-        },
-
       raceBuilder:
         {
           AmInAlNat: false,
@@ -90,12 +61,12 @@ class PersonalInfo extends Component {
     })
   }
 
-  handleChange = (key) => event => {
-    this.setState({
-      ...this.state,
-      personalInfo: {...this.state.personalInfo, [key]: event.target.value}
-    })
-  }
+  // handleChange = (key) => event => {
+  //   this.setState({
+  //     ...this.state,
+  //     personalInfo: {...this.state.personalInfo, [key]: event.target.value}
+  //   })
+  // }
 
   // handleChange = (key) => event => {
   //   this.setState({

@@ -61,12 +61,19 @@ class ApplicationPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state);
-
+    console.log(this.props.applicant);
   }
 
   componentDidMount() {
-    this.props.dispatch(getApplicant())
+    this.props.dispatch(getApplicant());
+  }
+
+  handleChange = (key) => event => {
+    
+    this.setState({
+      ...this.state,
+      personalInfo: {...this.state.personalInfo, [key]: event.target.value}
+    })
   }
 
 
