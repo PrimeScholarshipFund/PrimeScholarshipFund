@@ -115,7 +115,17 @@ ul {
     padding-top: 10vh;
     position: relative;
     display: flex;
+    flex-direction: column;
     
+}
+
+.footer h3 {
+    color: whitesmoke;
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+
 }
 
 .footer h5 {
@@ -224,7 +234,7 @@ ul {
     height: auto;
     width: 34vw;
     margin: auto;
-    background-color: red;
+    /* background-color: red; */
 
     
 }
@@ -233,7 +243,7 @@ ul {
     margin: auto;
     top: 0px;
    
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
 

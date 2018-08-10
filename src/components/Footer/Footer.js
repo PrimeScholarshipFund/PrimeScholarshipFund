@@ -7,7 +7,7 @@ class Footer extends Component {
     render() { 
         return ( 
             <div className="footer">
-                <h5>Prime Scholarship Fund</h5>
+                <h3>Prime Scholarship Fund</h3>
                 <h6>Contact Us:</h6>
                 <div id="socialIcon">
                     <SocialIcon network="email" style={{ height: 40, width: 40, margin: "10px 10px"}} />
