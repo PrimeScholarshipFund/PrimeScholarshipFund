@@ -6,8 +6,6 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import config from './config/config';
-import {StripeProvider} from 'react-stripe-elements';
 import {ParallaxProvider} from 'react-scroll-parallax'
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -26,11 +24,9 @@ const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
       {/* <Header title="Project Base" /> */}
-      <StripeProvider apiKey={config.STRIPE_PUBLISHABLE}>
         <ParallaxProvider>
           <Router>
             <Switch>
-
               <Redirect exact from="/" to="/home" />
               <Route
                 path="/home"
@@ -66,12 +62,10 @@ const App = () => (
               />
               {/* OTHERWISE (no path!) */}
               <Route render={() => <h1>404</h1>} />
-
             </Switch>
           </Router>
           <Footer />
         </ParallaxProvider>
-      </StripeProvider>
     </MuiThemeProvider>
   </div>
 );
