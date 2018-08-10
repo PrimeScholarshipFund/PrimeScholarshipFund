@@ -26,7 +26,10 @@ class LoginPage extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.user.isLoading && this.props.user.userName !== null) {
+    if (!this.props.user.isLoading && this.props.user.admin) {
+      this.props.history.push('admin');
+    }
+    else if (!this.props.user.isLoading && this.props.user.userName !== null) {
       this.props.history.push('application');
     }
   }

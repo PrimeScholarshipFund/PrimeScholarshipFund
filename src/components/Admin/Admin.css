@@ -3,3 +3,9 @@
     margin: auto;
     text-align: center;
 }
+
+#adminHead {
+    background-color: red;
+    width: 100%;
+    height: min-content;
+}

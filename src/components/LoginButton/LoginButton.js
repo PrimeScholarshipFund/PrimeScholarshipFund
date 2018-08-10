@@ -27,6 +27,11 @@ class LoginButton extends Component {
   render() {   
      let content = (
         <div id="ButtonDiv">
+            {
+              this.props.user.userName ? 
+              (<p>Hello, {this.props.user.userName}</p>) : 
+              (<p></p>)  
+          }
            
           {
             this.props.user.userName ? 
@@ -34,11 +39,7 @@ class LoginButton extends Component {
           (<Button href="#/login">Login</Button> )
           }
 
-           {
-              this.props.user.userName ? 
-              (<p>Hello, {this.props.user.userName}</p>) : 
-              (<p></p>)  
-          }
+           
           
         </div>
       );

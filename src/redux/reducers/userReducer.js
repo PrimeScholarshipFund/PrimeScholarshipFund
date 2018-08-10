@@ -12,6 +12,17 @@ const id = (state = null, action) => {
   }
 };
 
+const admin = (state = null, action) => {
+  switch (action.type) {
+    case USER_ACTIONS.SET_USER:
+      return action.user.admin || state;
+    case USER_ACTIONS.UNSET_USER:
+      return null;
+    default:
+      return state;
+  }
+};
+
 const userName = (state = null, action) => {
   switch (action.type) {
     case USER_ACTIONS.SET_USER:
@@ -38,4 +49,5 @@ export default combineReducers({
   id,
   userName,
   isLoading,
+  admin
 });
