@@ -10,6 +10,8 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import classNames from 'classnames';
 import { Button } from '../../../node_modules/@material-ui/core';
 
+import LoginButton from '../LoginButton/LoginButton';
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -66,6 +68,8 @@ class SimpleTabs extends React.Component {
     return (
       <div className={classes.root}>
           <AppBar position="sticky">
+            {/* login button here- left justify */}
+            <LoginButton />
             <Tabs
             classes= {{
               indicator: classes.tabsIndicator
