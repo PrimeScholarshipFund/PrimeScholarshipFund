@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import { StickyContainer, Sticky } from 'react-sticky';
 import classNames from 'classnames';
-import './SimpleTabs.css'
 import { Button } from '../../../node_modules/@material-ui/core';
 
 function TabContainer(props) {

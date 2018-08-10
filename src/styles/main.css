@@ -113,6 +113,8 @@ ul {
     justify-content: center;
     margin: auto;
     padding-top: 10vh;
+    position: relative;
+    display: flex;
     
 }
 
@@ -222,15 +224,16 @@ ul {
     height: auto;
     width: 34vw;
     margin: auto;
+    background-color: red;
 
     
 }
 
 #stripe {
     margin: auto;
-    /* position: fixed; */
-    bottom: 15px;
-    right: 15px;
+    top: 0px;
+   
+    background-color: aquamarine;
 }
 
 

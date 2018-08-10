@@ -67,7 +67,7 @@ class DonateRadioButtons extends Component {
             <FormControlLabel
               value="other"
               control={<Radio color="primary" />}
-              label={this.props.value === "other" ? <Input type="number" onChange={this.props.handleOther}>Other poop</Input> : "Other"}
+              label={this.props.value === "other" ? <Input type="number" onChange={this.props.handleOther}></Input> : "Other amount"}
               labelPlacement="finish"
             />
           </RadioGroup>
