@@ -67,7 +67,7 @@ class SimpleTabs extends React.Component {
 
     return (
       <div className={classes.root}>
-          <AppBar position="sticky">
+          <AppBar position="fixed">
             {/* login button here- left justify */}
             <LoginButton />
             <Tabs
