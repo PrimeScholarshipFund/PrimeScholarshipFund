@@ -217,7 +217,7 @@ ul {
     z-index: 0;
     width: 72.5%;
     margin: auto;
-    height: 1000px;
+    height: max-content;
 }
 
 #socialIcon {
