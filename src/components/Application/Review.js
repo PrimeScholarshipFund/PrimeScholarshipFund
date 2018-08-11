@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 class Review extends Component {
 
     render() {
+      this.props.checkSubmit('reset');
       return (
         <div>
         <div className="top">
@@ -23,8 +24,9 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="First Name"
-                secondary={
-                  <Typography>{this.props.applicant.first_name}</Typography>
+                secondary={this.props.checkSubmit('first_name') ?  
+                  <Typography>{this.props.applicant.first_name}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -32,8 +34,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Last Name"
-                secondary={
-                  <Typography>{this.props.applicant.last_name}</Typography>
+                secondary=
+                      {this.props.checkSubmit('last_name') ?  
+                      <Typography>{this.props.applicant.last_name}</Typography> :
+                      <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -52,9 +56,27 @@ class Review extends Component {
                 primary="Address:"
                 secondary={
                   <div>
-                  <Typography>{this.props.applicant.address_line_1}</Typography>
-                  <Typography>{this.props.applicant.address_line_2}</Typography>
-                  <Typography>{this.props.applicant.city}, {this.props.applicant.state} {this.props.applicant.zip_code}</Typography>
+                    
+                    {this.props.checkSubmit('address_line_1') ?  
+                      <Typography>Line 1: {this.props.applicant.address_line_1}</Typography> :
+                      <Typography>Line 1: <span className="red"> Required</span></Typography>
+                    }
+                
+                  <Typography>Line 2: {this.props.applicant.address_line_2}</Typography>
+                
+                  {this.props.checkSubmit('city') ?  
+                    <Typography>City: {this.props.applicant.city}</Typography> :
+                    <Typography>City: <span className="red"> Required</span></Typography>
+                  }
+                  
+                  {this.props.checkSubmit('state') ?  
+                    <Typography>State: {this.props.applicant.state}</Typography> :
+                    <Typography>State: <span className="red"> Required</span></Typography>
+                  }
+                  {this.props.checkSubmit('zip_code') ?  
+                    <Typography>Zip: {this.props.applicant.zip_code}</Typography> :
+                    <Typography>Zip: <span className="red"> Required</span></Typography>
+                  }
                   </div>
                       }
                     />
@@ -63,8 +85,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Phone Number"
-                secondary={
-                  <Typography>{this.props.applicant.phone_number}</Typography>
+                secondary=
+                      {this.props.checkSubmit('phone_number') ?  
+                  <Typography>{this.props.applicant.phone_number}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -72,8 +96,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Email"
-                secondary={
-                  <Typography>{this.props.applicant.email}</Typography>
+                secondary=
+                      {this.props.checkSubmit('email') ?  
+                  <Typography>{this.props.applicant.email}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -122,8 +148,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Gender"
-                secondary={
-                    <Typography>{this.props.applicant.gender}</Typography>
+                secondary=
+                      {this.props.checkSubmit('gender') ?  
+                  <Typography>{this.props.applicant.gender}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -131,8 +159,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Race"
-                secondary={
-                  <Typography>{this.props.applicant.race}</Typography>
+                secondary=
+                      {this.props.checkSubmit('race') ?  
+                  <Typography>{this.props.applicant.race}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -140,8 +170,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="LGBTQ Status"
-                secondary={
-                  <Typography>{this.props.applicant.lgbtq_status}</Typography>
+                secondary=
+                      {this.props.checkSubmit('lgbtq_status') ?  
+                  <Typography>{this.props.applicant.lgbtq_status}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -149,8 +181,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Age"
-                secondary={
-                  <Typography>{this.props.applicant.age}</Typography>
+                secondary=
+                      {this.props.checkSubmit('age') ?  
+                  <Typography>{this.props.applicant.age}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -158,10 +192,10 @@ class Review extends Component {
             <ListItem>
               <ListItemText
                 primary="Highest Level of Education"
-                secondary={
-                  <Typography>
-                    {this.props.applicant.level_of_ed}
-                  </Typography>
+                secondary=
+                      {this.props.checkSubmit('level_of_ed') ?  
+                  <Typography>{this.props.applicant.level_of_ed}</Typography> :
+                  <p className="red">Required</p>
                       }
                     />
             </ListItem>
@@ -172,8 +206,10 @@ class Review extends Component {
                   <ListItem>
                     <ListItemText
                       primary="What is your adjusted gross income?"
-                      secondary={
-                        <Typography>{this.props.applicant.adjusted_gross_income}</Typography>
+                      secondary=
+                      {this.props.checkSubmit('adjusted_gross_income') ?  
+                      <Typography>{this.props.applicant.adjusted_gross_income}</Typography> :
+                      <p className="red">Required</p>
                       }
                     />
                   </ListItem>
@@ -181,18 +217,21 @@ class Review extends Component {
                   <ListItem>
                     <ListItemText
                       primary="What is your tax filing status?"
-                      secondary={
-                        <Typography>
-                         {this.props.applicant.filing_status}
-                         </Typography>
+                      secondary=
+                      {this.props.checkSubmit('filing_status') ?  
+                      <Typography>{this.props.applicant.filing_status}</Typography> :
+                      <p className="red">Required</p>
                       }
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
                       primary="How many dependents, if any, do you have?* (number, DNWTS)"
-                      secondary={
-                        <Typography>{this.props.applicant.dependents}</Typography>
+                      secondary=
+                      {
+                        this.props.checkSubmit('dependents') ?  
+                      <Typography>{this.props.applicant.dependents}</Typography> :
+                      <p className="red">Required</p>
                       }
                     />
                   </ListItem>
@@ -201,13 +240,15 @@ class Review extends Component {
                       primary="Are you getting government assistance?"
                       secondary={
                           <div>
-                            <Typography>
-                              {this.props.applicant.government_assistance}
-                            </Typography>
+                            {
+                              this.props.checkSubmit('government_assistance') ?  
+                              <Typography>{this.props.applicant.government_assistance}</Typography> :
+                              <p className="red">Required</p>
+                            }
                             {this.props.applicant.government_assistance === "true" ? (
-                              <Typography className="sub">
-                              {this.props.applicant.government_assistance_notes}
-                              </Typography>
+                                this.props.checkSubmit('government_assistance_notes') ?  
+                                <Typography>{this.props.applicant.government_assistance_notes}</Typography> :
+                                <p className="red">Required</p> 
                             ) : (
                               null
                             )}
@@ -220,13 +261,15 @@ class Review extends Component {
                       primary="Do you plan to continue being employed while in Prime?"
                       secondary={
                           <div>
-                            <Typography>
-                              {this.props.applicant.employed_during_prime}
-                            </Typography>
-                            {this.props.applicant.employed === "true" ? (
-                              <Typography>
-                                {this.props.applicant.employedText}
-                              </Typography>
+                            {
+                              this.props.checkSubmit('employed_during_prime') ?  
+                              <Typography>{this.props.applicant.employed_during_prime}</Typography> :
+                              <p className="red">Required</p>
+                            }
+                            {this.props.applicant.employed_during_prime === "true" ? (
+                              this.props.checkSubmit('employedText') ?  
+                              <Typography>{this.props.applicant.employedText}</Typography> :
+                              <p className="red">Required</p>
                             ) : (
                               null
                             )}
@@ -238,15 +281,17 @@ class Review extends Component {
                     <ListItemText
                       primary="Do you need tuition assistance? If your tuition will be supplied through MSP TechHire/JFCS, select no."
                       secondary={
-                          <div>
-                            <Typography>{this.props.applicant.need_tuition}</Typography>
-                          </div>
+                            this.props.checkSubmit('need_tuition') ?  
+                            <Typography>{this.props.applicant.need_tuition}</Typography> :
+                            <p className="red">Required</p>
                       }
                     />
                   </ListItem>
+
                   <h3>
                     Expenses Per Month
                   </h3>
+                  
                   <ListItem>
                     <ListItemText
                       primary="Rent/Mortgage"

@@ -49,12 +49,34 @@ class ApplicationPage extends Component {
     appPage: 0,
     completed: {},
     activeStep: 0,
-
+    canSubmit: true,
   }
 
   allStepsCompleted = () => {
     return this.completedSteps() === totalSteps();
   }
+
+  checkSubmit = (key) => {
+    if (key === 'reset'){
+      this.setState({
+        ...this.state,
+        canSubmit: true
+      });
+    }
+    else {
+      if(this.props.applicant[key]){
+        return true;
+      }
+      else {
+        this.setState({
+          ...this.state,
+          canSubmit: false
+        });
+        return false;
+      }
+    }
+  }
+  //function to check if the app can be submitted
 
   completedSteps = () => {
     return Object.keys(this.state.completed).length;
@@ -188,7 +210,7 @@ render() {
       content = <IncomeExpenses />
       break;
     case 3:
-      content = <Review />
+      content = <Review checkSubmit={this.checkSubmit}/>
       break;
 
     default:
@@ -205,6 +227,7 @@ render() {
           {content}
           </div>
           < br />
+          {JSON.stringify(this.state)}
           <HorizontalLinearStepper
           //TODO: make it so the stepper is grayed out on start(landing) page.
           activeStep={this.state.appPage}
@@ -225,4 +248,4 @@ render() {
   }
 }
 
-export default compose(connect(mapStateToProps))(ApplicationPage);
+export default connect(mapStateToProps)(ApplicationPage);
