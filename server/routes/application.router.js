@@ -198,13 +198,13 @@ const stageQueries = function(route, body) {
             const transportation = body.transportation;
             const childcare = body.childcare;
             const healthcare = body.healthcare;
-            const other_expenses = body.other_expenses;
+            // const other_expenses = body.other_expenses;
             const other_expenses_notes = body.other_expenses_notes;
 
             thirdQuery = `UPDATE income SET adjusted_gross_income=$1, filing_status=$2, dependents=$3, government_assistance=$4, government_assistance_notes=$5, employed_during_prime=$6, income_during_prime=$7 WHERE form_id=$8`;
-            fourthQuery = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, childcare=$4, healthcare=$5, other_expenses=$6, other_expenses_notes=$7 WHERE form_id=$8`;
+            fourthQuery = `UPDATE expenses SET need_tuition=$1, housing=$2, transportation=$3, childcare=$4, healthcare=$5, other_expenses_notes=$6 WHERE form_id=$7`;
             thirdInjection.push(adjusted_gross_income, filing_status, dependents, government_assistance, government_assistance_notes, employed_during_prime, income_during_prime, form_id);
-            fourthInjection.push(need_tuition, housing, transportation, childcare, healthcare, other_expenses, other_expenses_notes, form_id);
+            fourthInjection.push(need_tuition, housing, transportation, childcare, healthcare, other_expenses_notes, form_id);
 
             if(route === 'all') {
                 fifthQuery = `UPDATE form SET status='applied' WHERE id=$1`;

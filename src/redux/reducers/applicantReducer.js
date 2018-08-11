@@ -6,18 +6,24 @@ const applicant = (state = {}, action) => {
     case APPLICANT_ACTIONS.FILL_FORM:
       let employedDuringPrime = '';
       let governmentAssistance = '';
+      let needTuition = '';
       if (action.payload.employed_during_prime !== null) {
         employedDuringPrime = action.payload.employed_during_prime.toString();
       }
       if (action.payload.government_assistance !== null) {
         governmentAssistance = action.payload.government_assistance.toString();
       }
+      if (action.payload.need_tuition !== null) {
+        needTuition = action.payload.need_tuition.toString();
+      }
+
       return {
         ...action.payload,
         accepted_at_prime: action.payload.accepted_at_prime.toString(),
         msp_tech_scholar: action.payload.msp_tech_scholar.toString(),
         employed_during_prime: employedDuringPrime,
         government_assistance: governmentAssistance,
+        need_tuition: needTuition,
 
       }
     case APPLICANT_ACTIONS.EDIT_APPLICATION:
