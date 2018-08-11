@@ -296,6 +296,7 @@ class InputAdornments extends React.Component {
         <div className="grid-bottom">
           <TextField
             id="multiline-flexible"
+            className="comments"
             label="Multiline"
             multiline
             rowsMax="20"

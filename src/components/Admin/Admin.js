@@ -5,11 +5,15 @@ import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import Button from '@material-ui/core/Button';
 import { getAllApplications } from '../../redux/actions/adminActions';
+import SimpleTabs from '../SimpleTabs/SimpleTabs';
 
 import './Admin.css';
 
+
 const mapStateToProps = state => ({
   apps: state.admin.adminApplication,
+  user: state.user,
+  login: state.login,
 });
 
 class AdminPage extends Component {
@@ -25,8 +29,10 @@ class AdminPage extends Component {
     console.log(this.state);
   }
 
-  componentDidUpdate = () => {
-    console.log(this.props.apps);
+  componentDidUpdate() {
+    if (!this.props.user.isLoading && !this.props.user.admin) {
+      this.props.history.push('home');
+    }
   }
 
   setActive = (person) => {
@@ -89,6 +95,7 @@ class AdminPage extends Component {
 
     return (
       <div>
+        <SimpleTabs/>
         <h1>ADMIN PAGE</h1>
         {this.state.active === null ? (
             content

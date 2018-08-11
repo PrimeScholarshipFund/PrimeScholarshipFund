@@ -1,0 +1,23 @@
+#ButtonDiv {
+    font-size: 10px;
+    width: min-content;
+    margin: 0 0 0 0;
+    position: fixed;
+    display: float;
+}
+
+#ButtonDiv button {
+    color: white;
+    margin: 0 0 0 0;
+    height: 100%;
+}
+
+#ButtonDiv a{
+    color: white;
+}
+
+#ButtonDiv p{
+    margin: 0 0 0 0;
+    width: max-content;
+    height: 1em;
+}
