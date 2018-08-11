@@ -16,6 +16,8 @@ import { editApplication } from '../../redux/actions/applicantActions';
 
 
 
+
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -455,17 +457,6 @@ class PersonalInfo extends Component {
                               <FormControlLabel value={'No'} control={<Radio />} label="No" />
                               <FormControlLabel value={'DNWTS'} control={<Radio />} label="Do not wish to specify" />
                             </RadioGroup>
-                            {this.props.applicant.gender == "Male" || this.props.applicant.gender == "Female" || this.props.applicant.gender == "DNWTS" ? (
-                              null
-                             ) : (
-                              <div className="sub">
-                                <TextField
-
-                                placeholder="Specify"
-                                onChange={this.handleChange('gender')}
-                              />
-                              </div>
-                             )}
                           </div>
                       }
                     />
