@@ -83,7 +83,7 @@ class IncomeExpenses extends Component {
                 <List>
                   <ListItem>
                     <ListItemText
-                      primary="What is your adjusted gross income?"
+                      primary="What is your adjusted gross income? This can be found on line 37 of your 1040.* (line 37 of 1040)"
                       secondary={
                         <TextField
                           className={classes.formControl}
@@ -102,22 +102,23 @@ class IncomeExpenses extends Component {
                     <ListItemText
                       primary="What is your tax filing status?"
                       secondary={
-                        <TextField
-                          className={classes.formControl}
-                          value={this.props.applicant.filing_status}
-                          placeholder="$"
-                          onChange={this.handleChange('filing_status')}
-                          id="formatted-numberformat-input"
-                          InputProps={{
-                            inputComponent: NumberFormatCustom,
-                          }}
-                        />
+                        <RadioGroup
+                              value={this.props.applicant.filing_status}
+                              onChange={this.handleChange('filing_status')}
+                            >
+                              <FormControlLabel value={'Single'} control={<Radio />} label="Single" />
+                              <FormControlLabel value={'Married filing jointly'} control={<Radio />} label="Married filing jointly" />
+                              <FormControlLabel value={'Married filing separately'} control={<Radio />} label="Married filing separately" />
+                              <FormControlLabel value={'Head of household'} control={<Radio />} label="Head of household" />
+                              <FormControlLabel value={'Qualifying widow(er) with dependent child'} control={<Radio />} label="Qualifying widow(er) with dependent child" />
+                              <FormControlLabel value={'NA'} control={<Radio />} label="Not Applicable" />
+                        </RadioGroup>
                       }
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="How many dependents, if any, do you have?* (number, DNWTS)"
+                      primary="How many dependents, if any, do you have?*"
                       secondary={
                         <TextField
                           className={classes.formControl}
@@ -167,13 +168,13 @@ class IncomeExpenses extends Component {
                               <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
                               <FormControlLabel value={'false'} control={<Radio />} label="No" />
                             </RadioGroup>
-                            {this.props.applicant.employed === "true" ? (
+                            {this.props.applicant.employed_during_prime === "true" ? (
                               <TextField
                                 fullWidth
                                 placeholder="If so, how much do you estimate you will make per month?"
                                 className={classes.formControl}
-                                value={this.props.applicant.employedText}
-                                onChange={this.handleChange('employedText')}
+                                value={this.props.applicant.income_during_prime}
+                                onChange={this.handleChange('income_during_prime')}
                               />
                             ) : (
                               null

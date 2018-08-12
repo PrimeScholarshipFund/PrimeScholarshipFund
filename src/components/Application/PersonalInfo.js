@@ -41,7 +41,6 @@ const mapStateToProps = state => ({
 
 class PersonalInfo extends Component {
     state = {
-      personalInfo: {},
 
       raceBuilder:
         {
@@ -54,14 +53,6 @@ class PersonalInfo extends Component {
             DNWTS: false
         }
      }
-
-  componentDidMount() {
-    console.log(this.props.applicant);
-    this.setState({
-      ... this.state,
-      personalInfo: this.props.applicant
-    })
-  }
 
   handleChange = (key) => event => {
     this.props.dispatch(editApplication({key: key, value: event.target.value}))

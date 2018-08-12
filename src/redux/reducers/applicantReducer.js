@@ -20,7 +20,9 @@ const applicant = (state = {}, action) => {
       return {
         ...action.payload,
         accepted_at_prime: action.payload.accepted_at_prime.toString(),
+        applied_at_prime: action.payload.applied_at_prime.toString(),
         msp_tech_scholar: action.payload.msp_tech_scholar.toString(),
+        applied_for_msp: action.payload.applied_for_msp.toString(),
         employed_during_prime: employedDuringPrime,
         government_assistance: governmentAssistance,
         need_tuition: needTuition,
