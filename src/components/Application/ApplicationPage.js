@@ -11,6 +11,7 @@ import { Paper } from '../../../node_modules/@material-ui/core';
 import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
 import { saveApplication } from '../../redux/actions/applicantActions';
+import ThankYou from './ThankYou';
 
 
 
@@ -31,7 +32,7 @@ const getStepContent = (step) => {
           return 'Review Your Application and Submit';
 
           default:
-          return 'Get Started!';
+          return '';
         }
       }
 
@@ -105,9 +106,10 @@ class ApplicationPage extends Component {
     // this.setState({
     //   completed,
     // });
-    this.handleNext();
-    this.pageHandler(event);
-    this.saveApplication();
+    if (this.saveApplication()){
+      this.handleNext();
+      this.pageHandler(event);
+    }
   }
 
   saveApplication = () => {
@@ -121,14 +123,17 @@ class ApplicationPage extends Component {
     switch (this.state.activeStep) {
       case 1:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
-        break;
+        return true;
       case 2:
         this.props.dispatch(saveApplication({url: 'income', data: this.props.applicant}));
-        break;
+        return true;
       case 3:
-        this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
+        if(this.state.canSubmit){
+          this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
+          return true;
+        }
         break;
-      default:
+      default: return true;
     }
   }
 
@@ -212,6 +217,9 @@ render() {
     case 3:
       content = <Review checkSubmit={this.checkSubmit}/>
       break;
+    case 4:
+      content = <ThankYou/>
+      break;
 
     default:
       break;
@@ -227,7 +235,6 @@ render() {
           {content}
           </div>
           < br />
-          {JSON.stringify(this.state)}
           <HorizontalLinearStepper
           //TODO: make it so the stepper is grayed out on start(landing) page.
           activeStep={this.state.appPage}
