@@ -9,7 +9,7 @@ CREATE TABLE "person" (
 
 CREATE TABLE "form" (
     "id" serial PRIMARY KEY NOT NULL,
-    "status" varchar(100) NOT NULL DEFAULT 'application in progress',
+    "status" varchar(100) NOT NULL DEFAULT 'Application in Progress',
     "person_id" integer NOT NULL REFERENCES "person" ("id"),
     "archived" BOOLEAN NOT NULL DEFAULT 'false',
     "comments" varchar(1000) NOT NULL DEFAULT ''

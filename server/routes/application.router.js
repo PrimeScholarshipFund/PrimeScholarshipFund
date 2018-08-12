@@ -207,7 +207,7 @@ const stageQueries = function(route, body) {
             fourthInjection.push(need_tuition, housing, transportation, childcare, healthcare, other_expenses_notes, form_id);
 
             if(route === 'all') {
-                fifthQuery = `UPDATE form SET status='applied' WHERE id=$1`;
+                fifthQuery = `UPDATE form SET status='Applied' WHERE id=$1`;
                 fifthInjection = [form_id]
             } else {
                 firstQuery = thirdQuery;
