@@ -11,6 +11,7 @@ import { Paper } from '../../../node_modules/@material-ui/core';
 import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
 import { saveApplication } from '../../redux/actions/applicantActions';
+import ThankYou from './ThankYou';
 
 
 
@@ -31,7 +32,7 @@ const getStepContent = (step) => {
           return 'Review Your Application and Submit';
 
           default:
-          return 'Get Started!';
+          return '';
         }
       }
 
@@ -49,12 +50,34 @@ class ApplicationPage extends Component {
     appPage: 0,
     completed: {},
     activeStep: 0,
-
+    canSubmit: true,
   }
 
   allStepsCompleted = () => {
     return this.completedSteps() === totalSteps();
   }
+
+  checkSubmit = (key) => {
+    if (key === 'reset'){
+      this.setState({
+        ...this.state,
+        canSubmit: true
+      });
+    }
+    else {
+      if(this.props.applicant[key]){
+        return true;
+      }
+      else {
+        this.setState({
+          ...this.state,
+          canSubmit: false
+        });
+        return false;
+      }
+    }
+  }
+  //function to check if the app can be submitted
 
   completedSteps = () => {
     return Object.keys(this.state.completed).length;
@@ -83,9 +106,10 @@ class ApplicationPage extends Component {
     // this.setState({
     //   completed,
     // });
-    this.handleNext();
-    this.pageHandler(event);
-    this.saveApplication();
+    if (this.saveApplication()){
+      this.handleNext();
+      this.pageHandler(event);
+    }
   }
 
   saveApplication = () => {
@@ -99,14 +123,17 @@ class ApplicationPage extends Component {
     switch (this.state.activeStep) {
       case 1:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
-        break;
+        return true;
       case 2:
         this.props.dispatch(saveApplication({url: 'income', data: this.props.applicant}));
-        break;
+        return true;
       case 3:
-        this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
+        if(this.state.canSubmit){
+          this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
+          return true;
+        }
         break;
-      default:
+      default: return true;
     }
   }
 
@@ -188,7 +215,10 @@ render() {
       content = <IncomeExpenses />
       break;
     case 3:
-      content = <Review />
+      content = <Review checkSubmit={this.checkSubmit}/>
+      break;
+    case 4:
+      content = <ThankYou/>
       break;
 
     default:
@@ -225,4 +255,4 @@ render() {
   }
 }
 
-export default compose(connect(mapStateToProps))(ApplicationPage);
+export default connect(mapStateToProps)(ApplicationPage);

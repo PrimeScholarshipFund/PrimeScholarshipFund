@@ -98,6 +98,7 @@ class HorizontalLinearStepper extends Component {
                                 Previous Page
                             </Button>
 
+                            {this.props.activeStep < 4 ? 
                             <Button
                                 className={classes.button}
                                 variant = "contained"
@@ -119,6 +120,9 @@ class HorizontalLinearStepper extends Component {
                                 </span>
                                 ))}
                             </Button>
+                            :
+                            null
+                            }
                         </div>
                     </div>
                 )}
