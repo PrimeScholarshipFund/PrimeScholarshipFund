@@ -146,9 +146,6 @@ ul {
 
 }
 
-.fullscreenDialog {
-    background-color: black;
-}
 
 .grid-2 {
     display: grid;
@@ -158,12 +155,14 @@ ul {
     padding-top: 10px;
 }
 
+
 .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
     width: 100%;
     margin: auto;
+    background-color: black;
 }
 
 .iconContainer {
@@ -241,10 +240,7 @@ ul {
     
 }
 
-.wrapper h3 { 
-    margin-left: auto;
-    text-align: center;
-}
+
 
 #socialIcon {
     height: auto;

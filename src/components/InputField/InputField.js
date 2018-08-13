@@ -11,12 +11,12 @@ import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Button } from '../../../node_modules/@material-ui/core';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { Button } from '../../../node_modules/@material-ui/core';
+import Paper from '@material-ui/core/Paper'
 import './InputField.css'
-
 
 
 const styles = theme => ({
@@ -31,8 +31,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   textField: {
-    width: 150,
+    flexBasis: 200,
     display: 'inline-flex',
+
   },
 });
 
@@ -68,15 +69,12 @@ const ranges = [
 ];
 
 class InputAdornments extends React.Component {
-
   state = {
     editStatus: false,
-  }
-
+  }  
   componentDidMount() {
     console.log(this.props.person);
   }
-
   editToggle = (event) => {
     this.setState({ 
       editStatus: !this.state.editStatus
@@ -87,38 +85,42 @@ class InputAdornments extends React.Component {
 componentDidUpdate(prevProps, prevState) {
   console.log(this.state.editStatus);
   
-}
-  render() {
+}  
+render() {
     const { classes } = this.props;
 
     return (
       <div className="wrapper">
-        <div className="inline">
+        <div className = {this.state.editStatus ? ("") : ("inline")}>
           <h1>Status: {this.props.status}</h1> 
           
           {this.state.editStatus ? 
 
           (
-          <div>
-            <TextField
-              select
-              className={classNames(classes.margin, classes.textField)}
-              value={this.props.status}
-              onChange={this.props.handleChange('status')}
-            >
-              {ranges.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField >
+            <div>
+          <TextField
+            select
+            className={classNames(classes.margin, classes.textField)}
+            value={this.props.status}
+            onChange={this.props.handleChange('status')}
+          >
+            {ranges.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+                </TextField >
             <Button onClick={this.editToggle} >
             <CheckIcon />
             </Button>
-          </div>) : (<Button onClick={this.editToggle} ><EditIcon /> </Button>)}
+          </div>) : (<div><br /><Button onClick={this.editToggle} ><EditIcon /> </Button></div>)}
         </div>
               <h1>Application:</h1>
         <div >
+        </div>
+
+        <div className="grid-2">
+          <Paper className="item">
             <h3>Contact</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -176,7 +178,8 @@ componentDidUpdate(prevProps, prevState) {
               onChange={this.props.handleChange('state')}
             >
             </TextField>
-        
+          </Paper>
+          <Paper className="item">
             <h3>Demographics</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -218,7 +221,8 @@ componentDidUpdate(prevProps, prevState) {
               onChange={this.props.handleChange('race')}
             >
             </TextField>
-       
+          </Paper>
+          <Paper className="item">
             <h3>Income</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -268,7 +272,8 @@ componentDidUpdate(prevProps, prevState) {
               onChange={this.props.handleChange('need_tuition')}
             >
             </TextField>
-         
+          </Paper>
+          <Paper className="item">
             <h3>Expenses</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -342,6 +347,7 @@ componentDidUpdate(prevProps, prevState) {
               onChange={this.props.handleChange('transportation')}
             >
             </TextField>
+          </Paper>
         </div>
 
         <div className="grid-bottom">
