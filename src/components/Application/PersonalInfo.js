@@ -114,7 +114,6 @@ class PersonalInfo extends Component {
 
         <div className="top">
         <h2>Personal Information</h2>
-        {JSON.stringify(this.state)}
         <h3>Contact Information</h3>
 
         <List>

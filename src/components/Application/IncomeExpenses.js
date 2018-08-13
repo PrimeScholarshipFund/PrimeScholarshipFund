@@ -76,7 +76,7 @@ class IncomeExpenses extends Component {
       const { classes } = this.props;
 
       return (
-          <div>
+          <div className="top">
               <Typography variant="title" className={classes.title}>
                 Income & Expenses
               </Typography>
