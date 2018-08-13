@@ -167,7 +167,6 @@ ul {
     grid-gap: 30px;
     width: 100%;
     margin: auto;
-    background-color: black;
 }
 
 .iconContainer {
@@ -202,6 +201,13 @@ ul {
     padding: 20px;
     text-align: center;
     margin: 150px auto 150px auto;
+}
+
+.loginRegister {
+    height: 55vh;
+    align-content: center;
+    text-align: center;
+    margin-top: 10vh;
 }
 
 .message {

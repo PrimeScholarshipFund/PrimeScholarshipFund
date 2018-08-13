@@ -3,7 +3,18 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { compose } from 'redux';
+import { withStyles } from '@material-ui/core/styles';
+import SimpleTabs from '../SimpleTabs/SimpleTabs'
+import { Input, Button } from '../../../node_modules/@material-ui/core';
 
+
+const styles = theme => ({
+  root: {
+    height: '50vh',
+    justifyContent: 'center',
+  }
+})
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -65,8 +76,11 @@ class LoginPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
+        <SimpleTabs />
+      <div className="loginRegister">
         { this.renderAlert() }
         <form onSubmit={this.login}>
           <h1>Login</h1>
@@ -102,8 +116,9 @@ class LoginPage extends Component {
           </div>
         </form>
       </div>
+      </div>
     );
   }
 }
 
-export default connect(mapStateToProps)(LoginPage);
+export default compose(withStyles(styles),connect(mapStateToProps))(LoginPage);

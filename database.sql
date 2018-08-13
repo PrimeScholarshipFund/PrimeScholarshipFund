@@ -104,7 +104,7 @@ INSERT INTO form ("status", "person_id", "archived")
     
 INSERT INTO contact ("form_id", "first_name", "last_name", "middle_initial", "address_line_1", "address_line_2", "city", "state", "zip_code", "phone_number", "email", "accepted_at_prime", "applied_at_prime", "msp_tech_scholar", "applied_for_msp")
 VALUES (1, 'Natalie', 'Wyn', '', '123 Fake St', 'Apt #42', 'Minneapolis', 'MN', '12345', '555-555-5555', 'contra@points.com', true, true, false, false),
-(2, 'Lindsay', 'Ellis', 'A.', '1630 Revello Drive', '', 'Minneapolis', 'MN', '12345', '444-444-4444', 'channelawesomesux@slayer.com', true, true, false, false),
+(2, 'Lindsay', 'Ellis', 'A.', '1630 Revello Drive', '', 'Minneapolis', 'MN', '12345', '444-444-4444', 'lindsay@slayer.com', true, true, false, false),
 (3, 'Kate', 'Nyx', 'D.', '63 Tara Dr', '', 'Minneapolis', 'MN', '12345', '666-666-6666', 'fae@hotmail.net', true, true, true, false),
 (4, 'William', 'Bicknell', '', '901 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2222', 'email@mail.edu', false, true, false, true),
 (5, 'Matias', 'Morgan', '', '902 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2221', 'email1@mail.edu', true, true, false, true),

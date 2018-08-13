@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
