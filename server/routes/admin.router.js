@@ -31,6 +31,8 @@ router.get('/applicants', (req, res) => {
 });
 
 router.put('/save', (req, res) => {
+    console.log('In save', req.body);
+    
     const comments = req.body.comments;
     const status = req.body.status;
     const form_id = req.body.form_id;

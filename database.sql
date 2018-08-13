@@ -106,14 +106,13 @@ INSERT INTO contact ("form_id", "first_name", "last_name", "middle_initial", "ad
 VALUES (1, 'Natalie', 'Wyn', '', '123 Fake St', 'Apt #42', 'Minneapolis', 'MN', '12345', '555-555-5555', 'contra@points.com', true, true, false, false),
 (2, 'Lindsay', 'Ellis', 'A.', '1630 Revello Drive', '', 'Minneapolis', 'MN', '12345', '444-444-4444', 'channelawesomesux@slayer.com', true, true, false, false),
 (3, 'Kate', 'Nyx', 'D.', '63 Tara Dr', '', 'Minneapolis', 'MN', '12345', '666-666-6666', 'fae@hotmail.net', true, true, true, false),
-(4, 'William', 'Bicknell', '', '901 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2222', 'zeppo@bunnies.org', false, true, false, true),
-(5, 'Matias', 'Morgan', '', '902 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2221', 'zeppo1@bunnies.org', true, true, false, true),
-(6, 'Greta', 'Gage', '', '903 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2223', 'zeppo2@bunnies.org', false, true, false, true),
-(7, 'Violet', 'Rose', '', '904 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2224', 'zeppo3@bunnies.org', true, true, false, true),
-(8, 'Johanna', 'Silver', '', '905 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2225', 'zeppo4@bunnies.org', true, true, false, true),
-(9, 'Abby', 'Fanara', '', '906 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2226', 'zeppo5@bunnies.org', true, true, false, true),
-(10, 'Deep', 'Mahapatra', '', '907 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2227', 'zeppo6@bunnies.org', true, true, false, true);
-
+(4, 'William', 'Bicknell', '', '901 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2222', 'email@mail.edu', false, true, false, true),
+(5, 'Matias', 'Morgan', '', '902 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2221', 'email1@mail.edu', true, true, false, true),
+(6, 'Greta', 'Gage', '', '903 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2223', 'email2@mail.edu', false, true, false, true),
+(7, 'Violet', 'Rose', '', '904 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2224', 'email3@mail.edu', true, true, false, true),
+(8, 'Johanna', 'Silver', '', '905 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2225', 'email4@mail.edu', true, true, false, true),
+(9, 'Abby', 'Fanara', '', '906 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2226', 'email5@mail.edu', true, true, false, true),
+(10, 'Deep', 'Mahapatra', '', '907 Anya Blvd', '', 'Minneapolis', 'MN', '12345', '222-222-2227', 'email6@mail.edu', true, true, false, true);
 
 INSERT INTO demographics ("form_id", "gender", "race", "age", "level_of_ed", "lgbtq_status")
 VALUES (1, 'DNWTS', 'DNWTS', 42, 'high school', 'Yes'),
