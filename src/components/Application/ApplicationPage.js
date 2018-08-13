@@ -83,10 +83,6 @@ class ApplicationPage extends Component {
     return Object.keys(this.state.completed).length;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    window.scroll(0,0);
-  }
-
   componentDidMount() {
     this.props.dispatch(getApplicant());
   }
@@ -109,6 +105,7 @@ class ApplicationPage extends Component {
     if (this.saveApplication()){
       this.handleNext();
       this.pageHandler(event);
+      window.scroll(0,0);
     }
   }
 
@@ -171,6 +168,7 @@ class ApplicationPage extends Component {
       activeStep: step,
       appPage: step,
     });
+    window.scroll(0,0);
   }
 
   isLastStep = () => {
@@ -231,7 +229,7 @@ render() {
           value = {2}
         />
         
-        <div >
+        <div>
           <div>
           {content}
           </div>
