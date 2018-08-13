@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-// import FormHelperText from '@material-ui/core/FormHelperText';
+
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -95,12 +95,14 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Phone Number'
+              disabled={true}
               value={this.props.person.phone_number}
               onChange={this.props.handleChange('phone_number')}
             >
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Email'
+              disabled={true}
               value={this.props.person.email}
               onChange={this.props.handleChange('email')}
             >
@@ -109,6 +111,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Address Line 1'
+              disabled={true}
               value={this.props.person.address_line_1}
               onChange={this.props.handleChange('address_line_1')}
             >
@@ -116,6 +119,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Address Line 2'
+              disabled={true}
               value={this.props.person.address_line_2}
               onChange={this.props.handleChange('address_line_2')}
             >
@@ -123,6 +127,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='City'
+              disabled={true}
               value={this.props.person.city}
               onChange={this.props.handleChange('city')}
             >
@@ -130,6 +135,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Zip Code'
+              disabled={true}
               value={this.props.person.zip_code}
               onChange={this.props.handleChange('zip_code')}
             >
@@ -137,6 +143,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='State'
+              disabled={true}
               value={this.props.person.state}
               onChange={this.props.handleChange('state')}
             >
@@ -147,6 +154,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Age'
+              disabled={true}
               value={this.props.person.age}
               onChange={this.props.handleChange('age')}
             >
@@ -154,6 +162,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Gender'
+              disabled={true}
               value={this.props.person.gender}
               onChange={this.props.handleChange('gender')}
             >
@@ -161,13 +170,15 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Level of Education'
+              disabled={true}
               value={this.props.person.level_of_ed}
               onChange={this.props.handleChange('level_of_ed')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='LGBTQ Status'
+              label='LGBTQ'
+              disabled={true}
               value={this.props.person.lgbtq_status}
               onChange={this.props.handleChange('lgbtq_status')}
             >
@@ -175,6 +186,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Race'
+              disabled={true}
               value={this.props.person.race}
               onChange={this.props.handleChange('race')}
             >
@@ -184,7 +196,8 @@ class InputAdornments extends React.Component {
             <h3>Income</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Adjusted Gross Income'
+              label='AGI'
+              disabled={true}
               value={this.props.person.adjusted_gross_income}
               onChange={this.props.handleChange('adjusted_gross_income')}
             >
@@ -192,27 +205,31 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Filing Status'
+              disabled={true}
               value={this.props.person.filing_status}
               onChange={this.props.handleChange('filing_status')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Government. Assistance'
+              label='Gov.Asst'
+              disabled={true}
               value={this.props.person.government_assistance}
               onChange={this.props.handleChange('government_assistance')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Government Assistance Notes'
+              label='Gov.Asst.Notes'
+              disabled={true}
               value={this.props.person.government_assistance_notes}
               onChange={this.props.handleChange('government_assistance_notes')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Income During Prime'
+              label='Income'
+              disabled={true}
               value={this.props.person.income_during_prime}
               onChange={this.props.handleChange('income_during_prime')}
             >
@@ -220,6 +237,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Need Tuition'
+              disabled={true}
               value={this.props.person.need_tuition}
               onChange={this.props.handleChange('need_tuition')}
             >
@@ -229,7 +247,8 @@ class InputAdornments extends React.Component {
             <h3>Expenses</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Applied For MSP'
+              label='MSP Apply'
+              disabled={true}
               value={this.props.person.applied_for_msp}
               onChange={this.props.handleChange('applied_for_msp')}
             >
@@ -237,6 +256,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Childcare'
+              disabled={true}
               value={this.props.person.childcare}
               onChange={this.props.handleChange('childcare')}
             >
@@ -244,6 +264,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Dependents'
+              disabled={true}
               value={this.props.person.dependents}
               onChange={this.props.handleChange('dependents')}
             >
@@ -251,6 +272,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Healthcare'
+              disabled={true}
               value={this.props.person.healthcare}
               onChange={this.props.handleChange('healthcare')}
             >
@@ -258,27 +280,31 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Housing'
+              disabled={true}
               value={this.props.person.housing}
               onChange={this.props.handleChange('housing')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='MSP Tech Scholar'
+              label='MSP_Scholar'
+              disabled={true}
               value={this.props.person.msp_tech_scholar}
               onChange={this.props.handleChange('msp_tech_scholar')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Other Expenses'
+              label='Other'
+              disabled={true}
               value={this.props.person.other_expenses}
               onChange={this.props.handleChange('other_expenses')}
             >
             </TextField>
             <TextField
               className={classNames(classes.margin, classes.textField)}
-              label='Other Expenses Notes'
+              label='Other Notes'
+              disabled={true}
               value={this.props.person.other_expenses_notes}
               onChange={this.props.handleChange('other_expenses_notes')}
             >
@@ -286,6 +312,7 @@ class InputAdornments extends React.Component {
             <TextField
               className={classNames(classes.margin, classes.textField)}
               label='Transportation'
+              disabled={true}
               value={this.props.person.transportation}
               onChange={this.props.handleChange('transportation')}
             >
