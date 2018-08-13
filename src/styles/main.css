@@ -108,11 +108,13 @@ ul {
 .footer {
     background-color: #36454f;
     height: 35vh;
+    width: 100vw;
     color: lightgrey;
     align-content: center;
     justify-content: center;
-    margin: 0px auto auto auto;
-    padding: 0px auto auto auto ;
+    margin: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
     position: relative;
     display: flex;
     flex-direction: column;

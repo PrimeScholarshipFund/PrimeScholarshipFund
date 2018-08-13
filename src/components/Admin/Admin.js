@@ -63,6 +63,9 @@ class AdminPage extends Component {
 
     if(this.props.apps){content = (
       <div>
+        <br />
+        <br />
+        <br />
         <Autocomplete
           apps = {this.props.apps}
           handleChange = {this.handleChange}
@@ -96,6 +99,11 @@ class AdminPage extends Component {
     return (
       <div>
         <SimpleTabs/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <h1>ADMIN PAGE</h1>
         {this.state.active === null ? (
             content

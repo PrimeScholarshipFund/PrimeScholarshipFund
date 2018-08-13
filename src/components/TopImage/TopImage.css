@@ -22,8 +22,8 @@
     margin: 0px 0px; 
     position: relative;
     height: 100vh;
-    width: 100%;
-    min-width: 1080px;
+    width: 100vw;
+    min-width: 1440px;
     overflow: hidden;
     flex-shrink: 0;
     align-content: center;
