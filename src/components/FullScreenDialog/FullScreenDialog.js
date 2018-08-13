@@ -13,15 +13,22 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import InputAdornments from '../InputField/InputField';
 import { saveApplication } from '../../redux/actions/adminActions';
+import deepOrange from '@material-ui/core/colors/deepOrange';
 
 
 const styles = {
+  root: {
+    backgroundColor: deepOrange
+  },
   appBar: {
     position: 'relative',
   },
   flex: {
     flex: 1,
   },
+  paper: {
+    backgroundColor: 'black',
+  }
 };
 
 function Transition(props) {
@@ -65,9 +72,10 @@ class FullScreenDialog extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div >
         <Button onClick={this.handleClickOpen}>View</Button>
-        <Dialog
+        <Dialog 
+          className = {classes.root}
           fullScreen
           open={this.state.open}
           onClose={this.handleClose}

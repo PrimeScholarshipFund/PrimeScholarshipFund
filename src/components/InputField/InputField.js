@@ -6,14 +6,17 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
+import EditIcon from '@material-ui/icons/Edit';
+import CheckIcon from '@material-ui/icons/Check';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Paper from '@material-ui/core/Paper'
+import { Button } from '../../../node_modules/@material-ui/core';
+import './InputField.css'
+
 
 
 const styles = theme => ({
@@ -28,7 +31,8 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   textField: {
-    flexBasis: 200,
+    width: 150,
+    display: 'inline-flex',
   },
 });
 
@@ -65,32 +69,56 @@ const ranges = [
 
 class InputAdornments extends React.Component {
 
+  state = {
+    editStatus: false,
+  }
+
   componentDidMount() {
     console.log(this.props.person);
   }
 
+  editToggle = (event) => {
+    this.setState({ 
+      editStatus: !this.state.editStatus
+    });
+
+}
+
+componentDidUpdate(prevProps, prevState) {
+  console.log(this.state.editStatus);
+  
+}
   render() {
     const { classes } = this.props;
 
     return (
-      <div>
-        <div>
-          <TextField
-            select
-            className={classNames(classes.margin, classes.textField)}
-            value={this.props.status}
-            onChange={this.props.handleChange('status')}
-          >
-            {ranges.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
+      <div className="wrapper">
+        <div className="inline">
+          <h1>Status: {this.props.status}</h1> 
+          
+          {this.state.editStatus ? 
 
-        <div className="grid-2">
-          <Paper className="item">
+          (
+          <div>
+            <TextField
+              select
+              className={classNames(classes.margin, classes.textField)}
+              value={this.props.status}
+              onChange={this.props.handleChange('status')}
+            >
+              {ranges.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField >
+            <Button onClick={this.editToggle} >
+            <CheckIcon />
+            </Button>
+          </div>) : (<Button onClick={this.editToggle} ><EditIcon /> </Button>)}
+        </div>
+              <h1>Application:</h1>
+        <div >
             <h3>Contact</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -148,8 +176,7 @@ class InputAdornments extends React.Component {
               onChange={this.props.handleChange('state')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+        
             <h3>Demographics</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -191,8 +218,7 @@ class InputAdornments extends React.Component {
               onChange={this.props.handleChange('race')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+       
             <h3>Income</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -242,8 +268,7 @@ class InputAdornments extends React.Component {
               onChange={this.props.handleChange('need_tuition')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+         
             <h3>Expenses</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -317,7 +342,6 @@ class InputAdornments extends React.Component {
               onChange={this.props.handleChange('transportation')}
             >
             </TextField>
-          </Paper>
         </div>
 
         <div className="grid-bottom">

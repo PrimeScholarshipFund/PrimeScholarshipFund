@@ -42,21 +42,20 @@ axios.post(config.PAYMENT_SERVER_URL,
         render() { 
             return ( 
                 
-                <StripeCheckout
-            name={this.props.name}
-            description={this.props.description}
-            amount={this.parseAmount(this.props.amount)}
-            token={onToken(this.parseAmount(this.props.amount), this.props.description)}
-            currency={CURRENCY}
-            stripeKey={config.STRIPE_PUBLISHABLE}
-            email={''}
-            billingAddress={true}
-            >
-            <DonateButton
-                buttonLabel = {this.props.amount === '' ? `Donate Via Stripe` : `Donate $${this.props.amount} Via Stripe`}
-            />
-          </StripeCheckout
-          >
+            <StripeCheckout
+                name={this.props.name}
+                description={this.props.description}
+                amount={this.parseAmount(this.props.amount)}
+                token={onToken(this.parseAmount(this.props.amount), this.props.description)}
+                currency={CURRENCY}
+                stripeKey={config.STRIPE_PUBLISHABLE}
+                email={''}
+                billingAddress={true}
+                >
+                    <DonateButton
+                        buttonLabel = {this.props.amount === '' ? `Donate Via Stripe` : `Donate $${this.props.amount} Via Stripe`}
+                    />
+                </StripeCheckout>
         
          );
     }

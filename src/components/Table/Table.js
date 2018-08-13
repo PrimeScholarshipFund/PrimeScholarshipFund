@@ -36,8 +36,9 @@ const columnData = [
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.secondary.dark,
     color: theme.palette.common.white,
+   
   },
   body: {
     fontSize: 14,
@@ -45,6 +46,11 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 class EnhancedTableHead extends React.Component {
+
+  componentDidMount() {
+    console.log(this.props);
+    
+  }
 
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
@@ -59,6 +65,8 @@ class EnhancedTableHead extends React.Component {
       //  rowCount,
       } = this.props;
 
+      const { classes } = this.props
+
     return (
       <TableHead>
 
@@ -72,11 +80,14 @@ class EnhancedTableHead extends React.Component {
                 sortDirection={orderBy === column.id ? order : false}
               >
                 <Tooltip
+                  className={classes.head}
                   title="Sort"
                   enterDelay={200}
                 >
                   <TableSortLabel
+                    className = {classes.head}
                     onClick={this.createSortHandler(column.id)}
+
                   >
                     {column.label}
                   </TableSortLabel>
@@ -105,6 +116,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
   },
   table: {
     minWidth: 1020,
@@ -112,6 +124,9 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
+  viewButton: {
+    color: theme.palette.secondary.light,
+  }
 });
 
 
@@ -166,6 +181,7 @@ class EnhancedTable extends React.Component {
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
+              classes = {classes}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
@@ -192,7 +208,7 @@ class EnhancedTable extends React.Component {
                       <TableCell>{n.last_name}</TableCell>
                       <TableCell>{n.email}</TableCell>
                       <TableCell>{n.phone_number}</TableCell>
-                      <TableCell><Button onClick={() => this.props.setActive(n)}>View</Button></TableCell>
+                      <TableCell><Button onClick={() => this.props.setActive(n)} className={classes.viewButton} >View</Button></TableCell>
                     </TableRow>
                   );
                 })}

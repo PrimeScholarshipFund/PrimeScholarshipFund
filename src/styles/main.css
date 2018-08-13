@@ -146,6 +146,10 @@ ul {
 
 }
 
+.fullscreenDialog {
+    background-color: black;
+}
+
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -168,6 +172,10 @@ ul {
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.inline {
+    display: inline-flex;
 }
 
 .instructions {
@@ -231,6 +239,11 @@ ul {
     margin: auto;
     height: max-content;
     
+}
+
+.wrapper h3 { 
+    margin-left: auto;
+    text-align: center;
 }
 
 #socialIcon {
