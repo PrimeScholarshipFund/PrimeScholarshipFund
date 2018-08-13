@@ -230,6 +230,7 @@ render() {
         <SimpleTabs 
           value = {2}
         />
+        
         <div >
           <div>
           {content}
