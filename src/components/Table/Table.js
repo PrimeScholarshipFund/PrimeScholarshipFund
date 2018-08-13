@@ -11,6 +11,8 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 
 let counter = 0;
@@ -79,19 +81,25 @@ class EnhancedTableHead extends React.Component {
                 padding={column.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === column.id ? order : false}
               >
-                <Tooltip
+                {/* <Tooltip
                   className={classes.head}
                   title="Sort"
                   enterDelay={200}
+                > */}
+                <Tooltip
+                  title="Sort"
+                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                  enterDelay={300}
                 >
                   <TableSortLabel
-                    className = {classes.head}
+                    active={orderBy === column.id}
+                    direction={order}
                     onClick={this.createSortHandler(column.id)}
-
                   >
                     {column.label}
                   </TableSortLabel>
                 </Tooltip>
+                
               </CustomTableCell>
             );
           }, this)}
@@ -141,7 +149,7 @@ class EnhancedTable extends React.Component {
       selected: [],
 
       page: 0,
-      rowsPerPage: 5,
+      rowsPerPage: 25,
     };
   }
 
