@@ -77,9 +77,11 @@ class IncomeExpenses extends Component {
 
       return (
           <div className="top">
-              <Typography variant="title" className={classes.title}>
+              <h2>
                 Income & Expenses
-              </Typography>
+              </h2>
+              <div className="wrapper">
+              <h3>Income</h3>
                 <List>
                   <ListItem>
                     <ListItemText
@@ -199,9 +201,13 @@ class IncomeExpenses extends Component {
                       }
                     />
                   </ListItem>
-                  <Typography variant="title" className={classes.title}>
+                  </List>
+
+                  <h3>
                     Expenses Per Month
-                  </Typography>
+                  </h3>
+                  
+                  <List>
                   <ListItem>
                     <ListItemText
                       primary="Rent/Mortgage"
@@ -288,6 +294,7 @@ class IncomeExpenses extends Component {
                     />
                   </ListItem>
                 </List>
+            </div>
           </div>
       );
     }
