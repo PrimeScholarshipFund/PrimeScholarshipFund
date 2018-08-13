@@ -114,6 +114,9 @@ class PersonalInfo extends Component {
 
         <div className="top">
         <h2>Personal Information</h2>
+        <div className="wrapper grid-2">
+        
+        <div>
         <h3>Contact Information</h3>
 
         <List>
@@ -312,8 +315,10 @@ class PersonalInfo extends Component {
                     />
                   </ListItem>
         </List>
+        </div>
 
           {/* componantize question fields by section */}
+          <div>
           <h3>Demographic Information</h3>
           <p>This scholarship is designated for people of color. We ask other demographic information for reporting purposes, but do not require you to respond.</p>
           <List>
@@ -495,6 +500,8 @@ class PersonalInfo extends Component {
                     />
                 </ListItem>
           </List>
+          </div>
+        </div>
         </div>
       </div>
       );
