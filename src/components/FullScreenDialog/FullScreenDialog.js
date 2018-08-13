@@ -14,6 +14,7 @@ import Slide from '@material-ui/core/Slide';
 import InputAdornments from '../InputField/InputField';
 import { saveApplication } from '../../redux/actions/adminActions';
 import deepOrange from '@material-ui/core/colors/deepOrange';
+import swal from 'sweetalert';
 
 
 const styles = {
@@ -67,6 +68,11 @@ class FullScreenDialog extends React.Component {
 
   handleSave = () => {
     this.props.dispatch(saveApplication(this.state));
+    swal({
+      title: "Saved",
+      text: "Changes have been saved",
+      icon: "success",
+    });
   }
 
   render() {

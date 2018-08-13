@@ -15,7 +15,6 @@ import { Button } from '../../../node_modules/@material-ui/core';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Paper from '@material-ui/core/Paper'
 import './InputField.css'
 
 
@@ -120,7 +119,7 @@ render() {
         </div>
 
         <div className="grid-2">
-          <Paper className="item">
+          <div >
             <h3>Contact</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -178,8 +177,8 @@ render() {
               onChange={this.props.handleChange('state')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+          </div>
+          <div >
             <h3>Demographics</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -221,8 +220,8 @@ render() {
               onChange={this.props.handleChange('race')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+          </div>
+          <div >
             <h3>Income</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -272,8 +271,8 @@ render() {
               onChange={this.props.handleChange('need_tuition')}
             >
             </TextField>
-          </Paper>
-          <Paper className="item">
+          </div>
+          <div >
             <h3>Expenses</h3>
             <TextField
               className={classNames(classes.margin, classes.textField)}
@@ -347,14 +346,15 @@ render() {
               onChange={this.props.handleChange('transportation')}
             >
             </TextField>
-          </Paper>
+          </div>
         </div>
 
-        <div className="grid-bottom">
+        <div>
           <TextField
+            type="textbox"
             id="multiline-flexible"
             className="comments"
-            label="Multiline"
+            label="Comments"
             multiline
             rowsMax="20"
             value={this.props.comments}

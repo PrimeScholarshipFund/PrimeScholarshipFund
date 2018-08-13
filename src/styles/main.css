@@ -155,6 +155,11 @@ ul {
     padding-top: 10px;
 }
 
+.grid-2 h3 {
+    text-align: center;
+
+}
+
 
 .grid-3 {
     display: grid;

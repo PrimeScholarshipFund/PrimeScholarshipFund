@@ -12,6 +12,7 @@ import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
 import { saveApplication } from '../../redux/actions/applicantActions';
 import ThankYou from './ThankYou';
+import swal from 'sweetalert';
 
 
 
@@ -130,6 +131,11 @@ class ApplicationPage extends Component {
       case 3:
         if(this.state.canSubmit){
           this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
+          swal({
+            title: "Thank you for your submission!",
+            text: "We will review and get back to you promptly",
+            icon: "success",
+          });
           return true;
         }
         break;
