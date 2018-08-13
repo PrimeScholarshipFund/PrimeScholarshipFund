@@ -1,5 +1,6 @@
 .parallax {
     width: 100vw;
+    flex-shrink: 0;
     height: 50vh;
     /* background-position: center; */
     /* background-repeat: no-repeat; */
@@ -8,18 +9,23 @@
     z-index: -1;
     background-color: whitesmoke;
     overflow: hidden;
+    align-content: center;
+    margin: auto;
 
 }
 
 .parallaxImage {
     z-index: -1;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 5vh;
+    right: 50%;
     margin: 0px 0px; 
     position: relative;
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
     overflow: hidden;
+    flex-shrink: 0;
+    align-content: center;
+    margin: auto;
 
 }
