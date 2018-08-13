@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../../node_modules/@material-ui/core';
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import './LoginButton.css';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -35,8 +37,14 @@ class LoginButton extends Component {
            
           {
             this.props.user.userName ? 
-          (<Button onClick={this.logout}>Logout</Button>) : 
-          (<Button href="#/login">Login</Button> )
+          (<Button onClick={this.logout}>
+            <LockIcon></LockIcon>
+            Logout
+          </Button>) : 
+          (<Button href="#/login">
+            <LockOpenIcon></LockOpenIcon>
+            Login
+          </Button> )
           }
 
            

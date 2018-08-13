@@ -22,12 +22,13 @@ router.get('/applicant/:id', (req, res) => {
 
 
 /**
- * NEEDS TO BE REFACTORED
+ * The final save, called at the end of the application process.
  */
 router.put('/all', (req, res) => {
     (async () => {
         console.log('in the async');
 
+        // connect to the pool
         const client = await pool.connect();
         console.log('connected');
         console.log('In all');
