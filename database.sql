@@ -94,11 +94,11 @@ INSERT INTO form ("status", "person_id", "archived")
     VALUES ('Applied', 2, false),
     ('Waiting for Interview', 3, false),
     ('Interviewed', 4, false),
-    ('Applied', 5, false),
-    ('Applied', 6, false),
-    ('Applied', 7, false),
-    ('Applied', 8, false),
-    ('Applied', 9, false),
+    ('Denied Post Interview', 5, true),
+    ('Waiting for Interview', 6, false),
+    ('Did Not Attend Interview', 7, false),
+    ('Waiting for Interview', 8, false),
+    ('Denied Post Interview', 9, true),
     ('Applied', 10, false),
     ('Denied Post Interview', 11, true);
     
