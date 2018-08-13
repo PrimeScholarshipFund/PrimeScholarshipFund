@@ -5,7 +5,8 @@
 .tile {
     display: flex;
     height: max-content;
-    margin-bottom: 70px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .tile .content {

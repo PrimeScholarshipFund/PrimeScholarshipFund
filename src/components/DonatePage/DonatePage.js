@@ -106,6 +106,8 @@ class DonatePage extends Component {
                     amount={this.state.value === "other" ? this.state.otherAmount : this.state.value}
                     description={'Contribute to Prime Scholarship Fund'}
                     name={'PSF'}
+                    value = {this.state.value}
+                    otherAmount = {this.state.otherAmount}
                     />
                 </div>
             </div>

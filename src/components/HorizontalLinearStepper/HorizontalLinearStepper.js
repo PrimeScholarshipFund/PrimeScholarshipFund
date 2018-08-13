@@ -14,9 +14,11 @@ const styles = theme => ({
     root: {
         width: '90%',
         justifyContent: 'center',
+        margin: 'auto',
+        marginBottom: '10vh',
     },
     button: {
-        marginRight: theme.spacing.unit,
+        marginLeft: theme.spacing.unit,
     },
     completed: {
         display: 'inline-block',

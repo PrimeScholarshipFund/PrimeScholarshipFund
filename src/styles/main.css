@@ -111,8 +111,8 @@ ul {
     color: lightgrey;
     align-content: center;
     justify-content: center;
-    margin: auto;
-    padding-top: 10vh;
+    margin: 0px auto auto auto;
+    padding: 0px auto auto auto ;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -140,7 +140,7 @@ ul {
     color: whitesmoke;
     text-align: center;
     margin: auto;
-    padding-top: 30px;
+    padding-top: 0px;
 
 }
 
@@ -233,7 +233,6 @@ ul {
 
 #socialIcon {
     height: auto;
-    width: 34vw;
     margin: auto;
     /* background-color: red; */
 

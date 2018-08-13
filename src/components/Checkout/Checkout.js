@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
 import config from '../../config/config';
 import DonateButton from './DonateButton';
+import swal from 'sweetalert';
 
 const CURRENCY = 'USD';
 
 
 const successPayment = data => {
-    alert('Payment Successful');
+    const amount = this.props;
+    swal (`Payment via Stripe successful`, `Thank you for your donation`, `success`);
 };
 
 const errorPayment = data => {
     console.log('error', data);
     
-    alert('Payment Error', data);
+    swal('Payment Error', `Please try again`, `error`);
 };
 
 const onToken = (amount, description) => token =>
@@ -28,15 +30,19 @@ axios.post(config.PAYMENT_SERVER_URL,
     })
     .then(successPayment)
     .catch(errorPayment);
-
-class Checkout extends Component {
-
-    parseAmount = amount => parseInt(amount, 10)*100
-
-    render() { 
-        return ( 
-
-            <StripeCheckout
+    
+    class Checkout extends Component {
+        
+        componentDidUpdate(prevProps, prevState) {
+            console.log('checkout.js props value', this.props.value);
+            
+        }
+        parseAmount = amount => parseInt(amount, 10)*100
+        
+        render() { 
+            return ( 
+                
+                <StripeCheckout
             name={this.props.name}
             description={this.props.description}
             amount={this.parseAmount(this.props.amount)}
@@ -49,7 +55,8 @@ class Checkout extends Component {
             <DonateButton
                 buttonLabel = {this.props.amount === '' ? `Donate Via Stripe` : `Donate $${this.props.amount} Via Stripe`}
             />
-          </StripeCheckout>
+          </StripeCheckout
+          >
         
          );
     }
