@@ -30,8 +30,8 @@ router.put('/all', (req, res) => {
 
         const client = await pool.connect();
         console.log('connected');
-
-        const queriesAndInjections = await stageQueries('all', req.body);
+        console.log('In all');
+        const queriesAndInjections = await stageQueries('all', req.body.data);
         try{
             console.log('in async put');
 
@@ -130,7 +130,7 @@ router.put('/:page', (req, res) => {
 });
 
 const stageQueries = function(route, body) {
-    console.log('in stageQueries');
+    console.log('in stageQueries', body);
 
     let firstQuery = '';
     let secondQuery = '';
