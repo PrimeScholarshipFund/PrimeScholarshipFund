@@ -9,7 +9,7 @@ CREATE TABLE "person" (
 
 CREATE TABLE "form" (
     "id" serial PRIMARY KEY NOT NULL,
-    "status" varchar(100) NOT NULL DEFAULT 'Application in Progress',
+    "status" varchar(100),
     "person_id" integer NOT NULL REFERENCES "person" ("id"),
     "archived" BOOLEAN NOT NULL DEFAULT 'false',
     "comments" varchar(1000) NOT NULL DEFAULT ''
@@ -60,7 +60,7 @@ CREATE TABLE "income" (
     "government_assistance_notes" varchar(280) NOT NULL DEFAULT '',
     "employed_during_prime" BOOLEAN NOT NULL DEFAULT false,
     "employed_during_prime_notes" varchar(280) NOT NULL DEFAULT '',
-    "income_during_prime" INTEGER NOT NULL DEFAULT 0
+    "income_during_prime" INTEGER
 );
 
 
@@ -75,6 +75,7 @@ CREATE TABLE "expenses" (
     "healthcare" integer NOT NULL DEFAULT 0,
     "other_expenses_notes" varchar(280) NOT NULL DEFAULT ''
 );
+
     
 INSERT INTO contact ("form_id", "first_name", "last_name", "middle_initial", "address_line_1", "address_line_2", "city", "state", "zip_code", "phone_number", "email", "accepted_at_prime", "applied_at_prime", "msp_tech_scholar", "applied_for_msp")
 VALUES (1, 'Test', 'User', 'Y.', '123 Fake St', 'Apt #42', 'Springfield', 'MN', '12345', '555-555-5555', 'testyuser@fake.ninja', true, null, false, null),

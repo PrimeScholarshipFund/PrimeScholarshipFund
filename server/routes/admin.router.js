@@ -13,6 +13,7 @@ router.get('/applicants', (req, res) => {
         JOIN demographics on demographics.form_id = form.id
         JOIN expenses on expenses.form_id = form.id
         JOIN income on income.form_id = form.id
+        WHERE status IS NOT NULL
         ORDER BY form.id`;
 
         pool.query(queryText)
