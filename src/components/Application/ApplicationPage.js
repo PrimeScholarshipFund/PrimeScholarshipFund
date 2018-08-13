@@ -84,7 +84,7 @@ class ApplicationPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.applicant);
+    window.scroll(0,0);
   }
 
   componentDidMount() {
