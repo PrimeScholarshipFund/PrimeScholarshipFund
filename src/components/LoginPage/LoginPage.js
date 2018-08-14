@@ -6,8 +6,13 @@ import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import SimpleTabs from '../SimpleTabs/SimpleTabs'
-import { Input, Button } from '../../../node_modules/@material-ui/core';
+import { Input, Button, IconButton, InputAdornment, FormControl, InputLabel } from '../../../node_modules/@material-ui/core';
+import { VisibilityOffIcon, VisibilityIcon } from 'mdi-react';
 
+
+const inputStyle = {
+  width: '200px'
+}
 
 const styles = theme => ({
   root: {
@@ -28,6 +33,7 @@ class LoginPage extends Component {
     this.state = {
       username: '',
       password: '',
+      showPassword: false,
     };
   }
 
@@ -61,6 +67,19 @@ class LoginPage extends Component {
     });
   }
 
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
+
   renderAlert() {
     if (this.props.login.message !== '') {
       return (
@@ -85,34 +104,52 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+          <FormControl>
+            <InputLabel htmlFor="username">Username</InputLabel>
+              <Input
+                style={inputStyle}
+                id="username"
                 type="text"
-                name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
+                />
+                </FormControl>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
+          <FormControl >
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            style={inputStyle}
+            id="password"
+            type={this.state.showPassword ? 'text' : 'password'}
+            value={this.state.password}
+            onChange={this.handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                  onMouseDown={this.handleMouseDownPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
           </div>
           <div>
-            <input
+            <Button
               type="submit"
               name="submit"
               value="Log In"
-            />
-            <Link to="/register">Register</Link>
+              label="submit"
+              variant="contained"
+              color="secondary"
+            >
+            Log In
+            </Button>
+            <Link to="/register"><Button>Register</Button></Link>
           </div>
         </form>
       </div>

@@ -207,7 +207,7 @@ ul {
     height: 55vh;
     align-content: center;
     text-align: center;
-    margin-top: 10vh;
+    margin: 15vh 5vh auto auto;
 }
 
 .message {

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from '@material-ui/core';
+import { VisibilityOffIcon, VisibilityIcon } from 'mdi-react';
+
+const inputStyle = {
+  width: '200px'
+}
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -10,8 +16,21 @@ class RegisterPage extends Component {
       username: '',
       password: '',
       message: '',
+      showPassword: false,
     };
   }
+
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
 
   registerUser = (event) => {
     event.preventDefault();
@@ -72,34 +91,51 @@ class RegisterPage extends Component {
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+            <FormControl>
+            <InputLabel htmlFor="username">Username</InputLabel>
+              <Input
+                style={inputStyle}
+                id="username"
                 type="text"
-                name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
+                />
+                </FormControl>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
+          <FormControl >
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+             style={inputStyle}
+            id="password"
+            type={this.state.showPassword ? 'text' : 'password'}
+            value={this.state.password}
+            onChange={this.handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                  onMouseDown={this.handleMouseDownPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
           </div>
           <div>
-            <input
+            <Button
               type="submit"
               name="submit"
               value="Register"
-            />
-            <Link to="/home">Cancel</Link>
+              variant="contained"
+              color="secondary"
+            >
+            Register
+            </Button>
+            <Link to="/home"><Button>Cancel</Button></Link>
           </div>
         </form>
       </div>
