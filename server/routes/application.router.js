@@ -2,8 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//get route for individual application applicatn side
-//edit this later to operate solely from form.id
+//get route for individual application applicant side
 router.get('/applicant/:id', (req, res) => {
     const id = req.params.id;
     let queryText = `SELECT * FROM form
@@ -30,9 +29,12 @@ router.put('/all', (req, res) => {
 
         // connect to the pool
         const client = await pool.connect();
-        console.log('connected');
-        console.log('In all');
+
+        // run the stageQueries function using the request's body
+        // store returned object in a constant
         const queriesAndInjections = await stageQueries('all', req.body.data);
+
+        // SQL transaction
         try{
             console.log('in async put');
 
@@ -43,7 +45,9 @@ router.put('/all', (req, res) => {
             await client.query(queriesAndInjections.fourthQuery, queriesAndInjections.fourthInjection);
             await client.query(queriesAndInjections.fifthQuery, queriesAndInjections.fifthInjection);
             await client.query('COMMIT');
+
             res.sendStatus(200);
+            // on error
         } catch (err) {
             await pool.query('ROLLBACK');
             console.log({err});
@@ -54,44 +58,47 @@ router.put('/all', (req, res) => {
     })().catch(e => console.error(e.stack));
 });
 
+// Create a new form 
 router.post('/new', (req, res) => {
-    console.log('Gorilla', req.user.id);
+    // declare variables
     const person_id = req.user.id;
-
     let formId;
-
 
     (async () => {
         console.log('in the async');
 
+        // connect to pool
         const client = await pool.connect();
         console.log('connected');
 
+        // SQL transaction
         try{
             await client.query('BEGIN');
 
             // get all non-archived form data for the person id
+            // this checks whether a current application exists
             let { rows } = await client.query(`SELECT * FROM form WHERE person_id=$1 and archived=false`, [person_id])
 
             // if the form data exists...
             if(rows[0]){
                 console.log('in true');
                 
-                // ...prepare the object to send using the 
+                // ...prepare the object to return
                 formId = {id: rows[0].id}
+                // ...otherwise create a new form
             } else {
                 console.log('in false');
                 
                 let { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
                 formId = {id: rows[0].id};
                 
+                // use the new form's id to create blank entries in other tables
                 await client.query(`INSERT INTO contact (form_id) VALUES($1)`, [formId.id]);
-
                 await client.query(`INSERT INTO demographics (form_id) VALUES($1)`, [formId.id]);
                 await client.query(`INSERT INTO income (form_id) VALUES($1)`, [formId.id]);
                 await client.query(`INSERT INTO expenses (form_id) VALUES($1)`, [formId.id]);
             }
-            console.log({formId});
+            // finish SQL transaction and send formID object
             await client.query('COMMIT');
             res.send(formId);
         } catch (err) {
@@ -104,6 +111,7 @@ router.post('/new', (req, res) => {
     })().catch(e => console.error(e.stack));
 });
 
+// handles saves from the personal and expenses pages
 router.put('/:page', (req, res) => {
   console.log('dinotime', req.body);
     const page = req.params.page;
