@@ -32,10 +32,7 @@ axios.post(config.PAYMENT_SERVER_URL,
     
     class Checkout extends Component {
         
-        componentDidUpdate(prevProps, prevState) {
-            console.log('checkout.js props value', this.props.value);
-            
-        }
+  
         parseAmount = amount => parseInt(amount, 10)*100
         
         render() { 
