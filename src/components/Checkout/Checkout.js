@@ -11,7 +11,6 @@ const CURRENCY = 'USD';
 
 const successPayment = data => {
     const amount = this.props;
-    swal (`Payment via Stripe successful`, `Thank you for your donation`, `success`);
 };
 
 const errorPayment = data => {
@@ -28,7 +27,7 @@ axios.post(config.PAYMENT_SERVER_URL,
         currency: CURRENCY,
         amount: amount
     })
-    .then(successPayment)
+    .then(successPayment,swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
     .catch(errorPayment);
     
     class Checkout extends Component {
