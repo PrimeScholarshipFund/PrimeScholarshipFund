@@ -15,9 +15,11 @@ class Review extends Component {
     render() {
       this.props.checkSubmit('reset');
       return (
+        <div className="wrapper">
+        <h1 className="title">Review</h1>
+        <div className="grid-2">
+        {/* Grid space 1 */}
         <div>
-        <div className="top">
-        <h1>Review</h1>
         <h3>Personal Information</h3>
 
          <List>
@@ -162,7 +164,10 @@ class Review extends Component {
                     />
             </ListItem>
           </List>
-
+          </div>
+          {/* Grid Space 1 end */}
+          {/* Grid space 2 */}
+          <div>
           <h3>Demographic Information</h3>
           <List>
             <ListItem>
@@ -220,7 +225,11 @@ class Review extends Component {
                     />
             </ListItem>
           </List>
+          </div>
+          {/* Grid space 2 end */}
 
+          {/* Grid space 3 */}
+          <div>
           <h3>Income & Expenses</h3>
                 <List>
                   <ListItem>
@@ -310,11 +319,15 @@ class Review extends Component {
                       }
                     />
                   </ListItem>
-
+                  </List>
+                  </div>
+                      {/* Grid space 3 end */}
+                      {/* grid space 4 */}
+                  <div>
                   <h3>
                     Expenses Per Month
                   </h3>
-
+                  <List>
                   <ListItem>
                     <ListItemText
                       primary="Rent/Mortgage"
@@ -370,7 +383,8 @@ class Review extends Component {
                     />
                   </ListItem>
                 </List>
-        
+                </div>
+                {/* Grid space 4 end */}
         </div>
       </div>
       );
