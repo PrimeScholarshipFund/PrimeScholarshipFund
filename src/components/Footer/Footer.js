@@ -24,6 +24,7 @@ class Footer extends Component {
                 <div id="stripe">
                 <img src={StripeImage} alt="Powered by Stripe"/>
                 </div>
+                <p className="secret" >Created by: Deric Aaron, Robert Andrade, Sasha Milenkovic, Dan Ross </p>
             </div>
          );
     }

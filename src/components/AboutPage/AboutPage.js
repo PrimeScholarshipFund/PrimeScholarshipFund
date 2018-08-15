@@ -98,7 +98,6 @@ class AboutPage extends Component {
       </div>
         
       </div>
-      <p className="secret" >Made by: Deric Aaron, Robert Andrade, Sasha Milenkovic, Dan Ross </p>
       </div>
 
     );
