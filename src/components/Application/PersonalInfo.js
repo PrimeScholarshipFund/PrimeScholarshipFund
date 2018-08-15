@@ -155,6 +155,7 @@ class PersonalInfo extends Component {
                       primary="Middle Initial"
                       secondary={
                         <TextField
+                          inputProps={{ maxLength: 5 }}
                           value={this.props.applicant.middle_initial}
                           placeholder=""
                           onChange={this.handleChange('middle_initial')}
