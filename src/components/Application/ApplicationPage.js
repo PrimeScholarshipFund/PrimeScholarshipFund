@@ -6,7 +6,6 @@ import PersonalInfo from './PersonalInfo';
 import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
-import { Paper } from '../../../node_modules/@material-ui/core';
 import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
 import { saveApplication } from '../../redux/actions/applicantActions';
@@ -116,7 +115,6 @@ class ApplicationPage extends Component {
     if (this.props.applicant.employed_during_prime === '') {
       this.props.applicant.employed_during_prime = false;
     }
-    console.log('savehdjkfhdjskhfd');
     switch (this.state.activeStep) {
       case 1:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
@@ -150,7 +148,6 @@ class ApplicationPage extends Component {
       _activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
     } else {
       _activeStep = this.state.activeStep + 1;
-      console.log('activeStep', _activeStep);
 
       this.setState({
         activeStep: _activeStep,
@@ -167,8 +164,6 @@ class ApplicationPage extends Component {
   }
 
   handleStep = step => () => {
-    console.log(step);
-
     this.setState({
       activeStep: step,
       appPage: step,
@@ -181,14 +176,11 @@ class ApplicationPage extends Component {
   }
 
   pageHandler = (event) => {
-    console.log(event.currentTarget.value);
     let _activeStep;
     if (this.state.activeStep === 3) {
       //add sweet alert here
     } else {
       _activeStep = this.state.activeStep + Number(event.currentTarget.value);
-      console.log('activeStep', _activeStep);
-
       this.setState({
         activeStep: _activeStep,
       });

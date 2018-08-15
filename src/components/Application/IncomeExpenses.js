@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -67,10 +66,6 @@ class IncomeExpenses extends Component {
   handleChange = (key) => event => {
     this.props.dispatch(editApplication({key: key, value: event.target.value}))
   };
-
-  componentDidMount() {
-    console.log(this.props.applicant);
-  }
 
     render() {
       const { classes } = this.props;

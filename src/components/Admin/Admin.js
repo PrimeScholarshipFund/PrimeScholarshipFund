@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import EnhancedTable from '../Table/Table';
 import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import Button from '@material-ui/core/Button';
 import { getAllApplications } from '../../redux/actions/adminActions';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import './Admin.css';
@@ -26,11 +25,9 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(getAllApplications());
-    console.log(this.state);
   }
 
   componentDidUpdate() {
-    console.log(this.state.editStatus)
     if (!this.props.user.isLoading && !this.props.user.admin) {
       this.props.history.push('home');
     }
@@ -45,7 +42,6 @@ class AdminPage extends Component {
   }
 
   handleChange = (prevState) => (value) => {
-    console.log(value);
     if (prevState !== this.state) {
       this.setState({
         selectedApplicant: [...this.state.selectedApplicant, value.value]

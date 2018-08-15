@@ -48,16 +48,8 @@ class FullScreenDialog extends React.Component {
     form_id: this.props.person.form_id,
   };
 
-  confirmClose = () => {
-
-  };
-
-  componentDidUpdate() {
-    console.log(this.state);
-  }
 
   handleChange = prop => event => {
-    console.log(prop, event.target.value);
     this.setState({ [prop]: event.target.value });
   };
 
@@ -116,4 +108,4 @@ FullScreenDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withStyles(styles),connect(),)(FullScreenDialog);
+export default compose(withStyles(styles),connect(mapStateToProps),)(FullScreenDialog);

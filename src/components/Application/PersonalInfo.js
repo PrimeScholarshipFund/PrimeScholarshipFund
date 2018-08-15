@@ -99,8 +99,6 @@ class PersonalInfo extends Component {
     if(race.DNWTS){
       product += 'DNWTS -'
     }
-    console.log(product);
-
     this.props.dispatch(editApplication({key: 'race', value: product}))
 
   }

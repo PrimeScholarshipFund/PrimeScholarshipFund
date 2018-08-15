@@ -11,15 +11,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FilterListIcon from '@material-ui/icons/FilterList';
 
-
-let counter = 0;
-function createData(status, first_name, last_name, email, phone, comment) {
-  counter += 1;
-  return { id: counter, status, first_name, last_name, email, phone, comment };
-}
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -49,11 +41,6 @@ const CustomTableCell = withStyles(theme => ({
 
 class EnhancedTableHead extends React.Component {
 
-  componentDidMount() {
-    console.log(this.props);
-    
-  }
-
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -67,7 +54,6 @@ class EnhancedTableHead extends React.Component {
       //  rowCount,
       } = this.props;
 
-      const { classes } = this.props
 
     return (
       <TableHead>
@@ -81,11 +67,6 @@ class EnhancedTableHead extends React.Component {
                 padding={column.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === column.id ? order : false}
               >
-                {/* <Tooltip
-                  className={classes.head}
-                  title="Sort"
-                  enterDelay={200}
-                > */}
                 <Tooltip
                   title="Sort"
                   placement={column.numeric ? 'bottom-end' : 'bottom-start'}

@@ -2,19 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button } from '../../../node_modules/@material-ui/core';
-
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import './InputField.css'
 
 
@@ -71,9 +63,7 @@ class InputAdornments extends React.Component {
   state = {
     editStatus: false,
   }  
-  componentDidMount() {
-    console.log(this.props.person);
-  }
+
   editToggle = (event) => {
     this.setState({ 
       editStatus: !this.state.editStatus
@@ -81,10 +71,7 @@ class InputAdornments extends React.Component {
 
 }
 
-componentDidUpdate(prevProps, prevState) {
-  console.log(this.state.editStatus);
-  
-}  
+
 render() {
     const { classes } = this.props;
 

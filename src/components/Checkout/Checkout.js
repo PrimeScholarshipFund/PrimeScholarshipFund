@@ -9,17 +9,6 @@ import swal from 'sweetalert';
 
 const CURRENCY = 'USD';
 
-
-const successPayment = data => {
-    const amount = this.props;
-};
-
-const errorPayment = data => {
-    console.log('error', data);
-    
-    swal('Payment Error', `Please try again`, `error`);
-};
-
 const onToken = (amount, description) => token =>
 {axios.post(PAYMENT_SERVER_URL,
     {
@@ -28,8 +17,8 @@ const onToken = (amount, description) => token =>
         currency: CURRENCY,
         amount: amount
     })
-    .then(successPayment,swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
-    .catch(errorPayment)
+    .then(response => swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
+    .catch(error => swal('Payment Error', `Please try again`, `error`))
 }
     
     class Checkout extends Component {
@@ -58,7 +47,6 @@ const onToken = (amount, description) => token =>
          );
     }
 }
-     // const Checkout = ({ name, description, amount }) =>
    
 Checkout.propTypes = {
     classes: PropTypes.object.isRequired,

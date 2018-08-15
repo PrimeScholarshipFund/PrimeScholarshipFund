@@ -1,5 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
+import { put, takeLatest } from 'redux-saga/effects';
 import { updateApplication } from '../requests/adminRequests';
 import { getAllApplicationsRequest } from '../requests/adminRequests';
 
@@ -8,21 +7,19 @@ let apps = '';
 function* fetchAllApplications() {
   try {
         apps = yield getAllApplicationsRequest();
-        console.log(apps);
         yield put({ type: 'SET_ALL_APPLICATIONS', payload: apps});
     } catch (error) {
-        console.log('Error in fetch all application');
+        console.error(500);  
 
     }
 }
 
 function* updateApplicationSaga(action) {
     try {
-      console.log(action.payload);
         yield updateApplication(action.payload);
         yield put({ type: 'GET_ALL_APPLICATIONS' });
     } catch (error) {
-        console.log('Error in update application');
+        console.error(500);  
     }
 }
 
