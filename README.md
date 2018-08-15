@@ -69,9 +69,14 @@ INSERT INTO person ("username", "password", "admin")
 
 ## Stripe Set-Up
 
-[insert Stripe documentation]
+1. Sign into [Stripe](https://dashboard.stripe.com/) account from email where you were invited to organization.
+2. On left-hand side of dashboard, click on [Activate your account](https://dashboard.stripe.com/account/details).
+3. When activation is completed click [Developers](https://dashboard.stripe.com/test/developers) on left-hand side of dashboard.
+4. Replace live keys and server addresses in [Server](/src/config/server.js) and [Stripe-client](/src/config/stripe.js) and [Stripe-server](/server/constants/stripe.js).
+5. When ready to accept payments switch to `process.env.NODE_ENV=production`
 
 # Screenshots
+
 ![alt text](https://i.imgur.com/Li9tY4t.jpg "Landing Page") 
 
 ![alt text](https://i.imgur.com/I99XtN6.png "Application Page")
