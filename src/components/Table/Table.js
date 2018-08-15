@@ -49,11 +49,6 @@ const CustomTableCell = withStyles(theme => ({
 
 class EnhancedTableHead extends React.Component {
 
-  componentDidMount() {
-    console.log(this.props);
-    
-  }
-
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -81,11 +76,6 @@ class EnhancedTableHead extends React.Component {
                 padding={column.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === column.id ? order : false}
               >
-                {/* <Tooltip
-                  className={classes.head}
-                  title="Sort"
-                  enterDelay={200}
-                > */}
                 <Tooltip
                   title="Sort"
                   placement={column.numeric ? 'bottom-end' : 'bottom-start'}

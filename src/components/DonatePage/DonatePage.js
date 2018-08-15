@@ -33,11 +33,6 @@ class DonatePage extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(typeof (this.state.value));
-    console.log(this.state.otherAmount);
-    
-  }
 
   centToDollar = amount => parseFloat(amount, 10)*100
 
@@ -47,11 +42,7 @@ class DonatePage extends Component {
     ...this.state, 
     otherAmount: event.target.value });
 
-  handleRadioChange = event => 
-  
-  { console.log('radio change');
-  
-    this.setState({...this.state, value: event.target.value });}
+  handleRadioChange = event => this.setState({...this.state, value: event.target.value });
 
 
 

@@ -6,7 +6,6 @@ const router = express.Router();
  * GET all information about every applicant
  */
 router.get('/applicants', (req, res) => {
-  console.log(req.user);
     if(req.user.admin) {
         let queryText = `SELECT * from form
         JOIN contact on contact.form_id = form.id
@@ -20,7 +19,6 @@ router.get('/applicants', (req, res) => {
             .then(response => {
                 res.send(response.rows);
             }).catch(err => {
-                console.log({err});
                 res.sendStatus(500);
             })
     } else {

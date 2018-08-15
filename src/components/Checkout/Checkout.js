@@ -14,9 +14,7 @@ const successPayment = data => {
     const amount = this.props;
 };
 
-const errorPayment = data => {
-    console.log('error', data);
-    
+const errorPayment = data => {    
     swal('Payment Error', `Please try again`, `error`);
 };
 

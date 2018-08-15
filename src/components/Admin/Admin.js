@@ -26,11 +26,9 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(getAllApplications());
-    console.log(this.state);
   }
 
   componentDidUpdate() {
-    console.log(this.state.editStatus)
     if (!this.props.user.isLoading && !this.props.user.admin) {
       this.props.history.push('home');
     }
@@ -45,7 +43,6 @@ class AdminPage extends Component {
   }
 
   handleChange = (prevState) => (value) => {
-    console.log(value);
     if (prevState !== this.state) {
       this.setState({
         selectedApplicant: [...this.state.selectedApplicant, value.value]

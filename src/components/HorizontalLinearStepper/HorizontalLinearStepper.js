@@ -51,16 +51,6 @@ const styles = theme => ({
 
 class HorizontalLinearStepper extends Component {
 
-    componentDidMount() {
-        console.log(this.props);
-
-    }
-
-    componentDidUpdate = (prevProps, currentProps) => {
-    }
-
-
-
 
     render() {
         const { classes } = this.props;

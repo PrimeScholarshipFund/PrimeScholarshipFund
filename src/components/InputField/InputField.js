@@ -71,9 +71,7 @@ class InputAdornments extends React.Component {
   state = {
     editStatus: false,
   }  
-  componentDidMount() {
-    console.log(this.props.person);
-  }
+
   editToggle = (event) => {
     this.setState({ 
       editStatus: !this.state.editStatus
@@ -81,10 +79,7 @@ class InputAdornments extends React.Component {
 
 }
 
-componentDidUpdate(prevProps, prevState) {
-  console.log(this.state.editStatus);
-  
-}  
+
 render() {
     const { classes } = this.props;
 

@@ -17,23 +17,21 @@ function* getApplicant() {
       payload: formData[0],
     })
   } catch (error) {
-    console.log('WHOOPSIES', error);
+    console.error(500);  
   }
 }
 
 function* saveApplication(action) {
   try {
-    console.log('cheetah', action.payload);
     yield saveApplicationRequest(action.payload);
     formData = yield getApplicationRequest(formId.id);
-    console.log('Elephant', formData);
     yield put({
       type: APPLICANT_ACTIONS.FILL_FORM,
       payload: formData[0],
     })
   }
   catch (error) {
-    console.log('WHOOPSIES', error);
+    console.error(500);  
   }
 }
 
