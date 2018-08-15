@@ -232,6 +232,11 @@ ul {
   border-radius: 0px;
 }
 
+.secret {
+    text-align: center;
+    color: whitesmoke;
+}
+
 .sub {
     text-align: center;
 }
