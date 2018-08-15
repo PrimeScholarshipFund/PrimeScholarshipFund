@@ -209,7 +209,7 @@ class EnhancedTable extends React.Component {
             </TableBody>
           </Table>
         </div>
-        {this.props.apps.length === 1 ? <Button onClick={this.props.reset}>Reset</Button> : (null)}
+        {this.props.apps.length === 1 ? <Button color="secondary" onClick={this.props.reset}>Reset</Button> : (null)}
         <TablePagination
           component="div"
           count={this.props.apps.length}
