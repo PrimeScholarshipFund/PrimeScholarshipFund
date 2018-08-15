@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import EnhancedTable from '../Table/Table';
 import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import Button from '@material-ui/core/Button';
 import { getAllApplications } from '../../redux/actions/adminActions';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import './Admin.css';
@@ -31,19 +30,22 @@ class AdminPage extends Component {
 
   componentDidUpdate() {
     console.log(this.state.editStatus)
+    //on update check for loading and if loading is complete and admin is not present
+    //send user to the home page if they do not have admin priv.
     if (!this.props.user.isLoading && !this.props.user.admin) {
       this.props.history.push('home');
     }
   }
 
 
-
+  //function to change the active person in the fullscreen dialog box
   setActive = (person) => {
     this.setState({
       active: person
     });
   }
 
+  //changes the table to match search criteria
   handleChange = (prevState) => (value) => {
     console.log(value);
     if (prevState !== this.state) {
@@ -53,6 +55,7 @@ class AdminPage extends Component {
     }
   };
 
+  //resets the table
   reset = (event) => {
     this.setState({
       selectedApplicant: []
@@ -61,7 +64,7 @@ class AdminPage extends Component {
 
 
   render() {
-
+    //render the table conditionally if at least 1 application is present.
     let content = null;
 
     if(this.props.apps){content = (
@@ -98,7 +101,7 @@ class AdminPage extends Component {
     )
     };
 
-
+    
     return (
       <div>
         <SimpleTabs/>
@@ -108,6 +111,7 @@ class AdminPage extends Component {
         <br />
         <br />
         <h1>ADMIN PAGE</h1>
+        {/* display content if active is null and open fullscreen if active is true */}
         {this.state.active === null ? (
             content
         ) : (

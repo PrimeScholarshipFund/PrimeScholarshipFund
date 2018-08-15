@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import './AboutPage.css';
 import PhotoAndy from '../../photos/andy.png';
 import PhotoIlana from '../../photos/ilana.png';
