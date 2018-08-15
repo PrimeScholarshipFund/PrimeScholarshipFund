@@ -45,6 +45,14 @@ INSERT INTO person ("username", "password", "admin")
 
 ```
 
+## Stripe
+
+1. Sign into Stripe account from email where you were invited to organization.
+2. On left-hand side of dashboard, click on "Activate your account".
+3. When activation is completed click "Developers" on left-hand side of dashboard.
+4. Replace live keys and server addresses in `/src/config/` and `/server/constants/stripe.js`
+5. When ready to accept payments switch to `process.env.NODE_END=production`
+
 ## Heroku
 
 1. Register an account on [Heroku](https://signup.heroku.com/login).
