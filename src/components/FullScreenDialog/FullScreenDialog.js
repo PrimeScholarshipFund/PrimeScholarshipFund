@@ -48,6 +48,10 @@ class FullScreenDialog extends React.Component {
     form_id: this.props.person.form_id,
   };
 
+  componentWillUnmount() {
+    console.log('unmounted full screen dialog');
+    this.props.reset();
+  }
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });

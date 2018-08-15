@@ -84,7 +84,6 @@ class AdminPage extends Component {
           <EnhancedTable
                 setActive = {this.setActive}
                 apps = {this.props.apps}
-                reset = {this.reset}
           />
         </div>
       )}
@@ -110,6 +109,7 @@ class AdminPage extends Component {
           <FullScreenDialog
             person = {this.state.active}
             setActive = {this.setActive}
+            reset = {this.reset}
  
           />
         )
