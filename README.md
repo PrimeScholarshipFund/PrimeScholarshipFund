@@ -1,25 +1,31 @@
 # Deployment
 
 ## Downloads
+
 1. Clone the GitHub repository down to your machine.
 2. Download [Postico](https://eggerapps.at/postico/).
 3. If you have not already done so, install the Heroku CLI (Command Line Interface) in the Terminal with the command `brew install heroku`.
 
 ## Database
+
 1. Using Postico, create a database called `prime_scholarship`.
-2. Run the `CREATE TABLE` queries for the person, form, contact, demographics, income, and expenses tables located in the `database.sql` file. \
-Ex.: 
-```
+2. Run the `CREATE TABLE` queries for the person, form, contact, demographics, income, and expenses tables located in the `database.sql` file.
+
+Ex.:
+
+```sql
+
 CREATE TABLE "person" (
     "id" serial PRIMARY KEY NOT NULL,
     "username" varchar(20) NOT NULL UNIQUE,
     "password" varchar(100) NOT NULL,
     "admin" BOOLEAN NOT NULL DEFAULT 'false'
 );
-```
-
 
 ```
+
+```sql
+
 CREATE TABLE "form" (
     "id" serial PRIMARY KEY NOT NULL,
     "status" varchar(100),
@@ -28,15 +34,19 @@ CREATE TABLE "form" (
     "comments" varchar(1000) NOT NULL DEFAULT ''
 );
 ```
+
 3. If you wish to have test data, run the `INSERT INTO` queries located in the `database.sql` file to insert the test data into the database tables. \
-    Ex.: 
-```
+
+```sql
+
 INSERT INTO person ("username", "password", "admin")
     VALUES ('administrator', '1234', true),
     ...
+
 ```
 
 ## Heroku
+
 1. Register an account on [Heroku](https://signup.heroku.com/login).
 2. Authenticate your Heroku credentials with the command `heroku login` and follow the prompts.
 3. In the Terminal, navigate to the folder where you cloned the repo and use the command `heroku create`.
