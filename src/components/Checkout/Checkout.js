@@ -17,8 +17,8 @@ const onToken = (amount, description) => token =>
         currency: CURRENCY,
         amount: amount
     })
-    .then(response => swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
-    .catch(swal('Payment Error', `Please try again`, `error`))
+    .then(response => { console.log(response.status);swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`)})
+    .catch(error => {console.log(error); swal('Payment Error', `Please try again`, `error`)})
 }
     
     class Checkout extends Component {
