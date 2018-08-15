@@ -32,6 +32,7 @@ const styles = theme => ({
   },
 });
 
+//function to convert numbers to money format
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;
 
@@ -57,6 +58,7 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+//access to redux store
 const mapStateToProps = state => ({
   applicant: state.applicant,
 });
