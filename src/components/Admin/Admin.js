@@ -28,7 +28,6 @@ class AdminPage extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.editStatus)
     //on update check for loading and if loading is complete and admin is not present
     //send user to the home page if they do not have admin priv.
 

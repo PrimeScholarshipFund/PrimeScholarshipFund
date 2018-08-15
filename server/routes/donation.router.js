@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const stripe = require("stripe")(process.env.SECRET_KEY);
+
+const STRIPE_SECRET_KEY = 
+process.env.NODE_ENV === "production" ? process.env.STRIPE_SECRET_KEY_PRODUCTION
+: process.env.STRIPE_SECRET_KEY_TEST;
+
+const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
     if (stripeErr) {

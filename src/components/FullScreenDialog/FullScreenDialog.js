@@ -49,7 +49,6 @@ class FullScreenDialog extends React.Component {
   };
 
   componentWillUnmount() {
-    console.log('unmounted full screen dialog');
     this.props.reset();
   }
 

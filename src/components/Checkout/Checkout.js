@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
-import PAYMENT_SERVER_URL from '../../config/server';
 import DonateButton from './DonateButton';
 import swal from 'sweetalert';
 
 const CURRENCY = 'USD';
+
+
+const PAYMENT_SERVER_URL = 
+process.env.NODE_ENV === "production" ? process.env.PAYMENT_SERVER_URL
+: process.env.PAYMENT_SERVER_URL_TEST;
+
+const STRIPE_PUBLIC_KEY = 
+process.env.NODE_ENV === "production" ? process.env.STRIPE_PUBLIC_KEY_PRODUCTION
+: process.env.STRIPE_PUBLIC_KEY_TEST;
+ 
 
 const onToken = (amount, description) => token =>
 {axios.post(PAYMENT_SERVER_URL,
@@ -16,7 +25,7 @@ const onToken = (amount, description) => token =>
         currency: CURRENCY,
         amount: amount
     })
-    .then(response => { console.log(response);swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`)})
+    .then(response => { console.log(response.data);swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`)})
     .catch(error => {console.log(error); swal('Payment Error', `Please try again`, `error`)})
 }
     
@@ -26,7 +35,6 @@ const onToken = (amount, description) => token =>
         parseAmount = amount => parseInt(amount, 10)*100
         
         render() { 
-            console.log(process.env.PUBLIC_KEY);
             
             return ( 
                 
@@ -36,7 +44,7 @@ const onToken = (amount, description) => token =>
                 amount={this.parseAmount(this.props.amount)}
                 token={onToken(this.parseAmount(this.props.amount), this.props.description)}
                 currency={CURRENCY}
-                stripeKey={process.env.PUBLIC_KEY}
+                stripeKey={STRIPE_PUBLIC_KEY}
                 email={''}
                 billingAddress={true}
                 >
