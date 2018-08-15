@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { VisibilityOffIcon, VisibilityIcon } from 'mdi-react';
+import SimpleTabs from '../SimpleTabs/SimpleTabs';
 
 const inputStyle = {
   width: '200px'
@@ -88,6 +89,7 @@ class RegisterPage extends Component {
     return (
       <div className="loginRegister" >
         {this.renderAlert()}
+        < SimpleTabs />
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
