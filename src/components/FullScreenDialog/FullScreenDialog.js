@@ -108,4 +108,4 @@ FullScreenDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withStyles(styles),connect(),)(FullScreenDialog);
+export default compose(withStyles(styles),connect(mapStateToProps),)(FullScreenDialog);

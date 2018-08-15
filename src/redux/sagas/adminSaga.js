@@ -1,4 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { updateApplication } from '../requests/adminRequests';
 import { getAllApplicationsRequest } from '../requests/adminRequests';
 

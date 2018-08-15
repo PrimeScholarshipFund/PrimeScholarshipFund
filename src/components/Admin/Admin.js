@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import EnhancedTable from '../Table/Table';
 import FullScreenDialog from '../FullScreenDialog/FullScreenDialog';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import Button from '@material-ui/core/Button';
 import { getAllApplications } from '../../redux/actions/adminActions';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import './Admin.css';

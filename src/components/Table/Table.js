@@ -11,15 +11,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FilterListIcon from '@material-ui/icons/FilterList';
 
-
-let counter = 0;
-function createData(status, first_name, last_name, email, phone, comment) {
-  counter += 1;
-  return { id: counter, status, first_name, last_name, email, phone, comment };
-}
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -62,7 +54,6 @@ class EnhancedTableHead extends React.Component {
       //  rowCount,
       } = this.props;
 
-      const { classes } = this.props
 
     return (
       <TableHead>

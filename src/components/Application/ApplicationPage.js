@@ -6,7 +6,6 @@ import PersonalInfo from './PersonalInfo';
 import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
-import { Paper } from '../../../node_modules/@material-ui/core';
 import './ApplicationPage.css';
 import { getApplicant } from '../../redux/actions/applicantActions';
 import { saveApplication } from '../../redux/actions/applicantActions';
