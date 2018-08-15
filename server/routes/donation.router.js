@@ -1,7 +1,7 @@
 const express = require('express');
-const pool = require('../modules/pool');
 const router = express.Router();
-const stripe = require("stripe")("sk_test_vSIL1tunUMSX1IwoXH4CnQez");
+const STRIPE_SECRET_KEY = require('../constants/stripe')
+const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
     if (stripeErr) {

@@ -99,8 +99,6 @@ class PersonalInfo extends Component {
     if(race.DNWTS){
       product += 'DNWTS -'
     }
-    console.log(product);
-
     this.props.dispatch(editApplication({key: 'race', value: product}))
 
   }
@@ -155,6 +153,7 @@ class PersonalInfo extends Component {
                       primary="Middle Initial"
                       secondary={
                         <TextField
+                          inputProps={{ maxLength: 5 }}
                           value={this.props.applicant.middle_initial}
                           placeholder=""
                           onChange={this.handleChange('middle_initial')}

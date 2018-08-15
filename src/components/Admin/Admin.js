@@ -25,13 +25,13 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(getAllApplications());
-    console.log(this.state);
   }
 
   componentDidUpdate() {
     console.log(this.state.editStatus)
     //on update check for loading and if loading is complete and admin is not present
     //send user to the home page if they do not have admin priv.
+
     if (!this.props.user.isLoading && !this.props.user.admin) {
       this.props.history.push('home');
     }
@@ -47,7 +47,6 @@ class AdminPage extends Component {
 
   //changes the table to match search criteria
   handleChange = (prevState) => (value) => {
-    console.log(value);
     if (prevState !== this.state) {
       this.setState({
         selectedApplicant: [...this.state.selectedApplicant, value.value]

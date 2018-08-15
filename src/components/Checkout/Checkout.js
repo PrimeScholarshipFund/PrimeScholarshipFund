@@ -2,33 +2,24 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
-import config from '../../config/config';
+import PAYMENT_SERVER_URL from '../../config/server';
+import STRIPE_PUBLISHABLE from '../../config/stripe'
 import DonateButton from './DonateButton';
 import swal from 'sweetalert';
 
 const CURRENCY = 'USD';
 
-
-const successPayment = data => {
-    const amount = this.props;
-};
-
-const errorPayment = data => {
-    console.log('error', data);
-    
-    swal('Payment Error', `Please try again`, `error`);
-};
-
 const onToken = (amount, description) => token =>
-axios.post(config.PAYMENT_SERVER_URL,
+{axios.post(PAYMENT_SERVER_URL,
     {
         description: description,
         source: token.id,
         currency: CURRENCY,
         amount: amount
     })
-    .then(successPayment,swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
-    .catch(errorPayment);
+    .then(response => swal (`Payment of ${(amount/100).toLocaleString('en-US', {style: 'currency', currency: 'USD'})} via Stripe successful`, `Thank you for your donation`, `success`))
+    .catch(error => swal('Payment Error', `Please try again`, `error`))
+}
     
     class Checkout extends Component {
         
@@ -44,7 +35,7 @@ axios.post(config.PAYMENT_SERVER_URL,
                 amount={this.parseAmount(this.props.amount)}
                 token={onToken(this.parseAmount(this.props.amount), this.props.description)}
                 currency={CURRENCY}
-                stripeKey={config.STRIPE_PUBLISHABLE}
+                stripeKey={STRIPE_PUBLISHABLE}
                 email={''}
                 billingAddress={true}
                 >
@@ -56,7 +47,6 @@ axios.post(config.PAYMENT_SERVER_URL,
          );
     }
 }
-     // const Checkout = ({ name, description, amount }) =>
    
 Checkout.propTypes = {
     classes: PropTypes.object.isRequired,

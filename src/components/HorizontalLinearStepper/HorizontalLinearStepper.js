@@ -7,7 +7,6 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import classNames from 'classnames';
 
 
 const styles = theme => ({
@@ -50,16 +49,6 @@ const styles = theme => ({
 
 
 class HorizontalLinearStepper extends Component {
-
-    componentDidMount() {
-        console.log(this.props);
-
-    }
-
-    componentDidUpdate = (prevProps, currentProps) => {
-    }
-
-
 
 
     render() {

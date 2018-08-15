@@ -5,11 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import deepOrange from '@material-ui/core/colors/deepOrange';
-import { StickyContainer, Sticky } from 'react-sticky';
 import classNames from 'classnames';
-import { Button } from '../../../node_modules/@material-ui/core';
-
 import LoginButton from '../LoginButton/LoginButton';
 
 function TabContainer(props) {

@@ -69,10 +69,6 @@ class IncomeExpenses extends Component {
     this.props.dispatch(editApplication({key: key, value: event.target.value}))
   };
 
-  componentDidMount() {
-    console.log(this.props.applicant);
-  }
-
     render() {
       const { classes } = this.props;
 

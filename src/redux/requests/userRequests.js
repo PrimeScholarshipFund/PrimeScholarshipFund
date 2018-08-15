@@ -11,6 +11,3 @@ export function callUser() {
     .catch((error) => { throw error.response || error; });
 }
 
-export function placeholder() {
-  console.log('hi');
-}

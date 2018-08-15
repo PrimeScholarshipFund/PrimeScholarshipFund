@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +9,6 @@ import HeadImage from '../../photos/ScholarshipFundPic.jpg';
 import AboutIcon from '../../photos/aboutUsIcon1.png';
 import PrimeIcon from '../../photos/aboutUsIcon.png';
 import DonateIcon from '../../photos/DonateIcon.png';
-import { Parallax } from '../../../node_modules/react-scroll-parallax';
 
 class HomePage extends Component {
 

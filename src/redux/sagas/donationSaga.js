@@ -7,13 +7,12 @@ let chargeResponse = '';
 function* acceptDonations(action) {
   try {
     chargeResponse = yield postDonationRequest(action.payload);
-    console.log(chargeResponse);
     yield put({
       type: DONATION_ACTIONS.DISPLAY_MESSAGE,
       payload: chargeResponse,
     })
   } catch (error) {
-    console.log('WHOOPSIES', error);
+    console.error(500);
   }
 }
 

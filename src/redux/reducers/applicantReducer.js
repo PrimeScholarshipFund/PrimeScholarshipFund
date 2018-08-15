@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { APPLICANT_ACTIONS } from '../actions/applicantActions';
 
 const applicant = (state = {}, action) => {
