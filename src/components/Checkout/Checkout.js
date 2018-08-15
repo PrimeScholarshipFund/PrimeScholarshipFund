@@ -3,7 +3,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
 import PAYMENT_SERVER_URL from '../../config/server';
-import STRIPE_PUBLISHABLE from '../../config/stripe'
 import DonateButton from './DonateButton';
 import swal from 'sweetalert';
 
@@ -27,6 +26,8 @@ const onToken = (amount, description) => token =>
         parseAmount = amount => parseInt(amount, 10)*100
         
         render() { 
+            console.log(process.env.PUBLIC_KEY);
+            
             return ( 
                 
             <StripeCheckout
@@ -35,7 +36,7 @@ const onToken = (amount, description) => token =>
                 amount={this.parseAmount(this.props.amount)}
                 token={onToken(this.parseAmount(this.props.amount), this.props.description)}
                 currency={CURRENCY}
-                stripeKey={STRIPE_PUBLISHABLE}
+                stripeKey={process.env.PUBLIC_KEY}
                 email={''}
                 billingAddress={true}
                 >
