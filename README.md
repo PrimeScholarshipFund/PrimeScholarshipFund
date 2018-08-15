@@ -1,8 +1,8 @@
 # Prime Scholarship Fund
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+The Prime Scholarship Fund is a full-service database application that is intended to be used by three types of users: applicants, admins, and donors.
 
-EDIT THAT^^^
+Applicants can use the service to apply for scholarships to [Prime Digital Academy](https://primeacademy.io/).  Admins can review and process applicants through the cycle of an application.  Donors may donate through the secure Stripe API which has been integrated into the application.
 
 # Built With
 React, Express, PostgreSQL, Material UI, Passport, Stripe, SweetAlerts
@@ -99,7 +99,7 @@ INSERT INTO person ("username", "password", "admin")
 [] Chart.js integration
 
 
-# Deployment
+# Deployment (through Heroku)
 
 NOTE: If this is being deployed for production, it is important to first change the `NODE_ENV` variable in the `.env` file to `NODE_ENV=production` and to change the SERVER_SECRET_SESSION to a new secret.
 
