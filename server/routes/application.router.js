@@ -19,45 +19,6 @@ router.get('/applicant/:id', (req, res) => {
         })
 }); //end applicant get call
 
-
-/**
- * The final save, called at the end of the application process.
- */
-router.put('/all', (req, res) => {
-    (async () => {
-        console.log('in the async');
-
-        // connect to the pool
-        const client = await pool.connect();
-
-        // run the stageQueries function using the request's body
-        // store returned object in a constant
-        const queriesAndInjections = await stageQueries('all', req.body.data);
-
-        // SQL transaction
-        try{
-            console.log('in async put');
-
-            await client.query('BEGIN');
-            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
-            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
-            await client.query(queriesAndInjections.thirdQuery, queriesAndInjections.thirdInjection);
-            await client.query(queriesAndInjections.fourthQuery, queriesAndInjections.fourthInjection);
-            await client.query(queriesAndInjections.fifthQuery, queriesAndInjections.fifthInjection);
-            await client.query('COMMIT');
-
-            res.sendStatus(200);
-            // on error
-        } catch (err) {
-            await pool.query('ROLLBACK');
-            console.log({err});
-            res.sendStatus(500);
-        } finally {
-            client.release();
-        }
-    })().catch(e => console.error(e.stack));
-});
-
 // Create a new form 
 router.post('/new', (req, res) => {
     // declare variables
@@ -65,8 +26,6 @@ router.post('/new', (req, res) => {
     let formId;
 
     (async () => {
-        console.log('in the async');
-
         // connect to pool
         const client = await pool.connect();
         console.log('connected');
@@ -81,14 +40,10 @@ router.post('/new', (req, res) => {
 
             // if the form data exists...
             if(rows[0]){
-                console.log('in true');
-                
                 // ...prepare the object to return
                 formId = {id: rows[0].id}
                 // ...otherwise create a new form
             } else {
-                console.log('in false');
-                
                 let { rows } = await client.query(`INSERT INTO form (person_id) VALUES ($1) RETURNING id`, [person_id]);
                 formId = {id: rows[0].id};
                 
@@ -111,16 +66,46 @@ router.post('/new', (req, res) => {
     })().catch(e => console.error(e.stack));
 });
 
+// The final save, called at the end of the application process.
+router.put('/all', (req, res) => {
+    (async () => {
+        // connect to the pool
+        const client = await pool.connect();
+
+        // run the stageQueries function using the request's body
+        // store returned object in a constant
+        const queriesAndInjections = await stageQueries('all', req.body.data);
+
+        // SQL transaction
+        try{
+            await client.query('BEGIN');
+            await client.query(queriesAndInjections.firstQuery, queriesAndInjections.firstInjection);
+            await client.query(queriesAndInjections.secondQuery, queriesAndInjections.secondInjection);
+            await client.query(queriesAndInjections.thirdQuery, queriesAndInjections.thirdInjection);
+            await client.query(queriesAndInjections.fourthQuery, queriesAndInjections.fourthInjection);
+            await client.query(queriesAndInjections.fifthQuery, queriesAndInjections.fifthInjection);
+            await client.query('COMMIT');
+
+            res.sendStatus(200);
+
+        // on error
+        } catch (err) {
+            await pool.query('ROLLBACK');
+            console.log({err});
+            res.sendStatus(500);
+        } finally {
+            client.release();
+        }
+    })().catch(e => console.error(e.stack));
+});
+
 // handles saves from the personal and expenses pages
 router.put('/:page', (req, res) => {
-  console.log('dinotime', req.body);
     const page = req.params.page;
     (async () => {
-        console.log('in the async');
+        const client = await pool.connect();]
 
-        const client = await pool.connect();
-        console.log('connected');
-
+        // prepare the SQL queries
         const queriesAndInjections = await stageQueries(page, req.body.data);
         try{
             await client.query('BEGIN');
@@ -138,9 +123,9 @@ router.put('/:page', (req, res) => {
     })().catch(e => console.error(e.stack));
 });
 
+// Function that takes in the route name and req.body, parses the body, then returns an object of the SQL queries and injections
 const stageQueries = function(route, body) {
-    console.log('in stageQueries', body);
-
+    // initialize queries and injections
     let firstQuery = '';
     let secondQuery = '';
     let thirdQuery = '';
@@ -156,9 +141,9 @@ const stageQueries = function(route, body) {
     const form_id = body.form_id;
 
     switch(route) {
+        // if the route is all or personal
         case 'all':
         case 'personal':
-            console.log('in personal switch');
 
             const first_name = body.first_name;
             const last_name = body.last_name;
@@ -189,11 +174,11 @@ const stageQueries = function(route, body) {
             console.log({firstInjection});
             secondInjection.push(gender, race, age, level_of_ed, lgbtq_status, form_id)
 
+            // break if personal, if all then keep going into the income section to grab all the info from the body
             if(route === 'personal'){
                 break;
             }
         case 'income':
-            console.log('in income switch');
 
             const adjusted_gross_income = body.adjusted_gross_income;
             const filing_status = body.filing_status;
@@ -226,6 +211,7 @@ const stageQueries = function(route, body) {
             }
     } // end route switch
 
+    // create returnObject
     returnObject = {
         firstQuery: firstQuery,
         secondQuery: secondQuery,
@@ -244,8 +230,6 @@ const stageQueries = function(route, body) {
             fifthInjection: fifthInjection
         }
     }
-
-    console.log({returnObject});
 
     return returnObject;
 };
