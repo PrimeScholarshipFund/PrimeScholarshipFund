@@ -11,8 +11,6 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const application = require('./routes/application.router');
-const profile = require('./routes/profile.router');
-const question = require('./routes/question.router');
 const donation = require('./routes/donation.router');
 const admin = require('./routes/admin.router');
 
@@ -30,8 +28,6 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/application', application);
-app.use('/api/profile', profile);
-app.use('/api/question', question);
 app.use('/api/donation', donation);
 app.use('/api/admin', admin);
 
