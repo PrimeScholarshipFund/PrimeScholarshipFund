@@ -33,7 +33,8 @@ class DonatePage extends Component {
     }
   }
 
-
+  //gets the cent value stripe needs and returns a dollar amount so 
+  //it is easily human readable
   centToDollar = amount => parseFloat(amount, 10)*100
 
   handleChange = (key) => (event) => this.setState({...this.state, [key]: event.target.value});

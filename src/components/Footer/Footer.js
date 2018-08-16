@@ -3,6 +3,8 @@ import { SocialIcon } from 'react-social-icons';
 import StripeImage from '../../photos/powered_by_stripe.svg'
 import { IconButton } from '@material-ui/core';
 
+//static footer, you can add your links to your
+//social media profiles
 class Footer extends Component {
     state = {  }
     render() { 

@@ -48,6 +48,9 @@ class FullScreenDialog extends React.Component {
     form_id: this.props.person.form_id,
   };
 
+  //when page closes it resets the selected applicant
+  //so you can get the latest comments
+  //you need to leave this so comments will save
   componentWillUnmount() {
     this.props.reset();
   }

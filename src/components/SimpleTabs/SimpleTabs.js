@@ -61,6 +61,7 @@ class SimpleTabs extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
 
+    //gets value from state so the indication bar works
     return (
       <div className={classes.root}>
           <AppBar position="fixed">

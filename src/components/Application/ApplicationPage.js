@@ -160,6 +160,8 @@ class ApplicationPage extends Component {
     });
   }
 
+  //gets step that is clicked or received from navigation buttons
+  //and sets active step to the value desired
   handleStep = step => () => {
     this.setState({
       activeStep: step,
@@ -168,20 +170,20 @@ class ApplicationPage extends Component {
     window.scroll(0,0);
   }
 
+  //check if current step is the last step available
   isLastStep = () => {
     return this.state.activeStep === totalSteps() -1;
   }
 
+  //set the active page in application to the page user clicked on
+  //gets a Number from the value of the step button
   pageHandler = (event) => {
     let _activeStep;
-    if (this.state.activeStep === 3) {
-      //add sweet alert here
-    } else {
       _activeStep = this.state.activeStep + Number(event.currentTarget.value);
       this.setState({
         activeStep: _activeStep,
       });
-    }
+    
     this.setState({
       appPage: this.state.appPage + parseInt(event.currentTarget.value, 10),
     });

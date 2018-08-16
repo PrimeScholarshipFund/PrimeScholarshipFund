@@ -24,6 +24,7 @@ class AdminPage extends Component {
   };
 
   componentDidMount() {
+    //get all applications when admin page opens
     this.props.dispatch(getAllApplications());
   }
 

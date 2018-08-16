@@ -28,7 +28,10 @@ class DonateRadioButtons extends Component {
 
   render() {
     const { classes } = this.props;
-
+    //radio buttons for default donation values, you can change
+    //the label and value to change default values
+    //you need an integer for value as a string
+    //because material-ui only accepts values
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>

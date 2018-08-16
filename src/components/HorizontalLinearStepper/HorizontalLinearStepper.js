@@ -48,6 +48,8 @@ const styles = theme => ({
 })
 
 
+//navigation for this stepper is received from parent component
+//so it stays consistent whether you navigate directly or buttons
 class HorizontalLinearStepper extends Component {
 
 

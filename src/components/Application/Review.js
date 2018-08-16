@@ -10,6 +10,8 @@ const mapStateToProps = state => ({
   applicant: state.applicant,
 });
 
+//gets all information from other pages and displays it to user 
+//so they can check if everything is correct
 class Review extends Component {
 
     render() {

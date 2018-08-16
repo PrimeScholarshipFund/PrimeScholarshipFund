@@ -91,7 +91,7 @@ INSERT INTO person ("username", "password", "admin")
 
 ## Screenshots
 
-![alt text](https://i.imgur.com/Li9tY4t.jpg "Landing Page") 
+![alt text](https://i.imgur.com/Li9tY4t.jpg "Landing Page")
 
 ![alt text](https://i.imgur.com/I99XtN6.png "Application Page")
 
@@ -114,7 +114,6 @@ INSERT INTO person ("username", "password", "admin")
 
 [] CSV export \
 [] Chart.js integration
-
 
 ## Deployment (through Heroku)
 

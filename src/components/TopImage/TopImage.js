@@ -3,7 +3,8 @@ import './TopImage.css';
 import { Parallax } from '../../../node_modules/react-scroll-parallax';
 
 class TopImage extends Component {
-
+  //pass image into this component as props so you 
+  //can use any image as a header
   render() {
     return (
       <Parallax 

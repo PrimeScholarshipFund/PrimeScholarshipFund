@@ -23,7 +23,6 @@ import Footer from './components/Footer/Footer';
 const App = () => (
   <div>
     <MuiThemeProvider theme={PSFTheme}>
-      {/* <Header title="Project Base" /> */}
         <ParallaxProvider>
           <Router>
             <Switch>

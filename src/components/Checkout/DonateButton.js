@@ -17,6 +17,8 @@ const styles = {
     textTransform: 'capitalize',
   },
 };
+
+//Make a button for donate page and style it here
 class DonateButton extends Component {
   render() { 
     return ( 
