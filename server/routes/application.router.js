@@ -103,7 +103,7 @@ router.put('/all', (req, res) => {
 router.put('/:page', (req, res) => {
     const page = req.params.page;
     (async () => {
-        const client = await pool.connect();]
+        const client = await pool.connect();
 
         // prepare the SQL queries
         const queriesAndInjections = await stageQueries(page, req.body.data);

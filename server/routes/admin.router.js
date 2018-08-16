@@ -22,20 +22,15 @@ router.get('/applicants', (req, res) => {
                 res.sendStatus(500);
             })
     } else {
-        console.log(`you can't do that!!`);
         res.sendStatus(500);
     }
 
 });
 
 router.put('/save', (req, res) => {
-    console.log('In save', req.body);
-    
     const comments = req.body.comments;
     const status = req.body.status;
     const form_id = req.body.form_id;
-
-    console.log(comments, status, form_id);
 
     let queryText = `UPDATE form SET comments=$1, status=$2 WHERE id=$3`;
     pool.query(queryText, [comments, status, form_id])
