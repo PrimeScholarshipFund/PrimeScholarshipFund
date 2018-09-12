@@ -1,8 +1,11 @@
 
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Raleway', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align-last: center;
     background-color: whitesmoke;
+    color:#60605f;
     
 }
 
@@ -15,33 +18,20 @@ body {
     border-radius: 2px;
 } */
 
-h1  {
-    color: #3F51B5;
+h1, h2, h3, h4, h5, h6  {
+    color: #007da4;
 }
 
-h2 {
-    color: #3F51B5;
-}
-h3 {
-    color: #3F51B5;
-}
-
-h4 {
-    color: #3F51B5;
-}
-
-h5 {
-    color: #3F51B5;
-}
-
-h6 {
-    color: #3F51B5;
-}
 
 /*
 li {
     float: left;
 } */
+.linkPage {
+    text-decoration: none;
+    font-size: 16px;
+    color: #007da4;
+}
 
 li a {
     display: block;
@@ -59,9 +49,10 @@ li a:hover {
 }
 
 p {
-    text-align: justify;
-    text-justify: inter-word;
-    padding: 0px 25px;
+    /* text-align: justify; */
+    /* text-justify: inter-word; */
+    /* padding: 15px auto; */
+    line-height: 1.6em;
 }
 
 /* input {
@@ -82,8 +73,9 @@ ul {
 
 .fill {
     overflow-wrap: normal;
-    margin: 200px auto 50px auto;
+    margin-top: 100px;
     text-align: center;
+    
 }
 
 .bottom-2 {
@@ -155,7 +147,7 @@ ul {
     padding-top: 10px;
 }
 
-.grid-2 h3 {
+.grid-2 h3 p {
     text-align: center;
 
 }
@@ -175,6 +167,10 @@ ul {
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: rgba(95, 183, 221, 0.1);
+    width: 170px;
+    height: 170px;
+    padding: 30px;
 }
 
 .inline {
@@ -193,8 +189,8 @@ ul {
 }
 
 .icon {
-    height: 175px;
-    margin: auto;
+    height: 135px;
+    margin-top: 15px;
 }
 
 .item {
@@ -210,6 +206,11 @@ ul {
     margin: 15vh 5vh auto auto;
 }
 
+.mainPageP {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
 .message {
     padding: 10px 0;
 }
@@ -251,12 +252,11 @@ ul {
 
 .wrapper {
     z-index: 0;
-    width: 72.5%;
+    width: 55%;
     margin: auto;
     height: max-content;
     
 }
-
 
 
 #socialIcon {

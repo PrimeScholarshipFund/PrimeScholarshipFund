@@ -32,7 +32,7 @@ class HomePage extends Component {
           </div>
         <div className="grid-3">
           <div className="item">
-            <h3>Our Story</h3>
+            <h2>OUR STORY</h2>
 
             <div className="iconContainer">
             <img src={AboutIcon} alt="" className="icon"/>
@@ -41,12 +41,12 @@ class HomePage extends Component {
             <p>
             The scholarship fund is focused on removing obstacles to education and career advancement.
             </p>
-            <Link to="/about"><p>Learn More</p></Link>
+            <Link to="/about" className="linkPage"><p>LEARN MORE</p></Link>
           </div>
 
           {/* fill with content from here below */}
           <div className="item">
-            <h3>Our Partner</h3>
+            <h2>OUR PARTNER</h2>
             <div className="iconContainer">
             <img src={PrimeIcon} alt="" className="icon"/>
             </div>
@@ -54,11 +54,11 @@ class HomePage extends Component {
             Prime Digital Academy is helping us change the tech industry in the greater Minneapolis / St.
   Paul area.
             </p>
-            <p><a href="https://primeacademy.io/">Learn More</a></p>
+            <p><a href="https://primeacademy.io/" className="linkPage">LEARN MORE</a></p>
           </div>
 
           <div className="item">
-            <h3>Donate</h3>
+            <h2>DONATE</h2>
             <div className="iconContainer">
               <img src={DonateIcon} alt="" className="icon"/>
             </div>
@@ -66,7 +66,7 @@ class HomePage extends Component {
             Underrepresented students need investment and support to change their lives and their
   communities.
             </p>
-            <Link to="/donate"><p>Learn More</p></Link>
+            <Link to="/donate" className="linkPage"><p>LEARN MORE</p></Link>
           </div>
 
         </div>
