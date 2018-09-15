@@ -16,7 +16,10 @@ const styles = theme => ({
         margin: 'auto',
         marginBottom: '10vh',
     },
-    button: {
+    buttonPrevious: {
+        marginLeft: theme.spacing.unit,
+    },
+    buttonNext: {
         marginLeft: theme.spacing.unit,
     },
     completed: {
@@ -86,14 +89,14 @@ class HorizontalLinearStepper extends Component {
                                 onClick = {this.props.pageHandler}
                                 color="primary"
                                 value = {-1}
-                                className = {classes.button}
+                                className = {classes.buttonPrevious}
                             >
                                 Previous Page
                             </Button>
 
                             {this.props.activeStep < 4 ? 
                             <Button
-                                className={classes.button}
+                                className={classes.buttonNext}
                                 variant = "contained"
                                 color = "secondary"
                                 value={1}

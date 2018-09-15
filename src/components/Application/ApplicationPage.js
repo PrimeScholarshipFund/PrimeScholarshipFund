@@ -222,7 +222,7 @@ render() {
   }
 
   return (
-      <div>
+      <div className="application">
         <SimpleTabs 
           value = {2}
         />

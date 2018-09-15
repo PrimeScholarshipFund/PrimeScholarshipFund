@@ -24,9 +24,9 @@ to underrepresented students interested in learning software engineering and UX 
 Design student</li>
         </ul>
 
-        <h3>Before you begin filling up your application</h3>
+        <h3>Before you begin filling out your application</h3>
         <ul className="sub">
-            <li>Have access to your latest 1040 form or information about your annual income</li>
+            <li>Have access to your latest 1040 tax form or information about your annual income</li>
             <li>Information about your typical monthly budget</li>
         </ul>
         
