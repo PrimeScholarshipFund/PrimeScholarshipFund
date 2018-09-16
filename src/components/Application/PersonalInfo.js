@@ -108,213 +108,155 @@ class PersonalInfo extends Component {
 
     return (
       <div>
-
-
         <div className="top">
-
           <div className="wrapper">
             <h2>Personal Information</h2>
-            <div>
-              <h3>Contact Information</h3>
-
-              <List>
-                <ListItem>
-                  <ListItemText
-                    primary="First Name"
-                    secondary={
-                      <TextField
-
-                        value={this.props.applicant.first_name}
-                        placeholder="required"
-                        onChange={this.handleChange('first_name')}
-
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Last Name"
-                    secondary={
-                      <TextField
-
-                        value={this.props.applicant.last_name}
-                        placeholder="required"
-                        onChange={this.handleChange('last_name')}
-
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Middle Initial"
-                    secondary={
-                      <TextField
-                        inputProps={{ maxLength: 5 }}
-                        value={this.props.applicant.middle_initial}
-                        placeholder=""
-                        onChange={this.handleChange('middle_initial')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Address:"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.address_line_1}
-                        placeholder="Line 1"
-                        onChange={this.handleChange('address_line_1')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.address_line_2}
-                        placeholder="Line 2"
-                        onChange={this.handleChange('address_line_2')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="City"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.city}
-                        placeholder="City"
-                        onChange={this.handleChange('city')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="State"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.state}
-                        placeholder="State"
-                        onChange={this.handleChange('state')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Zip Code"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.zip_code}
-                        placeholder="Zip Code"
-                        onChange={this.handleChange('zip_code')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Phone Number"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.phone_number}
-                        placeholder="Phone Number"
-                        onChange={this.handleChange('phone_number')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Email"
-                    secondary={
-                      <TextField
-                        value={this.props.applicant.email}
-                        placeholder="Email"
-                        onChange={this.handleChange('email')}
-                      />
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Have you been accepted to Prime Digital Academy?"
-                    secondary={
-                      <div>
-                        <RadioGroup
-                          value={this.props.applicant.accepted_at_prime}
-                          onChange={this.handleChange('accepted_at_prime')}
-                        >
-                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                        </RadioGroup>
-                        {this.props.applicant.accepted_at_prime === "false" ? (
-                          <div className="sub">
-                            <p>If not, have you applied?</p>
-                            <RadioGroup
-                              value={this.props.applicant.applied_at_prime}
-                              onChange={this.handleChange('applied_at_prime')}
-                            >
-                              <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                              <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                            </RadioGroup>
-                          </div>
-                        ) : (
-                            null
-                          )}
-                      </div>
-                    }
-                  />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemText
-                    primary="Have you received the MSP TechHire/JFCS scholarship?"
-                    secondary={
-                      <div>
-                        <RadioGroup
-                          value={this.props.applicant.msp_tech_scholar}
-                          onChange={this.handleChange('msp_tech_scholar')}
-                        >
-                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                        </RadioGroup>
-                        {this.props.applicant.msp_tech_scholar === "false" ? (
-                          <div className="sub">
-                            <p>If not, have you applied?</p>
-                            <RadioGroup
-                              value={this.props.applicant.applied_for_msp}
-                              onChange={this.handleChange('applied_for_msp')}
-                            >
-                              <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                              <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                            </RadioGroup>
-                          </div>
-                        ) : (
-                            null
-                          )}
-                      </div>
-                    }
-                  />
-                </ListItem>
-              </List>
+            <h3>Contact Information</h3>
+            <div className="grid-2">
+              <p>First Name:</p>
+              <TextField
+                value={this.props.applicant.first_name}
+                placeholder=""
+                onChange={this.handleChange('first_name')}
+              />
             </div>
+            <div className="grid-2">
+              <p>Last Name:</p>
+              <TextField
+                value={this.props.applicant.last_name}
+                placeholder=""
+                onChange={this.handleChange('last_name')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Middle Initial:</p>
+              <TextField
+                inputProps={{ maxLength: 1 }}
+                value={this.props.applicant.middle_initial}
+                placeholder=""
+                onChange={this.handleChange('middle_initial')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Address Line 1:</p>
+              <TextField
+                value={this.props.applicant.address_line_1}
+                placeholder=""
+                onChange={this.handleChange('address_line_1')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Address Line 2:</p>
+              <TextField
+                value={this.props.applicant.address_line_2}
+                placeholder=""
+                onChange={this.handleChange('address_line_2')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>City:</p>
+              <TextField
+                value={this.props.applicant.city}
+                placeholder=""
+                onChange={this.handleChange('city')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>State:</p>
+              <TextField
+                value={this.props.applicant.state}
+                placeholder=""
+                onChange={this.handleChange('state')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Zip Code:</p>
+              <TextField
+                inputProps={{ maxLength: 5 }}
+                value={this.props.applicant.zip_code}
+                placeholder=""
+                onChange={this.handleChange('zip_code')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Phone Number:</p>
+              <TextField
+                value={this.props.applicant.phone_number}
+                placeholder=""
+                onChange={this.handleChange('phone_number')}
+              />
+            </div>
+            <div className="grid-2">
+              <p>Email:</p>
+              <TextField
+                value={this.props.applicant.email}
+                placeholder=""
+                onChange={this.handleChange('email')}
+              />
+            </div>
+
+
+            <ListItem>
+              <ListItemText
+                primary="Have you been accepted to Prime Digital Academy?"
+                secondary={
+                  <div>
+                    <RadioGroup
+                      value={this.props.applicant.accepted_at_prime}
+                      onChange={this.handleChange('accepted_at_prime')}
+                    >
+                      <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                      <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                    </RadioGroup>
+                    {this.props.applicant.accepted_at_prime === "false" ? (
+                      <div className="sub">
+                        <p>If not, have you applied?</p>
+                        <RadioGroup
+                          value={this.props.applicant.applied_at_prime}
+                          onChange={this.handleChange('applied_at_prime')}
+                        >
+                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                        </RadioGroup>
+                      </div>
+                    ) : (
+                        null
+                      )}
+                  </div>
+                }
+              />
+            </ListItem>
+
+            <ListItem>
+              <ListItemText
+                primary="Have you received the MSP TechHire/JFCS scholarship?"
+                secondary={
+                  <div>
+                    <RadioGroup
+                      value={this.props.applicant.msp_tech_scholar}
+                      onChange={this.handleChange('msp_tech_scholar')}
+                    >
+                      <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                      <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                    </RadioGroup>
+                    {this.props.applicant.msp_tech_scholar === "false" ? (
+                      <div className="sub">
+                        <p>If not, have you applied?</p>
+                        <RadioGroup
+                          value={this.props.applicant.applied_for_msp}
+                          onChange={this.handleChange('applied_for_msp')}
+                        >
+                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                        </RadioGroup>
+                      </div>
+                    ) : (
+                        null
+                      )}
+                  </div>
+                }
+              />
+            </ListItem>
 
             {/* componantize question fields by section */}
             <div>
