@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
+import Demographics from './Demographics';
 import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
@@ -15,7 +16,7 @@ import swal from 'sweetalert';
 
 
 const getSteps = () => {
-  return ['Start', 'Personal Information','Income & Expenses','Submit']
+  return ['Start', 'Contact Information','Demographics', 'Income & Expenses','Submit']
 }
 
 //switch function to display the message on the progress bar based on current step
@@ -208,12 +209,15 @@ render() {
       content = <PersonalInfo />
       break;
     case 2:
-      content = <IncomeExpenses />
+      content = <Demographics />
       break;
     case 3:
-      content = <Review checkSubmit={this.checkSubmit}/>
+      content = <IncomeExpenses />
       break;
     case 4:
+      content = <Review checkSubmit={this.checkSubmit}/>
+      break;
+    case 5:
       content = <ThankYou/>
       break;
 
