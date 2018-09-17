@@ -4,20 +4,12 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import InputLabel from '@material-ui/core/InputLabel';
 import { editApplication } from '../../redux/actions/applicantActions';
-
-
-
-
 
 const styles = theme => ({
   container: {
@@ -77,7 +69,6 @@ class PersonalInfo extends Component {
   raceString = () => {
     let product = [];
     let race = this.state.raceBuilder;
-
     if (race.AmInAlNat) {
       product.push('American Indian or Alaska Native');
     }
@@ -96,19 +87,13 @@ class PersonalInfo extends Component {
     if (race.white) {
       product.push('White');
     }
-
     if (race.DNWTS) {
       product.push('DNWTS');
     }
     this.props.dispatch(editApplication({ key: 'race', value: product }))
-
   }
 
   render() {
-
-    console.log(this.props.applicant);
-    console.log(this.props.applicant.race);
-    console.log(this.state);
     return (
       <div>
         <div className="top">
