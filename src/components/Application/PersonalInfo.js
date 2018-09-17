@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
+import InputLabel from '@material-ui/core/InputLabel';
 import { editApplication } from '../../redux/actions/applicantActions';
 
 
@@ -113,7 +114,7 @@ class PersonalInfo extends Component {
             <h2>Personal Information</h2>
             <h3>Contact Information</h3>
             <div className="grid-2">
-              <p>First Name:</p>
+              <p className="label">First Name</p>
               <TextField
                 value={this.props.applicant.first_name}
                 placeholder=""
@@ -121,7 +122,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Last Name:</p>
+              <p className="label">Last Name</p>
               <TextField
                 value={this.props.applicant.last_name}
                 placeholder=""
@@ -129,7 +130,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Middle Initial:</p>
+              <p className="label">Middle Initial (optional)</p>
               <TextField
                 inputProps={{ maxLength: 1 }}
                 value={this.props.applicant.middle_initial}
@@ -138,7 +139,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Address Line 1:</p>
+              <p className="label">Address Line 1</p>
               <TextField
                 value={this.props.applicant.address_line_1}
                 placeholder=""
@@ -146,7 +147,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Address Line 2:</p>
+              <p className="label">Address Line 2 (optional)</p>
               <TextField
                 value={this.props.applicant.address_line_2}
                 placeholder=""
@@ -154,7 +155,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>City:</p>
+              <p className="label">City</p>
               <TextField
                 value={this.props.applicant.city}
                 placeholder=""
@@ -162,7 +163,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>State:</p>
+              <p className="label">State</p>
               <TextField
                 value={this.props.applicant.state}
                 placeholder=""
@@ -170,7 +171,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Zip Code:</p>
+              <p className="label">Zip Code</p>
               <TextField
                 inputProps={{ maxLength: 5 }}
                 value={this.props.applicant.zip_code}
@@ -179,7 +180,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Phone Number:</p>
+              <p className="label">Phone Number</p>
               <TextField
                 value={this.props.applicant.phone_number}
                 placeholder=""
@@ -187,7 +188,7 @@ class PersonalInfo extends Component {
               />
             </div>
             <div className="grid-2">
-              <p>Email:</p>
+              <p className="label">Email</p>
               <TextField
                 value={this.props.applicant.email}
                 placeholder=""
