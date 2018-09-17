@@ -45,13 +45,13 @@ class PersonalInfo extends Component {
 
     raceBuilder:
     {
-      AmInAlNat: false,
-      asian: false,
-      AfricanAm: false,
-      hispLat: false,
-      midEastNorthAf: false,
-      white: false,
-      DNWTS: false
+      AmInAlNat: this.props.applicant.race.includes('American Indian or Alaska Native'),
+      asian: this.props.applicant.race.includes('Asian'),
+      AfricanAm: this.props.applicant.race.includes('Black or African American'),
+      hispLat: this.props.applicant.race.includes('Hispanic or Latino'),
+      midEastNorthAf: this.props.applicant.race.includes('Middle Eastern or North African'),
+      white: this.props.applicant.race.includes('White'),
+      DNWTS: this.props.applicant.race.includes('DNWTS')
     }
   }
 
@@ -75,30 +75,30 @@ class PersonalInfo extends Component {
   }
 
   raceString = () => {
-    let product = '';
+    let product = [];
     let race = this.state.raceBuilder;
 
     if (race.AmInAlNat) {
-      product += 'American Indian or Alaskan Native -'
+      product.push('American Indian or Alaska Native');
     }
     if (race.asian) {
-      product += 'Asian -'
+      product.push('Asian');
     }
     if (race.AfricanAm) {
-      product += 'Black or African American -'
+      product.push('Black or African American');
     }
     if (race.hispLat) {
-      product += 'Hispanic or Latino -'
+      product.push('Hispanic or Latino');
     }
     if (race.midEastNorthAf) {
-      product += 'Middle Eastern or North African -'
+      product.push('Middle Eastern or North African');
     }
     if (race.white) {
-      product += 'White -'
+      product.push('White');
     }
 
     if (race.DNWTS) {
-      product += 'DNWTS -'
+      product.push('DNWTS');
     }
     this.props.dispatch(editApplication({ key: 'race', value: product }))
 
@@ -106,7 +106,9 @@ class PersonalInfo extends Component {
 
   render() {
 
-
+    console.log(this.props.applicant);
+    console.log(this.props.applicant.race);
+    console.log(this.state);
     return (
       <div>
         <div className="top">
@@ -141,7 +143,7 @@ class PersonalInfo extends Component {
               <FormGroup>
                 <FormControlLabel
                   control={
-                    <Checkbox checked={this.state.raceBuilder.AmInAlNat}
+                    <Checkbox checked={this.props.applicant.race.includes('American Indian or Alaska Native')}
                       onChange={this.handleChangeRace('AmInAlNat')}
                       value="AmInAlNat" />
                   }

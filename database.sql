@@ -43,7 +43,7 @@ CREATE TABLE "demographics" (
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "gender" varchar(80) NOT NULL DEFAULT '',
     "specify_gender" varchar(80) DEFAULT '',
-    "race" varchar(80) NOT NULL DEFAULT '',
+    "race" varchar(80)[],
     "age" varchar(80) NOT NULL DEFAULT '',
     "level_of_ed" varchar(80) NOT NULL DEFAULT '',
     "lgbtq_status" varchar(80) NOT NULL DEFAULT ''
