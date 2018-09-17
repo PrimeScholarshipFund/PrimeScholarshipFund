@@ -195,69 +195,54 @@ class PersonalInfo extends Component {
                 onChange={this.handleChange('email')}
               />
             </div>
-
-
-            <ListItem>
-              <ListItemText
-                primary="Have you been accepted to Prime Digital Academy?"
-                secondary={
-                  <div>
-                    <RadioGroup
-                      value={this.props.applicant.accepted_at_prime}
-                      onChange={this.handleChange('accepted_at_prime')}
-                    >
-                      <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                      <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                    </RadioGroup>
-                    {this.props.applicant.accepted_at_prime === "false" ? (
-                      <div className="sub">
-                        <p>If not, have you applied?</p>
-                        <RadioGroup
-                          value={this.props.applicant.applied_at_prime}
-                          onChange={this.handleChange('applied_at_prime')}
-                        >
-                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                        </RadioGroup>
-                      </div>
-                    ) : (
-                        null
-                      )}
-                  </div>
-                }
-              />
-            </ListItem>
-
-            <ListItem>
-              <ListItemText
-                primary="Have you received the MSP TechHire/JFCS scholarship?"
-                secondary={
-                  <div>
-                    <RadioGroup
-                      value={this.props.applicant.msp_tech_scholar}
-                      onChange={this.handleChange('msp_tech_scholar')}
-                    >
-                      <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                      <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                    </RadioGroup>
-                    {this.props.applicant.msp_tech_scholar === "false" ? (
-                      <div className="sub">
-                        <p>If not, have you applied?</p>
-                        <RadioGroup
-                          value={this.props.applicant.applied_for_msp}
-                          onChange={this.handleChange('applied_for_msp')}
-                        >
-                          <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
-                          <FormControlLabel value={'false'} control={<Radio />} label="No" />
-                        </RadioGroup>
-                      </div>
-                    ) : (
-                        null
-                      )}
-                  </div>
-                }
-              />
-            </ListItem>
+            <div className="grid-2">
+              <p className="label">Have you been accepted to Prime Digital Academy?</p>
+              <RadioGroup
+                value={this.props.applicant.accepted_at_prime}
+                onChange={this.handleChange('accepted_at_prime')}
+              >
+                <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                <FormControlLabel value={'false'} control={<Radio />} label="No" />
+              </RadioGroup>
+            </div>
+            {this.props.applicant.accepted_at_prime === "false" ? (
+              <div className="grid-2">
+                <p className="label">Have you applied to Prime Digital Academy?</p>
+                <RadioGroup
+                  value={this.props.applicant.applied_at_prime}
+                  onChange={this.handleChange('applied_at_prime')}
+                >
+                  <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                  <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                </RadioGroup>
+              </div>
+            ) : (
+                null
+              )}
+            <div className="grid-2">
+              <p className="label">Have you received the MSP TechHire/JFCS scholarship?</p>
+              <RadioGroup
+                value={this.props.applicant.msp_tech_scholar}
+                onChange={this.handleChange('msp_tech_scholar')}
+              >
+                <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                <FormControlLabel value={'false'} control={<Radio />} label="No" />
+              </RadioGroup>
+            </div>
+            {this.props.applicant.msp_tech_scholar === "false" ? (
+              <div className="grid-2">
+                <p className="label">Have you applied for the MSP TechHire/JFCS scholarship?</p>
+                <RadioGroup
+                  value={this.props.applicant.applied_for_msp}
+                  onChange={this.handleChange('applied_for_msp')}
+                >
+                  <FormControlLabel value={'true'} control={<Radio />} label="Yes" />
+                  <FormControlLabel value={'false'} control={<Radio />} label="No" />
+                </RadioGroup>
+              </div>
+            ) : (
+                null
+              )}
           </div>
         </div>
       </div>
