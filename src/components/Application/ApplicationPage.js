@@ -121,13 +121,14 @@ class ApplicationPage extends Component {
     }
     switch (this.state.activeStep) {
       case 1:
+      case 2:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
         return true;
-      case 2:
+      case 3:
         this.props.dispatch(saveApplication({url: 'income', data: this.props.applicant}));
         return true;
         //the last page will include an alert that indicates the application has been completed.
-      case 3:
+      case 4:
         if(this.state.canSubmit){
           this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
           swal({

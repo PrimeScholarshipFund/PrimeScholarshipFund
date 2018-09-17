@@ -173,6 +173,7 @@ const stageQueries = function(route, body) {
             firstInjection.push(first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id);
             console.log({firstInjection});
             secondInjection.push(gender, race, age, level_of_ed, lgbtq_status, form_id)
+            console.log({secondInjection});
 
             // break if personal, if all then keep going into the income section to grab all the info from the body
             if(route === 'personal'){
