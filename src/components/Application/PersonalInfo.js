@@ -9,10 +9,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { editApplication } from '../../redux/actions/applicantActions';
 
-
-
-
-
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -99,8 +95,6 @@ class PersonalInfo extends Component {
   }
 
   render() {
-
-
     return (
       <div>
         <div className="top">
