@@ -15,11 +15,7 @@ class Landing extends Component {
 to underrepresented students interested in learning software engineering and UX Design.</p>
         <h3>Eligibility Requirements</h3>
         <ul className="sub">
-            <li>Immigrants (regardless of status)</li>
             <li>Students of color</li>
-            <li>Students with disabilities</li>
-            <li>LGBTQIA students</li>
-            <li>Be a Minnesota resident</li>
             <li>Be interested in attending Prime Digital Academy as a full-stack software engineer or UX
 Design student</li>
         </ul>
