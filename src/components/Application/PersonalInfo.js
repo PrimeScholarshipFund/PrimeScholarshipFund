@@ -31,67 +31,8 @@ const mapStateToProps = state => ({
 });
 
 class PersonalInfo extends Component {
-  state = {
-
-    raceBuilder:
-    {
-      AmInAlNat: false,
-      asian: false,
-      AfricanAm: false,
-      hispLat: false,
-      midEastNorthAf: false,
-      white: false,
-      DNWTS: false
-    }
-  }
-
   handleChange = (key) => event => {
     this.props.dispatch(editApplication({ key: key, value: event.target.value }))
-  }
-
-  handleChangeRace = (key) => event => {
-    this.changeRaceState(key);
-    const promise = new Promise(function (resolve) {
-      resolve(1);
-    }
-    ).then(this.raceString);
-  }
-
-  changeRaceState = (key) => {
-    this.setState({
-      ...this.state,
-      raceBuilder: { ...this.state.raceBuilder, [key]: !this.state.raceBuilder[key] }
-    });
-  }
-
-  raceString = () => {
-    let product = '';
-    let race = this.state.raceBuilder;
-
-    if (race.AmInAlNat) {
-      product += 'American Indian or Alaskan Native -'
-    }
-    if (race.asian) {
-      product += 'Asian -'
-    }
-    if (race.AfricanAm) {
-      product += 'Black or African American -'
-    }
-    if (race.hispLat) {
-      product += 'Hispanic or Latino -'
-    }
-    if (race.midEastNorthAf) {
-      product += 'Middle Eastern or North African -'
-    }
-    if (race.white) {
-      product += 'White -'
-    }
-
-    if (race.DNWTS) {
-      product += 'DNWTS -'
-    }
-    this.props.dispatch(editApplication({ key: 'race', value: product }))
-
   }
 
   render() {
