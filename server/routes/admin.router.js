@@ -22,7 +22,7 @@ router.get('/applicants', (req, res) => {
                 res.sendStatus(500);
             })
     } else {
-        res.sendStatus(404);
+        res.sendStatus(403);
     }
 
 });
