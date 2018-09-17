@@ -15,13 +15,13 @@ const applicant = (state = {}, action) => {
       if (action.payload.need_tuition !== null) {
         needTuition = action.payload.need_tuition.toString();
       }
-
+      
       return {
         ...action.payload,
-        accepted_at_prime: action.payload.accepted_at_prime.toString(),
-        applied_at_prime: action.payload.applied_at_prime.toString(),
-        msp_tech_scholar: action.payload.msp_tech_scholar.toString(),
-        applied_for_msp: action.payload.applied_for_msp.toString(),
+        accepted_at_prime: action.payload.accepted_at_prime,
+        applied_at_prime: action.payload.applied_at_prime,
+        msp_tech_scholar: action.payload.msp_tech_scholar,
+        applied_for_msp: action.payload.applied_for_msp,
         employed_during_prime: employedDuringPrime,
         government_assistance: governmentAssistance,
         need_tuition: needTuition,
