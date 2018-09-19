@@ -160,6 +160,7 @@ const stageQueries = function(route, body) {
             const msp_tech_scholar = body.msp_tech_scholar;
             const applied_for_msp = body.applied_for_msp;
             const gender = body.gender;
+            const specify_gender = body.specify_gender;
             const race = body.race;
             const age = body.age;
             const level_of_ed = body.level_of_ed;
@@ -168,11 +169,12 @@ const stageQueries = function(route, body) {
 
             firstQuery = `UPDATE contact SET first_name=$1, last_name=$2, middle_initial=$3, address_line_1=$4, address_line_2=$5, city=$6, state=$7, zip_code=$8, phone_number=$9, email=$10, accepted_at_prime=$11, applied_at_prime=$12, msp_tech_scholar=$13, applied_for_msp=$14 WHERE form_id=$15`;
             console.log({firstQuery});
-            secondQuery = `UPDATE demographics SET gender=$1, race=$2, age=$3, level_of_ed=$4, lgbtq_status=$5 WHERE form_id=$6`;
+            secondQuery = `UPDATE demographics SET gender=$1, specify_gender=$2, race=$3, age=$4, level_of_ed=$5, lgbtq_status=$6 WHERE form_id=$7`;
             console.log({secondQuery});
             firstInjection.push(first_name, last_name, middle_initial, address_line_1, address_line_2, city, state, zip_code, phone_number, email, accepted_at_prime, applied_at_prime, msp_tech_scholar, applied_for_msp, form_id);
             console.log({firstInjection});
-            secondInjection.push(gender, race, age, level_of_ed, lgbtq_status, form_id)
+            secondInjection.push(gender, specify_gender, race, age, level_of_ed, lgbtq_status, form_id)
+            console.log({secondInjection});
 
             // break if personal, if all then keep going into the income section to grab all the info from the body
             if(route === 'personal'){

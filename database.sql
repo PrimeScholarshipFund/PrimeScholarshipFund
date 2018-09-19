@@ -30,10 +30,10 @@ CREATE TABLE "contact" (
     "zip_code" varchar(100) NOT NULL DEFAULT '',
     "phone_number" varchar(15) NOT NULL DEFAULT '',
     "email" varchar(100) NOT NULL DEFAULT '',
-    "accepted_at_prime" BOOLEAN NOT NULL DEFAULT false,
-    "applied_at_prime" BOOLEAN NOT NULL DEFAULT false,
-    "msp_tech_scholar" BOOLEAN NOT NULL DEFAULT false,
-    "applied_for_msp" BOOLEAN NOT NULL DEFAULT false
+    "accepted_at_prime" BOOLEAN,
+    "applied_at_prime" BOOLEAN,
+    "msp_tech_scholar" BOOLEAN,
+    "applied_for_msp" BOOLEAN
 );
 
 
@@ -42,7 +42,8 @@ CREATE TABLE "demographics" (
     "id" serial PRIMARY KEY NOT NULL,
     "form_id" integer UNIQUE NOT NULL REFERENCES "form" ("id"),
     "gender" varchar(80) NOT NULL DEFAULT '',
-    "race" varchar(80) NOT NULL DEFAULT '',
+    "specify_gender" varchar(80) DEFAULT '',
+    "race" varchar(80)[],
     "age" varchar(80) NOT NULL DEFAULT '',
     "level_of_ed" varchar(80) NOT NULL DEFAULT '',
     "lgbtq_status" varchar(80) NOT NULL DEFAULT ''

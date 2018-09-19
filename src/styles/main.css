@@ -3,7 +3,7 @@
 body {
     font-family: 'Raleway', Arial, Helvetica, sans-serif;
     font-size: 18px;
-    text-align-last: center;
+    /* text-align-last: center; */
     background-color: whitesmoke;
     color:#60605f;
     
@@ -21,7 +21,6 @@ body {
 h1, h2, h3, h4, h5, h6  {
     color: #007da4;
 }
-
 
 /*
 li {
@@ -76,6 +75,18 @@ ul {
     margin-top: 100px;
     text-align: center;
     
+}
+
+.application {
+    text-align: left;
+}
+
+.application h1, h2, h3, h4, h5, h6 {
+    margin: 0px 0px 10px 10px;
+}
+
+.application p, li {
+    margin: 10px 20px;
 }
 
 .bottom-2 {
@@ -239,9 +250,9 @@ ul {
 }
 
 
-.sub {
+/* .sub {
     text-align: center;
-}
+} */
 
 .top {
     grid-area: 1 / span 3;

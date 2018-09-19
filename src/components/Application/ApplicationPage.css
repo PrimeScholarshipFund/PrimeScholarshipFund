@@ -24,6 +24,10 @@
 }
 
 .title {
-    text-align: center;
+    text-align: left;
     margin-top: 15vh;
+}
+
+.label {
+    text-align: right;
 }

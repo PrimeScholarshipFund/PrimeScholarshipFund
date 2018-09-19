@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
+import Demographics from './Demographics';
 import IncomeExpenses from './IncomeExpenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
@@ -15,7 +16,7 @@ import swal from 'sweetalert';
 
 
 const getSteps = () => {
-  return ['Start', 'Personal Information','Income & Expenses','Submit']
+  return ['Start', 'Contact Information','Demographics', 'Income & Expenses','Submit']
 }
 
 //switch function to display the message on the progress bar based on current step
@@ -52,6 +53,12 @@ class ApplicationPage extends Component {
     completed: {},
     activeStep: 0,
     canSubmit: true,
+  }
+
+  componentDidUpdate() {
+    if (!this.props.user.isLoading && this.props.user.userName === null) {
+      this.props.history.push('login');
+    }
   }
 
   //determines if all steps have been completed.
@@ -114,13 +121,14 @@ class ApplicationPage extends Component {
     }
     switch (this.state.activeStep) {
       case 1:
+      case 2:
         this.props.dispatch(saveApplication({url: 'personal', data: this.props.applicant}));
         return true;
-      case 2:
+      case 3:
         this.props.dispatch(saveApplication({url: 'income', data: this.props.applicant}));
         return true;
         //the last page will include an alert that indicates the application has been completed.
-      case 3:
+      case 4:
         if(this.state.canSubmit){
           this.props.dispatch(saveApplication({url: 'all', data: this.props.applicant}));
           swal({
@@ -202,12 +210,15 @@ render() {
       content = <PersonalInfo />
       break;
     case 2:
-      content = <IncomeExpenses />
+      content = <Demographics />
       break;
     case 3:
-      content = <Review checkSubmit={this.checkSubmit}/>
+      content = <IncomeExpenses />
       break;
     case 4:
+      content = <Review checkSubmit={this.checkSubmit}/>
+      break;
+    case 5:
       content = <ThankYou/>
       break;
 
@@ -216,7 +227,7 @@ render() {
   }
 
   return (
-      <div>
+      <div className="application">
         <SimpleTabs 
           value = {2}
         />
