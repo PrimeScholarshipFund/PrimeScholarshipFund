@@ -257,15 +257,16 @@ ul {
 .top {
     grid-area: 1 / span 3;
     overflow-wrap: normal;
-    margin: 50px auto 50px auto;
-    /* text-align: center; */
+    margin: 200px auto 50px auto;
+    text-align: center;
 }
 
 .wrapper {
     z-index: 0;
-    width: 75%;
+    width: 55%;
+    margin: auto;	
     height: max-content;
-    margin: 100px 0px 50px 20px;
+    
 }
 
 
