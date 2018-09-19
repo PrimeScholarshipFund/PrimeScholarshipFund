@@ -1,14 +1,13 @@
 .board {
     height: 250px;
+    padding-top: 4%;
+    padding-bottom: 4%;
 }
 
 .tile {
     display: flex;
-    height: max-content;
-    margin-bottom: 0px;
-    margin-top: 0px;
 }
 
-.tile .content {
+.content {
     margin-left: 15px;
 }
