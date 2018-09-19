@@ -45,15 +45,12 @@ class AboutPage extends Component {
       
       <div className="item">
         <h2>The Board</h2>
-        <div className="iconContainer">
-            <img src={BoardIcon} alt="" className="icon"/>
-            </div>
       </div>
 
       <div className="vertGrid">
       <Paper className="tile item">
 
-          <img src={PhotoIlana} alt="" className="board"/>
+          <img src={PhotoIlana} alt="Headshot of Ilana Nagib" className="board"/>
 
           <div className="content">
           <h4>Ilana Nagib - President</h4>
@@ -68,8 +65,7 @@ class AboutPage extends Component {
 
         <Paper className="tile item">
 
-
-          <img src={PhotoEllen} alt="" className="board"/>
+          <img src={PhotoEllen} alt="Headshot of Ellen Keal" className="board"/>
 
           <div className="content">
           <h4>Ellen Keal - IT Officer</h4>
@@ -83,7 +79,7 @@ class AboutPage extends Component {
 
         <Paper className="tile item">
 
-          <img src={PhotoAndy} alt="" className="board"/>
+          <img src={PhotoAndy} alt="Headshot of Andy Krueger" className="board"/>
 
           <div className="content">
           <h4>Andy Krueger - Evaluations Officer</h4>
