@@ -23,7 +23,7 @@ class AboutPage extends Component {
         <TopImage image={TopPhoto} />
         <div className="wrapper">
           <h1>The Fund</h1>
-          <p>The scholarship fund was found in 2018 by Prime Digital Academy alumni to increase the
+          <p>The scholarship fund was founded in 2018 by Prime Digital Academy alumni to increase the
           participation of underrepresented students from underserved communities in STEM industries in
           the greater Twin Cities area.
           Increasing diversity in STEM presents a number of challenges. Underrepresented students face
