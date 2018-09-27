@@ -22,6 +22,12 @@ h1, h2, h3, h4, h5, h6  {
     color: #007da4;
 }
 
+
+h1 {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
 /*
 li {
     float: left;
@@ -48,10 +54,9 @@ li a:hover {
 }
 
 p {
-    /* text-align: justify; */
-    /* text-justify: inter-word; */
-    /* padding: 15px auto; */
+    text-align: center;
     line-height: 1.6em;
+    margin: 0%;
 }
 
 /* input {
@@ -263,10 +268,9 @@ ul {
 
 .wrapper {
     z-index: 0;
-    width: 55%;
+    width: 60%;
     margin: auto;
     height: max-content;
-    
 }
 
 
