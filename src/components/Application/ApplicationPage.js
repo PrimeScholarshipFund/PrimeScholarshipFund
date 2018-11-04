@@ -4,7 +4,8 @@ import SimpleTabs from '../SimpleTabs/SimpleTabs';
 import Landing from './Landing';
 import PersonalInfo from './PersonalInfo';
 import Demographics from './Demographics';
-import IncomeExpenses from './IncomeExpenses';
+import Income from './Income';
+import Expenses from './Expenses';
 import Review from './Review';
 import HorizontalLinearStepper from '../HorizontalLinearStepper/HorizontalLinearStepper';
 import './ApplicationPage.css';
@@ -213,12 +214,15 @@ render() {
       content = <Demographics />
       break;
     case 3:
-      content = <IncomeExpenses />
+      content = <Income />
       break;
     case 4:
-      content = <Review checkSubmit={this.checkSubmit}/>
+      content = <Expenses />
       break;
     case 5:
+      content = <Review checkSubmit={this.checkSubmit}/>
+      break;
+    case 6:
       content = <ThankYou/>
       break;
 
