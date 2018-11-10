@@ -16,7 +16,7 @@ to underrepresented students interested in learning software engineering and UX 
         <h3>Eligibility Requirements</h3>
         <ul className="sub">
             <li>Students of color</li>
-            <li>Be interested in attending Prime Digital Academy as a full-stack software engineer or UX
+            <li>Be interested in attending a bootcamp as a full-stack software engineer or UX
 Design student</li>
         </ul>
 
