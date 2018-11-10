@@ -66,15 +66,19 @@ class SimpleTabs extends React.Component {
       <div className={classes.root}>
           <AppBar position="fixed">
             {/* login button here- left justify */}
-            <LoginButton />
+            {/* <LoginButton /> */}
             <Tabs
             classes= {{
               indicator: classes.tabsIndicator
             }} 
             className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
+
               <Tab label="Home" href="#/home"></Tab>
               <Tab label="About" href="#/about"></Tab>
               <Tab label="Apply" href="#/application"></Tab>
+              {/* <Tab label="Login" onClick={this.props.LoginButton}>Login</Tab> */}
+              <Tab> <LoginButton /></Tab>
+             
               <Tab disableRipple classes={{root: classes.donateButton}} label="Donate" href="#/donate">Donate</Tab>
             </Tabs>
           </AppBar>
