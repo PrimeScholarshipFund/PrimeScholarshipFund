@@ -17,7 +17,7 @@ import swal from 'sweetalert';
 
 
 const getSteps = () => {
-  return ['Start', 'Contact Information','Demographics', 'Income & Expenses','Submit']
+  return ['Start', 'Contact Information','Demographics', 'Income', 'Expenses','Submit']
 }
 
 //switch function to display the message on the progress bar based on current step
