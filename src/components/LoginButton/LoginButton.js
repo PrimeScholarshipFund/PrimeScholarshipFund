@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '../../../node_modules/@material-ui/core';
+import { Tab } from '../../../node_modules/@material-ui/core';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import './LoginButton.css';
@@ -23,41 +23,16 @@ class LoginButton extends Component {
     this.props.dispatch(triggerLogout());
   }
 
-  render() {   
-     let content = (
-        <div id="ButtonDiv">
-            {
-              this.props.user.userName ? 
-              (<p>Hello, {this.props.user.userName}</p>) : 
-              (<p></p>)  
-          }
-           
-          {
-            this.props.user.userName ? 
-          (<Button onClick={this.logout}>
-            <LockIcon></LockIcon>
-            Logout
-          </Button>) : 
-          (<Button href="#/login">
-            <LockOpenIcon></LockOpenIcon>
-            Login
-          </Button> )
-          }
-
-           
-          
-        </div>
-      );
-   
-
+  render() {
     return (
       <div>
-        { content }
+        {this.props.user.userName ?
+          (<Tab label={<div><LockIcon></LockIcon>Log Out</div>} onClick={this.logout}></Tab>) :
+        (<Tab label={<div><LockOpenIcon></LockOpenIcon>Log In</div>} href="#/login"></Tab>)}
       </div>
     );
   }
 }
 
-// this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(LoginButton);
 

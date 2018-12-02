@@ -76,9 +76,7 @@ class SimpleTabs extends React.Component {
               <Tab label="Home" href="#/home"></Tab>
               <Tab label="About" href="#/about"></Tab>
               <Tab label="Apply" href="#/application"></Tab>
-              {/* <Tab label="Login" onClick={this.props.LoginButton}>Login</Tab> */}
-              <Tab> <LoginButton /></Tab>
-             
+              <LoginButton />
               <Tab disableRipple classes={{root: classes.donateButton}} label="Donate" href="#/donate">Donate</Tab>
             </Tabs>
           </AppBar>
