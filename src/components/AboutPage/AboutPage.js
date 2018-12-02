@@ -56,11 +56,11 @@ class AboutPage extends Component {
               <img src={PhotoEllen} alt="Headshot of Ellen Keal" className="board" />
               <div className="content">
                 <h4>Ellen Keal - IT Officer</h4>
-                <p>I graduated from Prime in July 2018 in the Kochab cohort. Before that, I got a degree in Math
+                <p>I graduated from Prime in July 2018 in the Kochab cohort, and currently work as an Associate 
+                  Software Engineer at Minnesota Public Radio. Before that, I got a degree in Math
                   and Physics from the University of Wisconsin, Madison. I strongly believe in the power of
                   education, and believe everyone should be able to access education. When I'm not coding, I
-                  can be found helping younger students with their Math and Reading skills, or running around the
-                  lakes and trails in Minneapolis.</p>
+                  can be found running around the lakes and trails in Minneapolis.</p>
               </div>
             </Paper>
 
