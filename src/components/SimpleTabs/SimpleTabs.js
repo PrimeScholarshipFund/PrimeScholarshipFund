@@ -1,49 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import LoginButton from '../LoginButton/LoginButton';
+import Button from '@material-ui/core/Button';
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-const styles = theme => ({
-  root: {
+const styles = {
+  logo: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    align: 'right',
-    width: '100vw',
+    marginLeft: '60px',
   },
-  tabs: {
-    marginLeft: 'auto',
-  },
-  tabsRoot: {
-    borderBottom: '1px solid #7986cb'
-  },
-  tabsIndicator: {
-    backgroundColor: '#FF8A65',
-    height: '2px',
+  menu: {
+    marginRight: '70px',
+    marginTop: '35px',
   },
   donateButton: {
-    backgroundColor: '#FF7043',
+    backgroundColor: '#f58424',
+    marginLeft: '50px',
   },
-});
+};
 
 class SimpleTabs extends React.Component {
-
   state = {
     value: 0,
   }
@@ -60,29 +38,20 @@ class SimpleTabs extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
-    //gets value from state so the indication bar works
+   
     return (
-      <div className={classes.root}>
-          <AppBar position="fixed">
-            {/* login button here- left justify */}
-            <LoginButton />
-            <Tabs
-            classes= {{
-              indicator: classes.tabsIndicator
-            }} 
-            className = {classNames(classes.tabs)} value={value} onChange={this.handleChange}>
-              <Tab label="Home" href="#/home"></Tab>
-              <Tab label="About" href="#/about"></Tab>
-              <Tab label="Apply" href="#/application"></Tab>
-              <Tab disableRipple classes={{root: classes.donateButton}} label="Donate" href="#/donate">Donate</Tab>
-            </Tabs>
-          </AppBar>
-        {value === 0}
-        {value === 1}
-        {value === 2}
-        {value === 3}
-      </div>
+        <Tabs>
+          <div className={classes.logo}>
+            <img src='images/diversitech-final.png' width='350px' alt="Logo" />
+          </div>
+          <div className={classes.menu}>
+            <Tab label="Home" href="#/home"></Tab>
+            <Tab label="About" href="#/about"></Tab>
+            <Tab label="Apply" href="#/application"></Tab>
+            <Tab label="Login" href="#/login"></Tab>
+            <Button className={classes.donateButton} label="Donate" href="#/donate">Donate</Button>
+          </div>
+        </Tabs>
     );
   }
 }
